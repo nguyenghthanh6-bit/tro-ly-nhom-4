@@ -8,6 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
     <!-- Thư viện đọc file PDF (.pdf) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <!-- Thư viện đọc file Excel (.xlsx, .xls) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Thư viện giải nén đọc file PowerPoint (.pptx) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
@@ -20,7 +24,6 @@
         .brand-info h2 { font-size: 14px; color: #38bdf8; letter-spacing: 0.5px; text-transform: uppercase; }
         .brand-info p { font-size: 10px; color: #94a3b8; }
         .sidebar-section { display: flex; flex-direction: column; gap: 8px; }
-        .sidebar-title { font-size: 11px; color: #64748b; font-weight: bold; text-transform: uppercase; }
 
         .action-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; text-align: center; width: 100%; white-space: nowrap; }
         .action-btn:hover { background: #0284c7; border-color: #38bdf8; color: #fff; }
@@ -29,7 +32,7 @@
         .action-btn.clear-btn { background: #451a1a; border-color: #7f1d1d; color: #fca5a5; }
 
         #fileInput, #planImageInput { display: none; }
-        .plans-container { display: flex; flex-direction: column; gap: 6px; max-height: 140px; overflow-y: auto; }
+        .plans-container { display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow-y: auto; }
         .plan-item { background: #1e293b; border: 1px solid #334155; padding: 8px 10px; border-radius: 6px; font-size: 11.5px; color: #94a3b8; cursor: pointer; }
         .plan-item.active { background: #0284c7; color: #fff; border-color: #38bdf8; font-weight: bold; }
 
@@ -60,84 +63,26 @@
         .chat-input-area input:focus { border-color: #38bdf8; }
         .chat-input-area button { background: #0284c7; color: white; border: none; padding: 10px 22px; border-radius: 25px; font-size: 13.5px; font-weight: bold; cursor: pointer; }
 
-        /* --- TỐI ƯU HÓA MOBILE (HIỂN THỊ ĐỦ CẢ NẠP FILE & NẠP ẢNH MÔ HÌNH) --- */
+        /* --- TỐI ƯU HÓA MOBILE --- */
         @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-                height: 100vh;
-                height: 100dvh;
-                overflow: hidden;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                max-height: 85px;
-                padding: 6px 10px;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                flex-shrink: 0;
-                background: #0f172a;
-                border-right: none;
-                border-bottom: 1px solid #1e293b;
-            }
-
+            body { flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; }
+            .sidebar { width: 100%; height: auto; max-height: 85px; padding: 6px 10px; flex-direction: row; align-items: center; justify-content: space-between; flex-shrink: 0; background: #0f172a; border-right: none; border-bottom: 1px solid #1e293b; }
             .brand { border-bottom: none; padding-bottom: 0; gap: 6px; }
             .brand-avatar { width: 32px; height: 32px; }
             .brand-info h2 { font-size: 11px; }
             .brand-info p { display: none; }
-            
             .sidebar-section { flex-direction: row; gap: 5px; align-items: center; }
             .action-btn { width: auto; padding: 6px 8px; font-size: 11px; }
             .plans-container { display: none; }
-
-            .main-content {
-                height: calc(100vh - 85px);
-                height: calc(100dvh - 85px);
-                display: flex;
-                flex-direction: column;
-                overflow: hidden;
-            }
-
+            .main-content { height: calc(100vh - 85px); height: calc(100dvh - 85px); display: flex; flex-direction: column; overflow: hidden; }
             .top-header { display: none; }
-
-            .quick-queries {
-                padding: 6px 10px;
-                gap: 6px;
-            }
-
-            .query-chip {
-                padding: 5px 10px;
-                font-size: 11px;
-            }
-
-            .chat-box {
-                flex: 1;
-                padding: 10px;
-                overflow-y: auto;
-            }
-
-            .message {
-                max-width: 92%;
-                font-size: 12.5px;
-                padding: 10px 12px;
-            }
-
-            .chat-input-area {
-                padding: 8px 10px;
-                background: #0f172a;
-            }
-
-            .chat-input-area input {
-                padding: 10px 14px;
-                font-size: 13px;
-            }
-
-            .chat-input-area button {
-                padding: 8px 16px;
-                font-size: 13px;
-            }
+            .quick-queries { padding: 6px 10px; gap: 6px; }
+            .query-chip { padding: 5px 10px; font-size: 11px; }
+            .chat-box { flex: 1; padding: 10px; overflow-y: auto; }
+            .message { max-width: 92%; font-size: 12.5px; padding: 10px 12px; }
+            .chat-input-area { padding: 8px 10px; background: #0f172a; }
+            .chat-input-area input { padding: 10px 14px; font-size: 13px; }
+            .chat-input-area button { padding: 8px 16px; font-size: 13px; }
         }
     </style>
 </head>
@@ -153,12 +98,12 @@
 
         <div class="sidebar-section">
             <label for="fileInput" class="action-btn upload-btn">📁 File</label>
-            <input type="file" id="fileInput" accept=".docx,.pdf,.jpg,.png,.jpeg">
+            <input type="file" id="fileInput" accept=".docx,.pdf,.xlsx,.xls,.pptx,.jpg,.png,.jpeg">
 
-            <label for="planImageInput" class="action-btn img-btn">🖼️ Nạp Ảnh</label>
+            <label for="planImageInput" class="action-btn img-btn">🖼️ Ảnh</label>
             <input type="file" id="planImageInput" accept=".jpg,.png,.jpeg" onchange="attachImageToActivePlan(event)">
 
-            <button class="action-btn clear-btn" onclick="clearAllData()">🗑️ Xóa</button>
+            <button class="action-btn clear-btn" onclick="clearUserData()">🗑️ Xóa</button>
         </div>
 
         <div class="plans-container" id="dynamicPlansList"></div>
@@ -167,7 +112,7 @@
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Full Feature Mobile</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● All-in-One Mobile</span>
         </div>
 
         <div class="quick-queries">
@@ -179,7 +124,7 @@
         </div>
 
         <div class="chat-box" id="chatBox">
-            <div class="message bot-message">👋 Chào bạn! Nút **🖼️ Nạp Ảnh** mô hình cho phương án đã được đem quay trở lại ngay bên cạnh nút **📁 File** phía trên rồi nhé!</div>
+            <div class="message bot-message">👋 Chào bạn! Trợ lý Nhóm 4 đã tích hợp đầy đủ các định dạng: Word, PDF, Excel, PowerPoint và Hình ảnh. Hãy nạp file và trải nghiệm ngay nhé!</div>
         </div>
 
         <div class="chat-input-area">
@@ -193,37 +138,48 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
     }
 
-    const projectImages = [
+    const defaultPlans = [
         {
-            keywords: ["mô hình dự án", "mô hình", "sơ đồ", "bản đồ"],
-            title: "Mô hình & Sơ đồ cấu trúc dự án",
-            url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+            id: 'nhom4-official-1',
+            name: 'PA 1: Báo cáo chính thức Nhóm 4',
+            text: 'Dự án tuyến đường cao tốc dài 50 km, đơn giá đầu tư là 2 tỷ VND mỗi 1 km. Dự án mang lại nhiều lợi ích kinh tế, tăng trưởng vùng, phát triển hạ tầng giao thông xanh và an sinh xã hội. Tuy nhiên cần lưu ý các rủi ro về thời tiết và sụt lún nền đất.',
+            summary: '• Tuyến đường cao tốc dài 50 km, đơn giá 2 tỷ VND/km.\n• Đẩy mạnh tăng trưởng kinh tế và hạ tầng.\n• Cần lưu ý rủi ro thời tiết và địa chất.',
+            image: null
         }
     ];
 
-    let savedPlans = [];
+    let userUploadedPlans = [];
+    let allPlans = [];
     let activePlanId = null;
 
     window.onload = function() {
-        try {
-            const storedPlans = localStorage.getItem("nhom4_saved_plans");
-            if (storedPlans) {
-                savedPlans = JSON.parse(storedPlans);
-                if (savedPlans.length > 0) {
-                    activePlanId = savedPlans[0].id;
-                    renderPlanChips();
-                    appendMessage('bot', `💾 Đã khôi phục ${savedPlans.length} Phương án.`);
-                }
-            }
-        } catch(e) { localStorage.removeItem("nhom4_saved_plans"); }
+        loadPlans();
     };
+
+    function loadPlans() {
+        try {
+            const stored = localStorage.getItem("nhom4_user_uploaded_plans");
+            if (stored) {
+                userUploadedPlans = JSON.parse(stored);
+            }
+        } catch(e) { 
+            userUploadedPlans = []; 
+        }
+
+        allPlans = [...defaultPlans, ...userUploadedPlans];
+        
+        if (allPlans.length > 0 && !activePlanId) {
+            activePlanId = allPlans[0].id;
+        }
+        renderPlanChips();
+    }
 
     document.getElementById('fileInput').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (!file) return;
 
-        appendMessage('user', `📁 Chọn tệp: ${file.name}`);
-        appendMessage('bot', `⏳ Đang đọc dữ liệu...`);
+        appendMessage('user', `📁 Chọn tệp cá nhân: ${file.name}`);
+        appendMessage('bot', `⏳ Đang đọc dữ liệu tệp...`);
 
         setTimeout(async () => {
             try {
@@ -233,7 +189,7 @@
 
                 if (nameLower.endsWith('.jpg') || nameLower.endsWith('.png') || nameLower.endsWith('.jpeg')) {
                     imageUrl = URL.createObjectURL(file);
-                    extractedText = `[HÌNH ẢNH MÔ HÌNH: ${file.name}]`;
+                    extractedText = `[HÌNH ẢNH CÁ NHÂN: ${file.name}]`;
                 } 
                 else if (nameLower.endsWith('.docx')) { 
                     extractedText = await readDocxFileWithTables(file); 
@@ -241,15 +197,21 @@
                 else if (nameLower.endsWith('.pdf')) { 
                     extractedText = await readPdfFile(file); 
                 } 
+                else if (nameLower.endsWith('.xlsx') || nameLower.endsWith('.xls')) {
+                    extractedText = await readExcelFile(file);
+                }
+                else if (nameLower.endsWith('.pptx')) {
+                    extractedText = await readPptxFile(file);
+                }
                 else {
-                    appendMessage('bot', '⚠️ Chỉ hỗ trợ file Word (.docx), PDF (.pdf) hoặc Hình ảnh.');
+                    appendMessage('bot', '⚠️ Hỗ trợ các định dạng: Word, PDF, Excel, PowerPoint, Hình ảnh.');
                     return;
                 }
 
                 if (extractedText.length > 80000) extractedText = extractedText.substring(0, 80000);
 
-                const newPlanId = Date.now();
-                const planName = `PA ${savedPlans.length + 1} (${file.name})`;
+                const newPlanId = 'user-' + Date.now();
+                const planName = `Cá nhân ${userUploadedPlans.length + 1} (${file.name})`;
                 const summary = generateDetailedSummary(extractedText);
 
                 const newPlan = {
@@ -261,12 +223,13 @@
                     image: imageUrl
                 };
 
-                savedPlans.push(newPlan);
+                userUploadedPlans.push(newPlan);
+                saveUserPlansToStorage();
+                loadPlans();
                 activePlanId = newPlanId;
-                savePlansToStorage();
                 renderPlanChips();
 
-                appendMessage('bot', `✅ **ĐÃ NẠP THÀNH CÔNG ${planName.toUpperCase()}**\n\n📌 **TÓM TẮT:**\n${summary}`, imageUrl);
+                appendMessage('bot', `✅ **ĐÃ NẠP TỆP THÀNH CÔNG**\n\n📌 **TÓM TẮT:**\n${summary}`, imageUrl);
             } catch (error) {
                 console.error(error);
                 appendMessage('bot', `❌ Lỗi khi đọc file "${file.name}".`);
@@ -274,19 +237,78 @@
         }, 100);
     });
 
+    function readExcelFile(f) {
+        return new Promise((res, rej) => {
+            const r = new FileReader();
+            r.onload = e => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    let fullText = "";
+                    workbook.SheetNames.forEach(sheetName => {
+                        const worksheet = workbook.Sheets[sheetName];
+                        const csv = XLSX.utils.sheet_to_csv(worksheet);
+                        fullText += `\n\n📌 [Sheet: ${sheetName}]\n` + csv;
+                    });
+                    res(fullText);
+                } catch (err) { rej(err); }
+            };
+            r.readAsArrayBuffer(f);
+        });
+    }
+
+    function readPptxFile(f) {
+        return new Promise((res, rej) => {
+            const r = new FileReader();
+            r.onload = async e => {
+                try {
+                    const zip = new JSZip();
+                    const zipContent = await zip.loadAsync(e.target.result);
+                    let fullText = "";
+                    let slideIndex = 1;
+
+                    // Duyệt qua các file slide trong pptx
+                    for (let filename in zipContent.files) {
+                        if (filename.match(/ppt\/slides\/slide\d+\.xml/)) {
+                            const slideXml = await zipContent.files[filename].async("text");
+                            const parser = new DOMParser();
+                            const xmlDoc = parser.parseFromString(slideXml, "text/xml");
+                            const textNodes = xmlDoc.getElementsByTagName("a:t");
+                            let slideText = "";
+                            for (let i = 0; i < textNodes.length; i++) {
+                                slideText += textNodes[i].textContent + " ";
+                            }
+                            if (slideText.trim()) {
+                                fullText += `\n\n📌 [Slide ${slideIndex}]: ${slideText}`;
+                            }
+                            slideIndex++;
+                        }
+                    }
+                    if (!fullText) fullText = "Không đọc được nội dung văn bản bên trong slide PowerPoint này.";
+                    res(fullText);
+                } catch (err) { rej(err); }
+            };
+            r.readAsArrayBuffer(f);
+        });
+    }
+
     function attachImageToActivePlan(event) {
         const file = event.target.files[0];
         if (!file) return;
 
-        const plan = savedPlans.find(p => p.id === activePlanId);
+        const plan = allPlans.find(p => p.id === activePlanId);
         if (!plan) {
-            appendMessage('bot', '⚠️ Hãy nạp file Phương án trước khi chọn ảnh mô hình!');
+            appendMessage('bot', '⚠️ Vui lòng chọn phương án trước!');
             return;
         }
 
         const imageUrl = URL.createObjectURL(file);
         plan.image = imageUrl;
-        savePlansToStorage();
+        
+        if (plan.id.startsWith('user-')) {
+            const up = userUploadedPlans.find(p => p.id === activePlanId);
+            if (up) { up.image = imageUrl; saveUserPlansToStorage(); }
+        }
 
         appendMessage('bot', `🖼️ Đã gắn hình ảnh mô hình cho **${plan.name}**!`, imageUrl);
         event.target.value = "";
@@ -295,7 +317,7 @@
     function renderPlanChips() {
         const container = document.getElementById('dynamicPlansList');
         container.innerHTML = "";
-        savedPlans.forEach(plan => {
+        allPlans.forEach(plan => {
             const div = document.createElement('div');
             div.className = `plan-item ${plan.id === activePlanId ? 'active' : ''}`;
             div.innerText = `📄 ${plan.name}`;
@@ -307,29 +329,29 @@
     function selectPlan(id) {
         activePlanId = id;
         renderPlanChips();
-        const plan = savedPlans.find(p => p.id === id);
+        const plan = allPlans.find(p => p.id === id);
         if (plan) {
-            appendMessage('bot', `🔄 **ĐÃ CHUYỂN: ${plan.name.toUpperCase()}**\n\n📌 **TÓM TẮT:**\n${plan.summary}`, plan.image);
+            appendMessage('bot', `🔄 **ĐÃ CHUYỂN SANG: ${plan.name.toUpperCase()}**\n\n📌 **TÓM TẮT:**\n${plan.summary}`, plan.image);
         }
     }
 
     function answerAllBenefits() {
-        const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng nạp tài liệu trước.'); return; }
-        const benefitKeywords = ["lợi ích", "doanh thu", "hiệu quả", "tăng trưởng", "lợi nhuận", "giá trị", "môi trường", "sinh thái", "cây xanh", "an sinh", "xã hội", "cộng đồng", "người dân", "việc làm", "hộ dân", "phát triển"];
+        const plan = allPlans.find(p => p.id === activePlanId);
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn phương án trước.'); return; }
+        const benefitKeywords = ["lợi ích", "doanh thu", "hiệu quả", "tăng trưởng", "lợi nhuận", "giá trị", "môi trường", "sinh thái", "cây xanh", "an sinh", "xã hội", "cộng đồng", "người dân", "việc làm", "hộ dân", "phát triển", "giao thông xanh"];
         searchAndRespond(plan, benefitKeywords, "📈 **TỔNG HỢP LỢI ÍCH DỰ ÁN:**");
     }
 
     function answerRisks() {
-        const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng nạp tài liệu trước.'); return; }
-        const riskKeywords = ["rủi ro", "nguy cơ", "thách thức", "khó khăn", "hạn chế", "tác động xấu", "ảnh hưởng", "biến động", "lo ngại", "sụt lún", "chậm tiến độ"];
+        const plan = allPlans.find(p => p.id === activePlanId);
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn phương án trước.'); return; }
+        const riskKeywords = ["rủi ro", "nguy cơ", "thách thức", "khó khăn", "hạn chế", "tác động xấu", "ảnh hưởng", "biến động", "lo ngại", "sụt lún", "chậm tiến độ", "thời tiết"];
         searchAndRespond(plan, riskKeywords, "⚠️ **PHÂN TÍCH RỦI RO & NGUY CƠ:**");
     }
 
     function answerTotalCost() {
-        const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng nạp tài liệu để tính toán chi phí.'); return; }
+        const plan = allPlans.find(p => p.id === activePlanId);
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn phương án để tính toán chi phí.'); return; }
         const text = plan.text;
         const kmMatch = text.match(/(\d+([\.,]\d+)?)\s*(km|cây số)/i);
         const priceMatch = text.match(/(\d+([\.,]\d+)?)\s*(tỷ|triệu)\s*(VND|đồng)?\s*\/\s*km/i) || text.match(/mỗi\s*1\s*km\s*.*?\s*(\d+([\.,]\d+)?)\s*(tỷ|triệu)/i);
@@ -353,7 +375,7 @@
         } else if (uniqueResults.length > 0) {
             appendMessage('bot', `💰 **THÔNG TIN CHI PHÍ:**\n\n• ` + uniqueResults.join("\n\n• "));
         } else {
-            appendMessage('bot', `💰 Không tìm thấy số liệu chi phí trong file.`);
+            appendMessage('bot', `💰 Không tìm thấy số liệu chi phí trong tài liệu này.`);
         }
     }
 
@@ -370,8 +392,8 @@
     }
 
     function generateDynamicQuestions() {
-        const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng nạp tài liệu trước.'); return; }
+        const plan = allPlans.find(p => p.id === activePlanId);
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn tài liệu trước.'); return; }
         appendMessage('user', '🤖 Hãy đặt câu hỏi tổng hợp');
         setTimeout(() => {
             let questions = [
@@ -384,12 +406,12 @@
     }
 
     function answerProjectModel() {
-        const plan = savedPlans.find(p => p.id === activePlanId);
+        const plan = allPlans.find(p => p.id === activePlanId);
         if (plan && plan.image) {
-            appendMessage('bot', `🖼️ **MÔ HÌNH CỦA BẠN:**`, plan.image);
+            appendMessage('bot', `🖼️ **MÔ HÌNH CỦA PHƯƠNG ÁN:**`, plan.image);
             return;
         }
-        appendMessage('bot', `🖼️ **${projectImages[0].title}:**`, projectImages[0].url);
+        appendMessage('bot', `🖼️ **Mô hình sơ đồ tổng quan dự án nhóm:**`, "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80");
     }
 
     function readDocxFileWithTables(f) {
@@ -437,19 +459,18 @@
         return lines.length === 0 ? text.slice(0, 300) + "..." : "• " + lines.slice(0, 10).join("\n• ");
     }
 
-    function savePlansToStorage() {
+    function saveUserPlansToStorage() {
         try {
-            const plansToSave = savedPlans.map(p => ({ ...p, image: null }));
-            localStorage.setItem("nhom4_saved_plans", JSON.stringify(plansToSave));
+            const plansToSave = userUploadedPlans.map(p => ({ ...p, image: null }));
+            localStorage.setItem("nhom4_user_uploaded_plans", JSON.stringify(plansToSave));
         } catch(e) {}
     }
 
-    function clearAllData() {
-        localStorage.removeItem("nhom4_saved_plans");
-        savedPlans = [];
-        activePlanId = null;
-        renderPlanChips();
-        appendMessage('bot', '🗑️ Đã xóa dữ liệu cũ.');
+    function clearUserData() {
+        localStorage.removeItem("nhom4_user_uploaded_plans");
+        userUploadedPlans = [];
+        loadPlans();
+        appendMessage('bot', '🗑️ Đã xóa các tệp cá nhân bạn đã nạp.');
     }
 
     function sendQuickQuery(text) {
@@ -500,7 +521,7 @@
             return;
         }
 
-        const plan = savedPlans.find(p => p.id === activePlanId);
+        const plan = allPlans.find(p => p.id === activePlanId);
         if (plan && plan.text) {
             const matches = plan.text.split(/\r?\n|\./).map(l => l.trim()).filter(l => l.toLowerCase().includes(qLower));
             if (matches.length > 0) {

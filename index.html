@@ -91,8 +91,9 @@
         </div>
 
         <div class="sidebar-section">
+            <!-- Nút File chuyên dùng cho Word và PDF, không bị kẹt bộ lọc ảnh trên mobile -->
             <label for="fileInput" class="action-btn upload-btn">📁 File</label>
-            <input type="file" id="fileInput" accept=".docx,.pdf,.jpg,.png,.jpeg">
+            <input type="file" id="fileInput" accept=".docx,.pdf">
 
             <label for="planImageInput" class="action-btn img-btn">🖼️ Ảnh</label>
             <input type="file" id="planImageInput" accept=".jpg,.png,.jpeg" onchange="attachImageToActivePlan(event)">
@@ -106,7 +107,7 @@
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Structured Summary Ready</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Mobile File Fix</span>
         </div>
 
         <div class="quick-queries">
@@ -118,7 +119,7 @@
         </div>
 
         <div class="chat-box" id="chatBox">
-            <div class="message bot-message">👋 Chào bạn! Trợ lý Nhóm 4 đã được tối ưu cách xuống dòng và phân cấp ý nhỏ rõ ràng, giúp bạn nhìn vào là hiểu ngay nội dung tóm tắt!</div>
+            <div class="message bot-message">👋 Chào bạn! Nút 📁 File trên điện thoại đã được sửa để mở trực tiếp trình quản lý tài liệu (Word, PDF) rồi nhé!</div>
         </div>
 
         <div class="chat-input-area">
@@ -181,18 +182,14 @@
                 let imageUrl = null;
                 const nameLower = file.name.toLowerCase();
 
-                if (nameLower.endsWith('.jpg') || nameLower.endsWith('.png') || nameLower.endsWith('.jpeg')) {
-                    imageUrl = URL.createObjectURL(file);
-                    extractedText = `[HÌNH ẢNH CÁ NHÂN: ${file.name}]`;
-                } 
-                else if (nameLower.endsWith('.docx')) { 
+                if (nameLower.endsWith('.docx')) { 
                     extractedText = await readDocxFileWithTables(file); 
                 } 
                 else if (nameLower.endsWith('.pdf')) { 
                     extractedText = await readPdfFile(file); 
                 } 
                 else {
-                    appendMessage('bot', '⚠️ Hỗ trợ các định dạng: Word (.docx), PDF (.pdf), Hình ảnh.');
+                    appendMessage('bot', '⚠️ Vui lòng chọn file định dạng Word (.docx) hoặc PDF (.pdf).');
                     return;
                 }
 
@@ -387,7 +384,6 @@
         }); 
     }
 
-    // --- HÀM TÓM TẮT ĐƯỢC CHIA THÀNH CÁC NHÓM Ý CHÍNH & Ý NHỎ CÓ CÁCH DÒNG ---
     function generateDetailedSummary(text) {
         const sentences = text.split(/[\r\n]+|[.!?]\s+/)
             .map(x => x.trim())
@@ -397,7 +393,6 @@
             return "📌 **Nội dung tóm tắt:**\n   • " + text.slice(0, 200) + "...";
         }
 
-        // Chia câu thành các ý nhỏ phân cấp
         const part1 = sentences.slice(0, 2);
         const part2 = sentences.slice(2, 5);
         const part3 = sentences.slice(5, 7);

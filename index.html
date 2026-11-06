@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TRỢ LÝ NHÓM 4 - FPT AI DASHBOARD</title>
     <!-- Thư viện đọc file Word (.docx) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
@@ -11,115 +11,124 @@
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #0b1329; color: #e2e8f0; height: 100vh; display: flex; overflow: hidden; }
+        body { background-color: #0b1329; color: #e2e8f0; height: 100vh; height: 100dvh; display: flex; overflow: hidden; }
 
-        /* SIDEBAR BÊN TRÁI */
-        .sidebar { width: 320px; background: #0f172a; border-right: 1px solid #1e293b; display: flex; flex-direction: column; padding: 20px; gap: 20px; flex-shrink: 0; }
-        .brand { display: flex; align-items: center; gap: 12px; padding-bottom: 15px; border-bottom: 1px solid #1e293b; }
-        .brand-avatar { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #38bdf8; object-fit: cover; }
-        .brand-info h2 { font-size: 15px; color: #38bdf8; letter-spacing: 0.5px; text-transform: uppercase; }
-        .brand-info p { font-size: 11px; color: #94a3b8; }
-        .sidebar-section { display: flex; flex-direction: column; gap: 10px; }
-        .sidebar-title { font-size: 12px; color: #64748b; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+        /* SIDEBAR BÊN TRÁI (PC) */
+        .sidebar { width: 300px; background: #0f172a; border-right: 1px solid #1e293b; display: flex; flex-direction: column; padding: 15px; gap: 12px; flex-shrink: 0; }
+        .brand { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid #1e293b; }
+        .brand-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #38bdf8; object-fit: cover; }
+        .brand-info h2 { font-size: 14px; color: #38bdf8; letter-spacing: 0.5px; text-transform: uppercase; }
+        .brand-info p { font-size: 10px; color: #94a3b8; }
+        .sidebar-section { display: flex; flex-direction: column; gap: 8px; }
+        .sidebar-title { font-size: 11px; color: #64748b; font-weight: bold; text-transform: uppercase; }
         
-        .action-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 10px 14px; border-radius: 8px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s; text-align: left; width: 100%; }
+        .action-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s; text-align: left; width: 100%; }
         .action-btn:hover { background: #0284c7; border-color: #38bdf8; color: #fff; }
         .action-btn.upload-btn { background: #064e3b; border-color: #059669; color: #34d399; font-weight: bold; }
-        .action-btn.upload-btn:hover { background: #047857; }
         .action-btn.clear-btn { background: #451a1a; border-color: #7f1d1d; color: #fca5a5; }
-        .action-btn.clear-btn:hover { background: #991b1b; color: #fff; }
 
         #fileInput, #planImageInput { display: none; }
-        .plans-container { display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; }
-        .plan-item { background: #1e293b; border: 1px solid #334155; padding: 10px 12px; border-radius: 6px; font-size: 12.5px; color: #94a3b8; cursor: pointer; transition: all 0.2s; }
-        .plan-item:hover, .plan-item.active { background: #0284c7; color: #fff; border-color: #38bdf8; font-weight: bold; }
+        .plans-container { display: flex; flex-direction: column; gap: 6px; max-height: 140px; overflow-y: auto; }
+        .plan-item { background: #1e293b; border: 1px solid #334155; padding: 8px 10px; border-radius: 6px; font-size: 11.5px; color: #94a3b8; cursor: pointer; }
+        .plan-item.active { background: #0284c7; color: #fff; border-color: #38bdf8; font-weight: bold; }
 
         /* KHUNG CHÍNH BÊN PHẢI */
-        .main-content { flex: 1; display: flex; flex-direction: column; background: #0b1329; }
-        .top-header { background: #0f172a; padding: 15px 25px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: space-between; }
-        .top-header h1 { font-size: 18px; color: #f8fafc; }
+        .main-content { flex: 1; display: flex; flex-direction: column; background: #0b1329; height: 100%; overflow: hidden; }
+        .top-header { background: #0f172a; padding: 12px 20px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+        .top-header h1 { font-size: 16px; color: #f8fafc; }
 
-        .quick-queries { display: flex; gap: 10px; padding: 12px 25px; background: #0f172a; border-bottom: 1px solid #1e293b; overflow-x: auto; }
-        .query-chip { background: #1e293b; border: 1px solid #334155; color: #38bdf8; padding: 8px 16px; border-radius: 20px; font-size: 12.5px; cursor: pointer; white-space: nowrap; transition: all 0.2s; font-weight: 600; }
+        .quick-queries { display: flex; gap: 8px; padding: 10px 20px; background: #0f172a; border-bottom: 1px solid #1e293b; overflow-x: auto; flex-shrink: 0; }
+        .quick-queries::-webkit-scrollbar { height: 4px; }
+        .quick-queries::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+        .query-chip { background: #1e293b; border: 1px solid #334155; color: #38bdf8; padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; white-space: nowrap; font-weight: 600; flex-shrink: 0; }
         .query-chip:hover { background: #38bdf8; color: #0f172a; }
         .query-chip.ai-ask { background: #4c1d95; border-color: #7c3aed; color: #e9d5ff; }
-        .query-chip.ai-ask:hover { background: #7c3aed; color: #fff; }
         .query-chip.risk-btn { background: #7f1d1d; border-color: #dc2626; color: #fca5a5; }
-        .query-chip.risk-btn:hover { background: #dc2626; color: #fff; }
         .query-chip.benefit-btn { background: #064e3b; border-color: #059669; color: #34d399; }
-        .query-chip.benefit-btn:hover { background: #059669; color: #fff; }
 
-        .chat-box { flex: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
-        .message { max-width: 80%; padding: 14px 18px; border-radius: 12px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .chat-box { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+        .message { max-width: 85%; padding: 12px 16px; border-radius: 10px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
         .user-message { background: #0284c7; color: #ffffff; align-self: flex-end; border-bottom-right-radius: 2px; }
         .bot-message { background: #1e293b; color: #f1f5f9; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid #334155; }
         .bot-message strong { color: #38bdf8; }
-        .chat-img { max-width: 450px; border-radius: 8px; margin-top: 10px; border: 1px solid #475569; display: block; }
+        .chat-img { max-width: 100%; border-radius: 8px; margin-top: 8px; border: 1px solid #475569; display: block; }
 
-        .chat-input-area { padding: 20px 25px; background: #0f172a; border-top: 1px solid #1e293b; display: flex; gap: 12px; }
-        .chat-input-area input { flex: 1; background: #1e293b; border: 1px solid #334155; color: #fff; padding: 14px 20px; border-radius: 30px; outline: none; font-size: 14px; }
+        .chat-input-area { padding: 12px 20px; background: #0f172a; border-top: 1px solid #1e293b; display: flex; gap: 10px; flex-shrink: 0; }
+        .chat-input-area input { flex: 1; background: #1e293b; border: 1px solid #334155; color: #fff; padding: 12px 16px; border-radius: 25px; outline: none; font-size: 13.5px; }
         .chat-input-area input:focus { border-color: #38bdf8; }
-        .chat-input-area button { background: #0284c7; color: white; border: none; padding: 12px 28px; border-radius: 30px; font-size: 14px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
-        .chat-input-area button:hover { background: #0369a1; }
+        .chat-input-area button { background: #0284c7; color: white; border: none; padding: 10px 22px; border-radius: 25px; font-size: 13.5px; font-weight: bold; cursor: pointer; }
 
-        /* --- TÍCH HỢP RESPONSIVE HOÀN HẢO CHO ĐIỆN THOẠI --- */
+        /* --- TỐI ƯU HÓA HOÀN HẢO CHO ĐIỆN THOẠI (MOBILE RESPONSIVE) --- */
         @media (max-width: 768px) {
             body {
-                flex-direction: column; /* Xếp dọc màn hình trên điện thoại */
+                flex-direction: column;
                 height: 100vh;
+                height: 100dvh;
                 overflow: hidden;
             }
 
             .sidebar {
                 width: 100%;
-                max-height: 160px; /* Thu gọn sidebar phía trên để nhường chỗ cho khung chat */
-                padding: 10px;
-                gap: 8px;
+                max-height: 130px; /* Thu gọn tối đa phần trên đt */
+                padding: 8px 12px;
+                gap: 6px;
+                flex-shrink: 0;
             }
 
-            .brand-info h2 { font-size: 13px; }
-            .brand-info p { display: none; } /* Ẩn bớt mô tả nhỏ trên màn hình đt cho gọn */
+            .brand { padding-bottom: 4px; }
+            .brand-avatar { width: 30px; height: 30px; }
+            .brand-info h2 { font-size: 12px; }
+            .brand-info p { display: none; }
             
-            .plans-container {
-                max-height: 45px; /* Thu gọn danh sách phương án */
-            }
+            .sidebar-section:nth-child(2), .sidebar-section:nth-child(4) { display: none; } /* Ẩn bớt nút thừa trên mobile để tiết kiệm diện tích */
+            .plans-container { max-height: 35px; flex-direction: row; overflow-x: auto; }
+            .plan-item { white-space: nowrap; padding: 4px 8px; font-size: 11px; }
 
             .main-content {
-                height: calc(100vh - 160px);
+                height: calc(100vh - 130px);
+                height: calc(100dvh - 130px);
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
             }
 
-            .top-header {
-                padding: 10px 15px;
-            }
-            .top-header h1 {
-                font-size: 14px;
-            }
+            .top-header { display: none; } /* Ẩn tiêu đề lớn trên điện thoại để nhường chỗ cho khung chat */
 
             .quick-queries {
-                padding: 8px 12px;
+                padding: 6px 10px;
+                gap: 6px;
+            }
+
+            .query-chip {
+                padding: 5px 10px;
+                font-size: 11px;
             }
 
             .chat-box {
-                padding: 15px;
+                flex: 1;
+                padding: 10px;
+                overflow-y: auto;
             }
 
             .message {
-                max-width: 90%;
-                font-size: 13px;
-                padding: 10px 14px;
+                max-width: 92%;
+                font-size: 12.5px;
+                padding: 10px 12px;
             }
 
             .chat-input-area {
-                padding: 12px 15px;
+                padding: 8px 10px;
+                background: #0f172a;
             }
 
             .chat-input-area input {
-                padding: 10px 16px;
+                padding: 10px 14px;
                 font-size: 13px;
             }
 
             .chat-input-area button {
-                padding: 10px 18px;
+                padding: 8px 16px;
                 font-size: 13px;
             }
         }
@@ -129,53 +138,43 @@
 
     <div class="sidebar">
         <div class="brand">
-            <img src="miku.jpg" alt="Avatar" class="brand-avatar" onerror="this.src='https://via.placeholder.com/45'">
+            <img src="miku.jpg" alt="Avatar" class="brand-avatar" onerror="this.src='https://via.placeholder.com/40'">
             <div class="brand-info">
                 <h2>TRỢ LÝ NHÓM 4</h2>
-                <p>Hệ thống AI Dashboard</p>
+                <p>FPT AI Dashboard</p>
             </div>
         </div>
 
         <div class="sidebar-section">
-            <span class="sidebar-title">Quản lý Tài liệu</span>
             <label for="fileInput" class="action-btn upload-btn">📁 Nạp Tệp Word/PDF</label>
             <input type="file" id="fileInput" accept=".docx,.pdf,.jpg,.png,.jpeg">
-
-            <label for="planImageInput" class="action-btn">🖼️ Gắn Ảnh Mô Hình</label>
-            <input type="file" id="planImageInput" accept=".jpg,.png,.jpeg" onchange="attachImageToActivePlan(event)">
         </div>
 
         <div class="sidebar-section">
-            <span class="sidebar-title">Danh sách Phương án</span>
             <div class="plans-container" id="dynamicPlansList"></div>
-        </div>
-
-        <div class="sidebar-section" style="margin-top: auto;">
-            <button class="action-btn clear-btn" onclick="clearAllData()">🗑️ Xóa Dữ Liệu Lưu</button>
         </div>
     </div>
 
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 12px; color: #34d399; background: #064e3b; padding: 4px 12px; border-radius: 12px; font-weight: bold;">● Mobile & PC Ready</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Mobile Optimized</span>
         </div>
 
         <div class="quick-queries">
-            <button class="query-chip ai-ask" onclick="generateDynamicQuestions()">🤖 AI Đặt Câu Hỏi</button>
-            <button class="query-chip benefit-btn" onclick="sendQuickQuery('Tổng hợp tất cả lợi ích dự án')">📈 Lợi Ích Tổng Hợp</button>
-            <button class="query-chip risk-btn" onclick="sendQuickQuery('Phân tích rủi ro và nguy cơ')">⚠️ Rủi Ro & Nguy Cơ</button>
+            <button class="query-chip ai-ask" onclick="generateDynamicQuestions()">🤖 AI Hỏi</button>
+            <button class="query-chip benefit-btn" onclick="sendQuickQuery('Tổng hợp tất cả lợi ích dự án')">📈 Lợi Ích</button>
+            <button class="query-chip risk-btn" onclick="sendQuickQuery('Phân tích rủi ro và nguy cơ')">⚠️ Rủi Ro</button>
             <button class="query-chip" onclick="sendQuickQuery('Tổng chi phí cho dự án')">🧮 Tính Chi Phí</button>
             <button class="query-chip" onclick="sendQuickQuery('Mô hình dự án')">🖼️ Mô hình</button>
-            <button class="query-chip" onclick="sendQuickQuery('Tác động đến doanh thu')">💰 Doanh Thu</button>
         </div>
 
         <div class="chat-box" id="chatBox">
-            <div class="message bot-message">👋 Tui là trợ lý Nhóm 4! Giao diện đã được tối ưu hoàn hảo cho cả máy tính lẫn điện thoại. Hãy nạp file và trải nghiệm ngay nhé!</div>
+            <div class="message bot-message">👋 Chào bạn! Giao diện trên điện thoại đã được tinh chỉnh gọn gàng, nút bấm và khung nhập tin nhắn hiển thị đầy đủ. Hãy nạp file và trải nghiệm ngay nhé!</div>
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="userInput" placeholder="Nhập câu hỏi hoặc yêu cầu..." onkeypress="handleKeyPress(event)">
+            <input type="text" id="userInput" placeholder="Nhập câu hỏi..." onkeypress="handleKeyPress(event)">
             <button onclick="sendMessage()">Gửi</button>
         </div>
     </div>
@@ -204,7 +203,7 @@
                 if (savedPlans.length > 0) {
                     activePlanId = savedPlans[0].id;
                     renderPlanChips();
-                    appendMessage('bot', `💾 Đã khôi phục ${savedPlans.length} Phương án từ bộ nhớ.`);
+                    appendMessage('bot', `💾 Đã khôi phục ${savedPlans.length} Phương án.`);
                 }
             }
         } catch(e) { localStorage.removeItem("nhom4_saved_plans"); }
@@ -215,7 +214,7 @@
         if (!file) return;
 
         appendMessage('user', `📁 Chọn tệp: ${file.name}`);
-        appendMessage('bot', `⏳ Đang đọc dữ liệu chi tiết từ "${file.name}"...`);
+        appendMessage('bot', `⏳ Đang đọc dữ liệu...`);
 
         setTimeout(async () => {
             try {
@@ -225,7 +224,7 @@
 
                 if (nameLower.endsWith('.jpg') || nameLower.endsWith('.png') || nameLower.endsWith('.jpeg')) {
                     imageUrl = URL.createObjectURL(file);
-                    extractedText = `[HÌNH ẢNH MÔ HÌNH: ${file.name}]\nPhân tích ảnh: Tài liệu hình ảnh sơ đồ mô hình và cấu trúc dự án.`;
+                    extractedText = `[HÌNH ẢNH MÔ HÌNH: ${file.name}]`;
                 } 
                 else if (nameLower.endsWith('.docx')) { 
                     extractedText = await readDocxFileWithTables(file); 
@@ -234,14 +233,14 @@
                     extractedText = await readPdfFile(file); 
                 } 
                 else {
-                    appendMessage('bot', '⚠️ Chỉ hỗ trợ file Word (.docx), PDF (.pdf) hoặc Hình ảnh (.jpg, .png).');
+                    appendMessage('bot', '⚠️ Chỉ hỗ trợ file Word (.docx), PDF (.pdf) hoặc Hình ảnh.');
                     return;
                 }
 
                 if (extractedText.length > 80000) extractedText = extractedText.substring(0, 80000);
 
                 const newPlanId = Date.now();
-                const planName = `Phương án ${savedPlans.length + 1} (${file.name})`;
+                const planName = `PA ${savedPlans.length + 1} (${file.name})`;
                 const summary = generateDetailedSummary(extractedText);
 
                 const newPlan = {
@@ -258,31 +257,13 @@
                 savePlansToStorage();
                 renderPlanChips();
 
-                appendMessage('bot', `✅ **ĐÃ NẠP THÀNH CÔNG ${planName.toUpperCase()}**\n\n📌 **TÓM TẮT TOÀN BỘ NỘI DUNG CHI TIẾT:**\n${summary}`, imageUrl);
+                appendMessage('bot', `✅ **ĐÃ NẠP THÀNH CÔNG ${planName.toUpperCase()}**\n\n📌 **TÓM TẮT:**\n${summary}`, imageUrl);
             } catch (error) {
                 console.error(error);
-                appendMessage('bot', `❌ Lỗi khi đọc file "${file.name}". Vui lòng kiểm tra lại tệp.`);
+                appendMessage('bot', `❌ Lỗi khi đọc file "${file.name}".`);
             }
         }, 100);
     });
-
-    function attachImageToActivePlan(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan) {
-            appendMessage('bot', '⚠️ Vui lòng chọn một Phương án bên danh sách trái trước khi thêm ảnh!');
-            return;
-        }
-
-        const imageUrl = URL.createObjectURL(file);
-        plan.image = imageUrl;
-        savePlansToStorage();
-
-        appendMessage('bot', `🖼️ Đã cập nhật thành công hình ảnh mô hình cho **${plan.name}**!`, imageUrl);
-        event.target.value = "";
-    }
 
     function renderPlanChips() {
         const container = document.getElementById('dynamicPlansList');
@@ -301,36 +282,27 @@
         renderPlanChips();
         const plan = savedPlans.find(p => p.id === id);
         if (plan) {
-            appendMessage('bot', `🔄 **ĐÃ CHUYỂN SANG: ${plan.name.toUpperCase()}**\n\n📌 **TÓM TẮT TOÀN BỘ NỘI DUNG CHI TIẾT:**\n${plan.summary}`, plan.image);
+            appendMessage('bot', `🔄 **ĐÃ CHUYỂN: ${plan.name.toUpperCase()}**\n\n📌 **TÓM TẮT:**\n${plan.summary}`, plan.image);
         }
     }
 
     function answerAllBenefits() {
         const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) {
-            appendMessage('bot', '⚠️ Vui lòng nạp hoặc chọn tài liệu trước.');
-            return;
-        }
-        const benefitKeywords = ["lợi ích", "doanh thu", "hiệu quả", "tăng trưởng", "lợi nhuận", "giúp ích", "giá trị", "môi trường", "sinh thái", "thiên nhiên", "cây xanh", "an sinh", "xã hội", "cộng đồng", "người dân", "việc làm", "hộ dân", "phát triển"];
-        searchAndRespond(plan, benefitKeywords, "📈 **TỔNG HỢP LỢI ÍCH DỰ ÁN (Kinh tế - Môi trường - Xã hội):**");
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng nạp tài liệu trước.'); return; }
+        const benefitKeywords = ["lợi ích", "doanh thu", "hiệu quả", "tăng trưởng", "lợi nhuận", "giá trị", "môi trường", "sinh thái", "cây xanh", "an sinh", "xã hội", "cộng đồng", "người dân", "việc làm", "hộ dân", "phát triển"];
+        searchAndRespond(plan, benefitKeywords, "📈 **TỔNG HỢP LỢI ÍCH DỰ ÁN:**");
     }
 
     function answerRisks() {
         const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) {
-            appendMessage('bot', '⚠️ Vui lòng nạp hoặc chọn tài liệu trước.');
-            return;
-        }
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng nạp tài liệu trước.'); return; }
         const riskKeywords = ["rủi ro", "nguy cơ", "thách thức", "khó khăn", "hạn chế", "tác động xấu", "ảnh hưởng", "biến động", "lo ngại", "sụt lún", "chậm tiến độ"];
-        searchAndRespond(plan, riskKeywords, "⚠️ **PHÂN TÍCH RỦI RO & NGUY CƠ TIỀM MẨN:**");
+        searchAndRespond(plan, riskKeywords, "⚠️ **PHÂN TÍCH RỦI RO & NGUY CƠ:**");
     }
 
     function answerTotalCost() {
         const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) {
-            appendMessage('bot', '⚠️ Vui lòng nạp tài liệu để tính toán chi phí.');
-            return;
-        }
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng nạp tài liệu để tính toán chi phí.'); return; }
         const text = plan.text;
         const kmMatch = text.match(/(\d+([\.,]\d+)?)\s*(km|cây số)/i);
         const priceMatch = text.match(/(\d+([\.,]\d+)?)\s*(tỷ|triệu)\s*(VND|đồng)?\s*\/\s*km/i) || text.match(/mỗi\s*1\s*km\s*.*?\s*(\d+([\.,]\d+)?)\s*(tỷ|triệu)/i);
@@ -341,66 +313,56 @@
             const unitPrice = parseFloat(priceMatch[1].replace(',', '.'));
             const unitType = priceMatch[0].includes('triệu') ? 'triệu' : 'tỷ';
             const total = distance * unitPrice;
-            
-            calculatedResult = `🧮 **KẾT QUẢ TỰ ĐỘNG TÍNH TOÁN TỪ FILE:**\n` +
-                               `• **Quãng đường:** ${distance} km\n` +
-                               `• **Đơn giá 1km:** ${unitPrice} ${unitType} VND/km\n` +
-                               `👉 **TỔNG CHI PHÍ THI CÔNG:** **${total.toLocaleString('vi-VN')} ${unitType} VND**\n\n`;
+            calculatedResult = `🧮 **TỰ ĐỘNG TÍNH TOÁN:**\n• Quãng đường: ${distance} km\n• Đơn giá: ${unitPrice} ${unitType}/km\n👉 **TỔNG CHI PHÍ:** **${total.toLocaleString('vi-VN')} ${unitType} VND**\n\n`;
         }
 
-        const costKeywords = ["chi phí", "tổng vốn", "vốn đầu tư", "kinh phí", "chi", "vnd", "usd", "tỷ", "triệu", "đơn giá"];
+        const costKeywords = ["chi phí", "tổng vốn", "vốn đầu tư", "kinh phí", "vnd", "usd", "tỷ", "triệu", "đơn giá"];
         const sentences = plan.text.split(/(?<=[.?!;\n])\s+/).map(s => s.trim());
         const matched = sentences.filter(s => costKeywords.some(kw => s.toLowerCase().includes(kw)) && s.length > 10);
-        const uniqueResults = [...new Set(matched)].slice(0, 8);
+        const uniqueResults = [...new Set(matched)].slice(0, 6);
 
         if (calculatedResult !== "") {
-            appendMessage('bot', calculatedResult + `📌 **DỮ LIỆU GỐC TRONG TÀI LIỆU:**\n• ` + uniqueResults.join("\n• "));
+            appendMessage('bot', calculatedResult + `📌 **DỮ LIỆU GỐC:**\n• ` + uniqueResults.join("\n• "));
         } else if (uniqueResults.length > 0) {
-            appendMessage('bot', `💰 **THÔNG TIN CHI PHÍ TRONG (${plan.name}):**\n\n• ` + uniqueResults.join("\n\n• "));
+            appendMessage('bot', `💰 **THÔNG TIN CHI PHÍ:**\n\n• ` + uniqueResults.join("\n\n• "));
         } else {
-            appendMessage('bot', `💰 Không tìm thấy số liệu chi phí cụ thể trong file này.`);
+            appendMessage('bot', `💰 Không tìm thấy số liệu chi phí trong file.`);
         }
     }
 
     function searchAndRespond(plan, keywords, title) {
         const sentences = plan.text.split(/(?<=[.?!;\n])\s+/).map(s => s.trim());
         const matched = sentences.filter(s => keywords.some(kw => s.toLowerCase().includes(kw)) && s.length > 10);
-        const uniqueResults = [...new Set(matched)].slice(0, 10);
+        const uniqueResults = [...new Set(matched)].slice(0, 8);
 
         if (uniqueResults.length > 0) {
-            appendMessage('bot', `${title} (${plan.name}):\n\n• ` + uniqueResults.join("\n\n• "));
+            appendMessage('bot', `${title}:\n\n• ` + uniqueResults.join("\n\n• "));
         } else {
-            appendMessage('bot', `${title} Không tìm thấy thông tin phù hợp trong ${plan.name}.`);
+            appendMessage('bot', `${title} Không tìm thấy thông tin phù hợp.`);
         }
     }
 
     function generateDynamicQuestions() {
         const plan = savedPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) {
-            appendMessage('bot', '⚠️ Vui lòng nạp tài liệu trước để AI tạo câu hỏi!');
-            return;
-        }
-
-        appendMessage('user', '🤖 Hãy đặt câu hỏi tổng hợp dựa trên file này');
-
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng nạp tài liệu trước.'); return; }
+        appendMessage('user', '🤖 Hãy đặt câu hỏi tổng hợp');
         setTimeout(() => {
             let questions = [
-                "• **Về Lợi Ích Tổng Hợp:** Những giá trị cốt lõi về kinh tế, môi trường sinh thái và phúc lợi an sinh xã hội mà dự án mang lại là gì?",
-                "• **Về Rủi Ro & Nguy Cơ:** Đâu là những điểm yếu kỹ thuật hoặc nguy cơ thời tiết, thị trường lớn nhất có thể cản trở dự án?",
-                "• **Về Chi Phí & Đầu Tư:** Chi phí đầu tư và đơn giá thực hiện dự án này được cân đối ra sao?"
+                "• **Về Lợi Ích:** Các giá trị kinh tế, môi trường và an sinh xã hội?",
+                "• **Về Rủi Ro:** Nguy cơ kỹ thuật hoặc thời tiết cần lưu ý?",
+                "• **Về Chi Phí:** Tổng ngân sách và đơn giá đầu tư ra sao?"
             ];
-            appendMessage('bot', `🤖 **CÁC CÂU HỎI TRỌNG TÂM ĐƯỢC TỔNG HỢP CHO (${plan.name}):**\n\n` + questions.join("\n\n"));
+            appendMessage('bot', `🤖 **CÂU HỎI GỢI Ý CHO BẠN:**\n\n` + questions.join("\n\n"));
         }, 50);
     }
 
     function answerProjectModel() {
         const plan = savedPlans.find(p => p.id === activePlanId);
         if (plan && plan.image) {
-            appendMessage('bot', `🖼️ **MÔ HÌNH CỦA ${plan.name.toUpperCase()}:**`, plan.image);
+            appendMessage('bot', `🖼️ **MÔ HÌNH CỦA BẠN:**`, plan.image);
             return;
         }
-        const defaultImg = projectImages[0];
-        appendMessage('bot', `🖼️ **${defaultImg.title}:**\n\nSơ đồ trực quan thể hiện cấu trúc vận hành dự án.`, defaultImg.url);
+        appendMessage('bot', `🖼️ **${projectImages[0].title}:**`, projectImages[0].url);
     }
 
     function readDocxFileWithTables(f) {
@@ -431,7 +393,7 @@
                 try { 
                     const pdf = await pdfjsLib.getDocument(new Uint8Array(e.target.result)).promise; 
                     let t = ""; 
-                    for(let i = 1; i <= Math.min(pdf.numPages, 15); i++){ 
+                    for(let i = 1; i <= Math.min(pdf.numPages, 10); i++){ 
                         const p = await pdf.getPage(i); 
                         const txt = await p.getTextContent(); 
                         t += txt.items.map(i => i.str).join(" ") + "\n"; 
@@ -445,7 +407,7 @@
 
     function generateDetailedSummary(text) {
         const lines = text.split(/\r?\n|\. /).map(x => x.trim()).filter(x => x.length > 10);
-        return lines.length === 0 ? text.slice(0, 500) + "..." : "• " + lines.slice(0, 15).join("\n• ");
+        return lines.length === 0 ? text.slice(0, 300) + "..." : "• " + lines.slice(0, 10).join("\n• ");
     }
 
     function savePlansToStorage() {
@@ -453,14 +415,6 @@
             const plansToSave = savedPlans.map(p => ({ ...p, image: null }));
             localStorage.setItem("nhom4_saved_plans", JSON.stringify(plansToSave));
         } catch(e) {}
-    }
-
-    function clearAllData() {
-        localStorage.removeItem("nhom4_saved_plans");
-        savedPlans = [];
-        activePlanId = null;
-        renderPlanChips();
-        appendMessage('bot', '🗑️ Đã xóa sạch dữ liệu cũ trong bộ nhớ.');
     }
 
     function sendQuickQuery(text) {
@@ -512,20 +466,15 @@
         }
 
         const plan = savedPlans.find(p => p.id === activePlanId);
-        if (qLower.includes("tóm tắt")) { 
-            appendMessage('bot', plan ? `📌 **TÓM TẮT CHI TIẾT:**\n${plan.summary}` : '📌 Trợ lý Nhóm 4 đã sẵn sàng.'); 
-            return; 
-        }
-
         if (plan && plan.text) {
             const matches = plan.text.split(/\r?\n|\./).map(l => l.trim()).filter(l => l.toLowerCase().includes(qLower));
             if (matches.length > 0) {
-                appendMessage('bot', `🔍 **Kết quả tìm thấy về "${q}" trong ${plan.name}:**\n\n• ` + matches.slice(0, 6).join("\n• "));
+                appendMessage('bot', `🔍 **Kết quả cho "${q}":**\n\n• ` + matches.slice(0, 5).join("\n• "));
                 return;
             }
         }
 
-        appendMessage('bot', `Tui chưa tìm thấy thông tin cho "${q}". Bạn có thể chọn các nút **📈 Lợi Ích Tổng Hợp** hoặc **⚠️ Rủi Ro & Nguy Cơ** phía trên nhé!`);
+        appendMessage('bot', `Tui chưa tìm thấy thông tin cho "${q}". Hãy thử bấm các nút tắt phía trên nhé!`);
     }
 </script>
 

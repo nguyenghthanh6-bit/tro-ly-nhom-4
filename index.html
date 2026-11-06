@@ -8,10 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
     <!-- Thư viện đọc file PDF (.pdf) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
-    <!-- Thư viện đọc file Excel (.xlsx, .xls) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <!-- Thư viện giải nén đọc file PowerPoint (.pptx) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
@@ -22,7 +18,6 @@
         .brand { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid #1e293b; }
         .brand-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #38bdf8; object-fit: cover; }
         .brand-info h2 { font-size: 14px; color: #38bdf8; letter-spacing: 0.5px; text-transform: uppercase; }
-        .brand-info p { font-size: 10px; color: #94a3b8; }
         .sidebar-section { display: flex; flex-direction: column; gap: 8px; }
 
         .action-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; text-align: center; width: 100%; white-space: nowrap; }
@@ -52,7 +47,7 @@
         .query-chip.benefit-btn { background: #064e3b; border-color: #059669; color: #34d399; }
 
         .chat-box { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
-        .message { max-width: 85%; padding: 12px 16px; border-radius: 10px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .message { max-width: 88%; padding: 12px 16px; border-radius: 10px; font-size: 13.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
         .user-message { background: #0284c7; color: #ffffff; align-self: flex-end; border-bottom-right-radius: 2px; }
         .bot-message { background: #1e293b; color: #f1f5f9; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid #334155; }
         .bot-message strong { color: #38bdf8; }
@@ -70,7 +65,6 @@
             .brand { border-bottom: none; padding-bottom: 0; gap: 6px; }
             .brand-avatar { width: 32px; height: 32px; }
             .brand-info h2 { font-size: 11px; }
-            .brand-info p { display: none; }
             .sidebar-section { flex-direction: row; gap: 5px; align-items: center; }
             .action-btn { width: auto; padding: 6px 8px; font-size: 11px; }
             .plans-container { display: none; }
@@ -79,7 +73,7 @@
             .quick-queries { padding: 6px 10px; gap: 6px; }
             .query-chip { padding: 5px 10px; font-size: 11px; }
             .chat-box { flex: 1; padding: 10px; overflow-y: auto; }
-            .message { max-width: 92%; font-size: 12.5px; padding: 10px 12px; }
+            .message { max-width: 95%; font-size: 12.5px; padding: 10px 12px; }
             .chat-input-area { padding: 8px 10px; background: #0f172a; }
             .chat-input-area input { padding: 10px 14px; font-size: 13px; }
             .chat-input-area button { padding: 8px 16px; font-size: 13px; }
@@ -98,7 +92,7 @@
 
         <div class="sidebar-section">
             <label for="fileInput" class="action-btn upload-btn">📁 File</label>
-            <input type="file" id="fileInput" accept=".docx,.pdf,.xlsx,.xls,.pptx,.jpg,.png,.jpeg">
+            <input type="file" id="fileInput" accept=".docx,.pdf,.jpg,.png,.jpeg">
 
             <label for="planImageInput" class="action-btn img-btn">🖼️ Ảnh</label>
             <input type="file" id="planImageInput" accept=".jpg,.png,.jpeg" onchange="attachImageToActivePlan(event)">
@@ -112,7 +106,7 @@
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● All-in-One Mobile</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Structured Summary Ready</span>
         </div>
 
         <div class="quick-queries">
@@ -124,7 +118,7 @@
         </div>
 
         <div class="chat-box" id="chatBox">
-            <div class="message bot-message">👋 Chào bạn! Trợ lý Nhóm 4 đã tích hợp đầy đủ các định dạng: Word, PDF, Excel, PowerPoint và Hình ảnh. Hãy nạp file và trải nghiệm ngay nhé!</div>
+            <div class="message bot-message">👋 Chào bạn! Trợ lý Nhóm 4 đã được tối ưu cách xuống dòng và phân cấp ý nhỏ rõ ràng, giúp bạn nhìn vào là hiểu ngay nội dung tóm tắt!</div>
         </div>
 
         <div class="chat-input-area">
@@ -143,7 +137,7 @@
             id: 'nhom4-official-1',
             name: 'PA 1: Báo cáo chính thức Nhóm 4',
             text: 'Dự án tuyến đường cao tốc dài 50 km, đơn giá đầu tư là 2 tỷ VND mỗi 1 km. Dự án mang lại nhiều lợi ích kinh tế, tăng trưởng vùng, phát triển hạ tầng giao thông xanh và an sinh xã hội. Tuy nhiên cần lưu ý các rủi ro về thời tiết và sụt lún nền đất.',
-            summary: '• Tuyến đường cao tốc dài 50 km, đơn giá 2 tỷ VND/km.\n• Đẩy mạnh tăng trưởng kinh tế và hạ tầng.\n• Cần lưu ý rủi ro thời tiết và địa chất.',
+            summary: '📌 **1. Tổng quan quy mô:**\n   • Tuyến đường cao tốc dài: 50 km\n   • Đơn giá đầu tư dự kiến: 2 tỷ VND/km\n\n📌 **2. Lợi ích kinh tế & xã hội:**\n   • Đẩy mạnh tăng trưởng kinh tế vùng\n   • Phát triển hạ tầng giao thông xanh và an sinh\n\n📌 **3. Rủi ro cần lưu ý:**\n   • Nguy cơ về thời tiết và địa chất sụt lún',
             image: null
         }
     ];
@@ -179,7 +173,7 @@
         if (!file) return;
 
         appendMessage('user', `📁 Chọn tệp cá nhân: ${file.name}`);
-        appendMessage('bot', `⏳ Đang đọc dữ liệu tệp...`);
+        appendMessage('bot', `⏳ Đang phân tích và bóc tách ý chính...`);
 
         setTimeout(async () => {
             try {
@@ -197,14 +191,8 @@
                 else if (nameLower.endsWith('.pdf')) { 
                     extractedText = await readPdfFile(file); 
                 } 
-                else if (nameLower.endsWith('.xlsx') || nameLower.endsWith('.xls')) {
-                    extractedText = await readExcelFile(file);
-                }
-                else if (nameLower.endsWith('.pptx')) {
-                    extractedText = await readPptxFile(file);
-                }
                 else {
-                    appendMessage('bot', '⚠️ Hỗ trợ các định dạng: Word, PDF, Excel, PowerPoint, Hình ảnh.');
+                    appendMessage('bot', '⚠️ Hỗ trợ các định dạng: Word (.docx), PDF (.pdf), Hình ảnh.');
                     return;
                 }
 
@@ -229,68 +217,13 @@
                 activePlanId = newPlanId;
                 renderPlanChips();
 
-                appendMessage('bot', `✅ **ĐÃ NẠP TỆP THÀNH CÔNG**\n\n📌 **TÓM TẮT:**\n${summary}`, imageUrl);
+                appendMessage('bot', `✅ **ĐÃ TÓM TẮT TỆP ${planName.toUpperCase()}**\n\n${summary}`, imageUrl);
             } catch (error) {
                 console.error(error);
                 appendMessage('bot', `❌ Lỗi khi đọc file "${file.name}".`);
             }
         }, 100);
     });
-
-    function readExcelFile(f) {
-        return new Promise((res, rej) => {
-            const r = new FileReader();
-            r.onload = e => {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    let fullText = "";
-                    workbook.SheetNames.forEach(sheetName => {
-                        const worksheet = workbook.Sheets[sheetName];
-                        const csv = XLSX.utils.sheet_to_csv(worksheet);
-                        fullText += `\n\n📌 [Sheet: ${sheetName}]\n` + csv;
-                    });
-                    res(fullText);
-                } catch (err) { rej(err); }
-            };
-            r.readAsArrayBuffer(f);
-        });
-    }
-
-    function readPptxFile(f) {
-        return new Promise((res, rej) => {
-            const r = new FileReader();
-            r.onload = async e => {
-                try {
-                    const zip = new JSZip();
-                    const zipContent = await zip.loadAsync(e.target.result);
-                    let fullText = "";
-                    let slideIndex = 1;
-
-                    // Duyệt qua các file slide trong pptx
-                    for (let filename in zipContent.files) {
-                        if (filename.match(/ppt\/slides\/slide\d+\.xml/)) {
-                            const slideXml = await zipContent.files[filename].async("text");
-                            const parser = new DOMParser();
-                            const xmlDoc = parser.parseFromString(slideXml, "text/xml");
-                            const textNodes = xmlDoc.getElementsByTagName("a:t");
-                            let slideText = "";
-                            for (let i = 0; i < textNodes.length; i++) {
-                                slideText += textNodes[i].textContent + " ";
-                            }
-                            if (slideText.trim()) {
-                                fullText += `\n\n📌 [Slide ${slideIndex}]: ${slideText}`;
-                            }
-                            slideIndex++;
-                        }
-                    }
-                    if (!fullText) fullText = "Không đọc được nội dung văn bản bên trong slide PowerPoint này.";
-                    res(fullText);
-                } catch (err) { rej(err); }
-            };
-            r.readAsArrayBuffer(f);
-        });
-    }
 
     function attachImageToActivePlan(event) {
         const file = event.target.files[0];
@@ -331,7 +264,7 @@
         renderPlanChips();
         const plan = allPlans.find(p => p.id === id);
         if (plan) {
-            appendMessage('bot', `🔄 **ĐÃ CHUYỂN SANG: ${plan.name.toUpperCase()}**\n\n📌 **TÓM TẮT:**\n${plan.summary}`, plan.image);
+            appendMessage('bot', `🔄 **ĐÃ CHUYỂN SANG: ${plan.name.toUpperCase()}**\n\n${plan.summary}`, plan.image);
         }
     }
 
@@ -362,18 +295,18 @@
             const unitPrice = parseFloat(priceMatch[1].replace(',', '.'));
             const unitType = priceMatch[0].includes('triệu') ? 'triệu' : 'tỷ';
             const total = distance * unitPrice;
-            calculatedResult = `🧮 **TỰ ĐỘNG TÍNH TOÁN:**\n• Quãng đường: ${distance} km\n• Đơn giá: ${unitPrice} ${unitType}/km\n👉 **TỔNG CHI PHÍ:** **${total.toLocaleString('vi-VN')} ${unitType} VND**\n\n`;
+            calculatedResult = `🧮 **TỰ ĐỘNG TÍNH TOÁN:**\n   • Quãng đường: ${distance} km\n   • Đơn giá: ${unitPrice} ${unitType}/km\n👉 **TỔNG CHI PHÍ:** **${total.toLocaleString('vi-VN')} ${unitType} VND**\n\n`;
         }
 
         const costKeywords = ["chi phí", "tổng vốn", "vốn đầu tư", "kinh phí", "vnd", "usd", "tỷ", "triệu", "đơn giá"];
         const sentences = plan.text.split(/(?<=[.?!;\n])\s+/).map(s => s.trim());
         const matched = sentences.filter(s => costKeywords.some(kw => s.toLowerCase().includes(kw)) && s.length > 10);
-        const uniqueResults = [...new Set(matched)].slice(0, 6);
+        const uniqueResults = [...new Set(matched)].slice(0, 5);
 
         if (calculatedResult !== "") {
-            appendMessage('bot', calculatedResult + `📌 **DỮ LIỆU GỐC:**\n• ` + uniqueResults.join("\n• "));
+            appendMessage('bot', calculatedResult + `📌 **DỮ LIỆU GỐC:**\n   • ` + uniqueResults.join("\n   • "));
         } else if (uniqueResults.length > 0) {
-            appendMessage('bot', `💰 **THÔNG TIN CHI PHÍ:**\n\n• ` + uniqueResults.join("\n\n• "));
+            appendMessage('bot', `💰 **THÔNG TIN CHI PHÍ:**\n\n   • ` + uniqueResults.join("\n\n   • "));
         } else {
             appendMessage('bot', `💰 Không tìm thấy số liệu chi phí trong tài liệu này.`);
         }
@@ -382,12 +315,12 @@
     function searchAndRespond(plan, keywords, title) {
         const sentences = plan.text.split(/(?<=[.?!;\n])\s+/).map(s => s.trim());
         const matched = sentences.filter(s => keywords.some(kw => s.toLowerCase().includes(kw)) && s.length > 10);
-        const uniqueResults = [...new Set(matched)].slice(0, 8);
+        const uniqueResults = [...new Set(matched)].slice(0, 5);
 
         if (uniqueResults.length > 0) {
-            appendMessage('bot', `${title}:\n\n• ` + uniqueResults.join("\n\n• "));
+            appendMessage('bot', `${title}\n\n   • ` + uniqueResults.join("\n\n   • "));
         } else {
-            appendMessage('bot', `${title} Không tìm thấy thông tin phù hợp.`);
+            appendMessage('bot', `${title}\n\n   • Không tìm thấy thông tin phù hợp.`);
         }
     }
 
@@ -454,9 +387,39 @@
         }); 
     }
 
+    // --- HÀM TÓM TẮT ĐƯỢC CHIA THÀNH CÁC NHÓM Ý CHÍNH & Ý NHỎ CÓ CÁCH DÒNG ---
     function generateDetailedSummary(text) {
-        const lines = text.split(/\r?\n|\. /).map(x => x.trim()).filter(x => x.length > 10);
-        return lines.length === 0 ? text.slice(0, 300) + "..." : "• " + lines.slice(0, 10).join("\n• ");
+        const sentences = text.split(/[\r\n]+|[.!?]\s+/)
+            .map(x => x.trim())
+            .filter(x => x.length > 20);
+
+        if (sentences.length === 0) {
+            return "📌 **Nội dung tóm tắt:**\n   • " + text.slice(0, 200) + "...";
+        }
+
+        // Chia câu thành các ý nhỏ phân cấp
+        const part1 = sentences.slice(0, 2);
+        const part2 = sentences.slice(2, 5);
+        const part3 = sentences.slice(5, 7);
+
+        let summaryHtml = "📌 **1. Điểm cốt lõi:**\n";
+        if (part1.length > 0) {
+            summaryHtml += part1.map(s => `   • ${s}`).join("\n");
+        } else {
+            summaryHtml += "   • Không có thông tin phụ.";
+        }
+
+        if (part2.length > 0) {
+            summaryHtml += "\n\n📌 **2. Chi tiết triển khai & Tác động:**\n";
+            summaryHtml += part2.map(s => `   • ${s}`).join("\n");
+        }
+
+        if (part3.length > 0) {
+            summaryHtml += "\n\n📌 **3. Lưu ý & Đánh giá thêm:**\n";
+            summaryHtml += part3.map(s => `   • ${s}`).join("\n");
+        }
+
+        return summaryHtml;
     }
 
     function saveUserPlansToStorage() {
@@ -523,9 +486,9 @@
 
         const plan = allPlans.find(p => p.id === activePlanId);
         if (plan && plan.text) {
-            const matches = plan.text.split(/\r?\n|\./).map(l => l.trim()).filter(l => l.toLowerCase().includes(qLower));
+            const matches = plan.text.split(/(?<=[.?!;\n])\s+/).map(l => l.trim()).filter(l => l.toLowerCase().includes(qLower));
             if (matches.length > 0) {
-                appendMessage('bot', `🔍 **Kết quả cho "${q}":**\n\n• ` + matches.slice(0, 5).join("\n• "));
+                appendMessage('bot', `🔍 **Kết quả tìm kiếm cho "${q}":**\n\n   • ` + matches.slice(0, 5).join("\n\n   • "));
                 return;
             }
         }

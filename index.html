@@ -20,10 +20,12 @@
         .brand-info h2 { font-size: 14px; color: #38bdf8; letter-spacing: 0.5px; text-transform: uppercase; }
         .brand-info p { font-size: 10px; color: #94a3b8; }
         .sidebar-section { display: flex; flex-direction: column; gap: 8px; }
-        
-        .action-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; text-align: center; width: 100%; }
+        .sidebar-title { font-size: 11px; color: #64748b; font-weight: bold; text-transform: uppercase; }
+
+        .action-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; text-align: center; width: 100%; white-space: nowrap; }
         .action-btn:hover { background: #0284c7; border-color: #38bdf8; color: #fff; }
         .action-btn.upload-btn { background: #064e3b; border-color: #059669; color: #34d399; font-weight: bold; }
+        .action-btn.img-btn { background: #1e1b4b; border-color: #4338ca; color: #a5b4fc; }
         .action-btn.clear-btn { background: #451a1a; border-color: #7f1d1d; color: #fca5a5; }
 
         #fileInput, #planImageInput { display: none; }
@@ -58,7 +60,7 @@
         .chat-input-area input:focus { border-color: #38bdf8; }
         .chat-input-area button { background: #0284c7; color: white; border: none; padding: 10px 22px; border-radius: 25px; font-size: 13.5px; font-weight: bold; cursor: pointer; }
 
-        /* --- TỐI ƯU HÓA HOÀN HẢO CHO ĐIỆN THOẠI (MOBILE RESPONSIVE) --- */
+        /* --- TỐI ƯU HÓA MOBILE (HIỂN THỊ ĐỦ CẢ NẠP FILE & NẠP ẢNH MÔ HÌNH) --- */
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
@@ -70,7 +72,7 @@
             .sidebar {
                 width: 100%;
                 height: auto;
-                max-height: 75px; /* Cực kỳ gọn gàng, chỉ vừa đủ 1 hàng ngang */
+                max-height: 85px;
                 padding: 6px 10px;
                 flex-direction: row;
                 align-items: center;
@@ -86,13 +88,13 @@
             .brand-info h2 { font-size: 11px; }
             .brand-info p { display: none; }
             
-            .sidebar-section { flex-direction: row; gap: 6px; align-items: center; }
-            .action-btn { width: auto; padding: 6px 10px; font-size: 11px; }
-            .plans-container { display: none; } /* Ẩn danh sách cũ trên mobile, tối ưu không gian tuyệt đối */
+            .sidebar-section { flex-direction: row; gap: 5px; align-items: center; }
+            .action-btn { width: auto; padding: 6px 8px; font-size: 11px; }
+            .plans-container { display: none; }
 
             .main-content {
-                height: calc(100vh - 75px);
-                height: calc(100dvh - 75px);
+                height: calc(100vh - 85px);
+                height: calc(100dvh - 85px);
                 display: flex;
                 flex-direction: column;
                 overflow: hidden;
@@ -150,8 +152,12 @@
         </div>
 
         <div class="sidebar-section">
-            <label for="fileInput" class="action-btn upload-btn">📁 Nạp Tệp</label>
+            <label for="fileInput" class="action-btn upload-btn">📁 File</label>
             <input type="file" id="fileInput" accept=".docx,.pdf,.jpg,.png,.jpeg">
+
+            <label for="planImageInput" class="action-btn img-btn">🖼️ Nạp Ảnh</label>
+            <input type="file" id="planImageInput" accept=".jpg,.png,.jpeg" onchange="attachImageToActivePlan(event)">
+
             <button class="action-btn clear-btn" onclick="clearAllData()">🗑️ Xóa</button>
         </div>
 
@@ -161,7 +167,7 @@
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Mobile Ultra</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Full Feature Mobile</span>
         </div>
 
         <div class="quick-queries">
@@ -173,7 +179,7 @@
         </div>
 
         <div class="chat-box" id="chatBox">
-            <div class="message bot-message">👋 Chào bạn! Giao diện trên điện thoại đã được thu gọn tối đa thành một hàng ngang phía trên. Nút Nạp Tệp và Xóa dữ liệu hiển thị rất gọn gàng. Hãy trải nghiệm ngay nhé!</div>
+            <div class="message bot-message">👋 Chào bạn! Nút **🖼️ Nạp Ảnh** mô hình cho phương án đã được đem quay trở lại ngay bên cạnh nút **📁 File** phía trên rồi nhé!</div>
         </div>
 
         <div class="chat-input-area">
@@ -267,6 +273,24 @@
             }
         }, 100);
     });
+
+    function attachImageToActivePlan(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const plan = savedPlans.find(p => p.id === activePlanId);
+        if (!plan) {
+            appendMessage('bot', '⚠️ Hãy nạp file Phương án trước khi chọn ảnh mô hình!');
+            return;
+        }
+
+        const imageUrl = URL.createObjectURL(file);
+        plan.image = imageUrl;
+        savePlansToStorage();
+
+        appendMessage('bot', `🖼️ Đã gắn hình ảnh mô hình cho **${plan.name}**!`, imageUrl);
+        event.target.value = "";
+    }
 
     function renderPlanChips() {
         const container = document.getElementById('dynamicPlansList');

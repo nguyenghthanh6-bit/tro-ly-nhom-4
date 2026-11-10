@@ -107,7 +107,7 @@
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Complete Sections v30</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Detailed Challenges v32</span>
         </div>
 
         <div class="quick-queries">
@@ -225,7 +225,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
 
     function loadPlans() {
         try {
-            const stored = localStorage.getItem("nhom4_separated_files_v30");
+            const stored = localStorage.getItem("nhom4_separated_files_v32");
             if (stored) userUploadedPlans = JSON.parse(stored);
         } catch(e) { userUploadedPlans = []; }
 
@@ -287,7 +287,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
         }
 
         try {
-            localStorage.setItem("nhom4_separated_files_v30", JSON.stringify(userUploadedPlans.map(p => ({...p, image: null}))));
+            localStorage.setItem("nhom4_separated_files_v32", JSON.stringify(userUploadedPlans.map(p => ({...p, image: null}))));
         } catch(err) {}
 
         loadPlans();
@@ -377,11 +377,11 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
         
         if (plan.id === 'file-tay-dong') {
             let results = [
-                "• **8.1. Thách thức về địa hình, địa chất và thủy văn:** Tuyến đi qua đèo núi hiểm trở, địa chất phức tạp. Giải pháp là khảo sát khoan thăm dò chi tiết, thiết kế hầm và hệ thống thoát nước kiên cố.",
-                "• **8.2. Thách thức về nguồn vốn đầu tư lớn:** Giải pháp là phân kỳ đầu tư theo giai đoạn, kết hợp đa dạng hóa nguồn vốn (ngân sách nhà nước, doanh nghiệp, tín dụng ưu đãi, PPP).",
-                "• **8.3. Thách thức về môi trường - xã hội:** Giải pháp là thực hiện nghiêm túc đánh giá tác động môi trường (ĐTM), tham vấn cộng đồng và trồng bù rừng, hoàn nguyên cảnh quan.",
-                "• **8.4. Thách thức về tiến độ và trượt giá nguyên vật liệu:** Giải pháp là áp dụng hợp đồng EPC thông minh, lập kế hoạch dự phòng rủi ro tài chính và kiểm soát chặt chẽ dòng tiền theo từng mốc giải ngân.",
-                "• **8.5. Thách thức về quản lý vận hành và khai thác thông minh:** Giải pháp là ứng dụng hệ thống giao thông thông minh (ITS), tích hợp công nghệ tự động hóa kiểm soát tải trọng phương tiện và bảo trì dự báo trước sự cố."
+                "• **8.1. Địa hình, địa chất và thủy văn:**\n  - ⚠️ **Thách thức:** Tuyến đi qua đèo núi hiểm trở, địa chất phức tạp, dễ sạt lở.\n  - 💡 **Giải pháp:** Khảo sát khoan thăm dò chi tiết, thiết kế hầm và hệ thống thoát nước kiên cố.",
+                "• **8.2. Nguồn vốn đầu tư lớn:**\n  - ⚠️ **Thách thức:** Tổng mức đầu tư cao (42.011,48 tỷ đồng), áp lực huy động nguồn lực tài chính.\n  - 💡 **Giải pháp:** Phân kỳ đầu tư theo giai đoạn, kết hợp đa dạng hóa nguồn vốn (ngân sách, doanh nghiệp, tín dụng ưu đãi, PPP).",
+                "• **8.3. Môi trường - xã hội:**\n  - ⚠️ **Thách thức:** Nguy cơ tác động đến hệ sinh thái rừng, tiếng ồn và sinh hoạt khu vực dân cư.\n  - 💡 **Giải pháp:** Thực hiện nghiêm ngặt ĐTM, tham vấn cộng đồng và triển khai trồng bù rừng, hoàn nguyên cảnh quan.",
+                "• **8.4. Tiến độ và trượt giá nguyên vật liệu:**\n  - ⚠️ **Thách thức:** Rủi ro biến động giá vật liệu xây dựng và chậm trễ tiến độ thi công công trình.\n  - 💡 **Giải pháp:** Áp dụng hợp đồng EPC thông minh, lập kế hoạch dự phòng rủi ro tài chính và kiểm soát chặt dòng tiền theo mốc.",
+                "• **8.5. Quản lý vận hành và khai thác thông minh:**\n  - ⚠️ **Thách thức:** Vận hành tuyến đường dài đòi hỏi hệ thống giám sát an toàn và kiểm soát tải trọng nghiêm ngặt.\n  - 💡 **Giải pháp:** Ứng dụng hệ thống giao thông thông minh (ITS), tự động hóa kiểm soát tải trọng và bảo trì dự báo sự cố."
             ];
             appendMessage('bot', `⚠️ **CHI TIẾT THÁCH THỨC & GIẢI PHÁP (MỤC 8 - ${plan.name}):**\n\n` + results.join("\n\n"));
         } else if (plan.id === 'file-logistics') {
@@ -515,7 +515,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
     }
 
     function clearUserData() {
-        localStorage.removeItem("nhom4_separated_files_v30");
+        localStorage.removeItem("nhom4_separated_files_v32");
         userUploadedPlans = [];
         loadPlans();
         appendMessage('bot', '🗑️ Đã xóa sạch dữ liệu tệp tải lên cá nhân.');

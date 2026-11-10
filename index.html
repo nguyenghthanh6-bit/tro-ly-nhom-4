@@ -52,6 +52,13 @@
         .chat-table th, .chat-table td { border: 1px solid #334155; padding: 8px 10px; text-align: left; }
         .chat-table th { background: #1e293b; color: #38bdf8; }
 
+        /* THANH NHẬP CÂU HỎI */
+        .chat-input-area { background: #0f172a; padding: 12px 20px; border-top: 1px solid #1e293b; display: flex; gap: 10px; flex-shrink: 0; align-items: center; }
+        .chat-input-area input { flex: 1; background: #1e293b; border: 1px solid #334155; color: #fff; padding: 12px 16px; border-radius: 25px; font-size: 14px; outline: none; }
+        .chat-input-area input:focus { border-color: #38bdf8; }
+        .chat-input-area button { background: #0284c7; color: #fff; border: none; padding: 12px 22px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .chat-input-area button:hover { background: #0369a1; }
+
         @media (max-width: 768px) {
             body { flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; }
             .sidebar { width: 100%; height: auto; max-height: 90px; padding: 6px 10px; flex-direction: row; align-items: center; justify-content: space-between; flex-shrink: 0; }
@@ -65,6 +72,11 @@
             .top-header { display: none; }
             .chat-box { padding: 10px; }
             .message { max-width: 96%; font-size: 12.5px; }
+
+            /* TỐI ƯU THANH NHẬP TRÊN ĐIỆN THOẠI TO RÕ VÀ CÂN ĐỐI */
+            .chat-input-area { padding: 12px 14px; gap: 8px; background: #0f172a; }
+            .chat-input-area input { padding: 14px 16px; font-size: 15px; border-radius: 24px; }
+            .chat-input-area button { padding: 14px 20px; font-size: 15px; border-radius: 24px; }
         }
     </style>
 </head>
@@ -94,7 +106,7 @@
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Clean Risk v27</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Mobile Input & Teams v28</span>
         </div>
 
         <div class="quick-queries">
@@ -106,7 +118,7 @@
         </div>
 
         <div class="chat-box" id="chatBox">
-            <div class="message bot-message">Tôi là trợ lý nhóm 4. Hãy chọn phương án ở cột bên trái để bắt đầu phân tích nhé!</div>
+            <div class="message bot-message">Tôi là trợ lý nhóm 4. Hãy chọn Tổ ở cột bên trái để bắt đầu phân tích nhé!</div>
         </div>
 
         <div class="chat-input-area">
@@ -123,10 +135,12 @@
     const defaultPlans = [
         {
             id: 'file-tay-dong',
-            name: '📄 [NTTNX] - Tuyến Đường Tây Đông',
+            name: '📄 Tổ 1',
             text: `TÓM TẮT ĐỀ XUẤT ĐẦU TƯ: Nhà thầu Tầm Nhìn Xanh đề xuất nghiên cứu đầu tư tuyến hành lang giao thông Tây – Đông kết nối trực tiếp khu vực sản xuất công nghiệp Nhà máy Alumin Nhân Cơ (Đắk Nông) với khu vực Cảng Cam Ranh (Khánh Hòa). Tuyến đường có chiều dài dự kiến khoảng 182,1 km, bao gồm 169,3 km đường trên nền đất, 12,0 km hầm xuyên núi và 0,8 km cầu vượt sông. Tổng mức đầu tư sơ bộ là 42.011,48 tỷ đồng. Với sản lượng alumin giả định 650.000 tấn/năm, dự án đem lại hiệu quả tiết kiệm chi phí vận tải 114,95 tỷ đồng/năm trong vòng đời khai thác định hướng 30 năm.
 
-1. BỐI CẢNH VÀ SỰ CẦN THIẾT ĐẦU TƯ: Khu vực Tây Nguyên có tiềm năng lớn về nông nghiệp, khoáng sản; duyên hải miền Trung là cửa ngõ giao thương quốc tế. 1.1. Bài toán vận tải: Mạng lưới hiện hữu dài khoảng 300 km, tuyến mới dài 182,1 km (giảm 117,9 km). 1.2. Sự cần thiết: Tạo trục giao thông chiến lược mới, tối ưu chuỗi cung ứng.
+1. BỐI CẢNH VÀ SỰ CẦN THIẾT ĐẦU TƯ: Khu vực Tây Nguyên có tiềm năng lớn về nông nghiệp, khoáng sản; duyên hải miền Trung là cửa ngõ giao thương quốc tế. 
+-1.1. Bài toán vận tải: Mạng lưới hiện hữu dài khoảng 300 km, tuyến mới dài 182,1 km (giảm 117,9 km). 
+-1.2. Sự cần thiết: Tạo trục giao thông chiến lược mới, tối ưu chuỗi cung ứng.
 2. MỤC TIÊU VÀ ĐỊNH HƯỚNG: Xây dựng tuyến hành lang vận tải đồng bộ, an toàn, thúc đẩy liên kết vùng.
 3. QUY MÔ VÀ THÔNG SỐ: Chiều dài toàn tuyến 182,1 km; đường đất 169,3 km; hầm xuyên núi 12,0 km; cầu vượt sông 0,8 km.
 4. PHƯƠNG ÁN HƯỚNG TUYẾN: Khảo sát bám sát thung lũng, hạn chế tác động rừng nguyên sinh, ứng dụng công nghệ hầm hiện đại NATM.
@@ -136,34 +150,12 @@
 8. THÁCH THỨC VÀ GIẢI PHÁP: Khảo sát địa chất kỹ lưỡng, phân kỳ nguồn vốn đa dạng (PPP, tín dụng) và thực hiện đánh giá tác động môi trường (ĐTM).
 9. LỘ TRÌNH TRIỂN KHAI: Giai đoạn 1 (Tiền khả thi) -> Giai đoạn 2 (Khả thi & F/S) -> Giai đoạn 3 (Lựa chọn nhà đầu tư) -> Giai đoạn 4 (Thi công & vận hành).
 10. ĐỀ XUẤT HỢP TÁC: Kêu gọi cơ quan quản lý, chuyên gia và định chế tài chính đồng hành nghiên cứu chuyên sâu.`,
-            summary: '📌 **Tóm tắt [NTTNX] - Tuyến Đường Tây Đông:**\n• Chiều dài toàn tuyến: 182,1 km (169,3 km đường đất, 12 km hầm, 0,8 km cầu)\n• Tổng mức đầu tư sơ bộ: 42.011,48 tỷ đồng (~42,01 nghìn tỷ)\n• Tiết kiệm vận tải: 114,95 tỷ đồng/năm (vòng đời 30 năm)',
-            image: null
-        },
-        {
-            id: 'file-logistics',
-            name: '📄 Bối cảnh & Ý tưởng Logistics',
-            text: `BỐI CẢNH VÀ Ý TƯỞNG TỐI ƯU HÓA LOGISTICS: Ngành logistics giữ vai trò quan trọng trong sản xuất, lưu thông và phân phối hàng hóa, giúp quản lý kho bãi, phương tiện khoa học, giảm chi phí lưu kho và tiết kiệm nguồn lực. 
-
-GIỚI THIỆU MÔ HÌNH LIÊN KẾT NHÂN CƠ – CAM RANH: Gồm 3 địa điểm chính: Nhà máy Alumin Nhân Cơ (xuất phát), Trạm Logistics trung chuyển (trung gian điều phối) và Cảng Cam Ranh (đầu mối cảng biển). Ứng dụng đạo hàm trong Toán học để xác định vị trí trạm trung chuyển tối ưu. 
-
-BÀI TOÁN ĐẠO HÀM CHI PHÍ: AB = 114 km; BC = 145 km. Đơn giá tuyến mới 250 tỷ đồng/km, tuyến cao tốc CT01 là 150 tỷ đồng/km. Hàm chi phí T(x) = 250 * √(114² + x²) + 150 * (145 - x). Đạo hàm T'(x) = [250x / √(114² + x²)] - 150 = 0 => x = 85,5 km, quãng đường DC = 59,5 km, tổng quãng đường 202 km, thời gian vận chuyển khoảng 5 giờ. 
-
-THUẬN LỢI: 
-1. Tối ưu hóa quy trình vận tải: Điểm trung chuyển liên phương thức, kho bãi điều tiết thông minh bảo quản alumin khô ráo tránh ùn ứ. 
-2. Dịch vụ kỹ thuật & hậu cần: Trạm bảo dưỡng, tiếp nhiên liệu tại chỗ và khu vực nghỉ ngơi an toàn cho đội ngũ tài xế đường dài. 
-3. Gia tăng giá trị kinh tế vùng: Tận dụng công suất gom hàng nông sản Tây Nguyên (cà phê, hồ tiêu, sầu riêng) xuất khẩu và vận chuyển ngược lại vật tư, phân bón. 
-
-HẠN CHẾ & DI DỜI TRẠM D: 
-- Thách thức khi triển khai trạm trung chuyển logistics bao gồm áp lực giải phóng mặt bằng quy mô lớn tại điểm giao cắt, chi phí đầu tư ban đầu cao và rủi ro biến động giá nguyên vật liệu xây dựng kho bãi. 
-- Khi thực hiện di dời vị trí Trạm D so với điểm tối ưu ban đầu (x = 85,5 km, tương ứng DC = 59,5 km với tổng vốn 44.550 tỷ đồng, tiết kiệm 1.562 tỷ đồng), chi phí đầu tư sẽ gia tăng đáng kể do thay đổi cự ly đấu nối hạ tầng giao thông và chi phí san lấp mặt bằng tại vị trí mới. Cụ thể: dời 2,5 km tổng vốn tăng 2,5 tỷ; dời 5 km tổng vốn tăng 15 tỷ; dời 10 km tổng vốn tăng 55 tỷ đồng.
-
-GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và hầm chui sinh thái, vận chuyển kín bằng xe bồn/băng tải & tường chống ồn, hệ thống thu gom nước chảy tràn qua bể lắng lọc.`,
-            summary: '📌 **Tóm tắt Bối cảnh & Ý tưởng Logistics:**\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics – Cảng Cam Ranh\n• Bài toán tối ưu đạo hàm: Điểm đặt trạm x = 85,5 km, quãng đường DC = 59,5 km\n• Giải pháp hạ tầng xanh: Cầu cạn sinh thái, vận chuyển kín, thu gom nước tràn',
+            summary: '📌 **Tóm tắt Tổ 1:**\n• Chiều dài toàn tuyến: 182,1 km (169,3 km đường đất, 12 km hầm, 0,8 km cầu)\n• Tổng mức đầu tư sơ bộ: 42.011,48 tỷ đồng (~42,01 nghìn tỷ)\n• Tiết kiệm vận tải: 114,95 tỷ đồng/năm (vòng đời 30 năm)',
             image: null
         },
         {
             id: 'file-ct01',
-            name: '📄 [Tổ 2 - Kiyoshi] Mô hình Giao thông CT01',
+            name: '📄 Tổ 2',
             text: `BÁO CÁO TÓM TẮT DỰ ÁN MÔ HÌNH GIAO THÔNG CT01: Tuyến vận tải từ Nhà máy Alumin Nhân Cơ đến Cảng Quốc tế Cam Ranh.
 
 1. THÔNG TIN CHUNG VÀ ĐỘI NGŨ THỰC HIỆN: Nhà thầu An toàn Hạ tầng Kiyoshi (Tổ 2). Trưởng nhóm: Vân Anh. Thành viên: Quang Dũng, Phúc Hưng, Bảo Châu, Thảo Ngọc, Ngọc Ánh, Hoài Phước, Công Quân, Gia Nhi, Mai Lam, Thanh Duyên.
@@ -190,7 +182,29 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
 02. Bố trí các hạng mục: Sắp xếp tuyến đường, đồi núi, mặt biển và công trình giao thông.
 03. Hoàn thiện chi tiết: Gắn mô hình phương tiện vận tải (xe tải, tàu biển container).
 04. Kiểm tra và hoàn thiện: Kiểm tra tổng thể sa bàn, chỉnh sửa và hoàn thiện mô hình.`,
-            summary: '📌 **Tóm tắt Mô hình Giao thông CT01 (Tổ 2 - Kiyoshi):**\n• Tuyến kết nối: Nhân Cơ – Nút giao CT01 – Cảng Cam Ranh\n• Vốn đầu tư Phương án A: 28.500 tỷ VNĐ (tiết kiệm 15.600 tỷ nhờ tận dụng CT01)\n• Đội ngũ: Tổ 2 - Kiyoshi (Trưởng nhóm Vân Anh và các thành viên)',
+            summary: '📌 **Tóm tắt Tổ 2:**\n• Tuyến kết nối: Nhân Cơ – Nút giao CT01 – Cảng Cam Ranh\n• Vốn đầu tư Phương án A: 28.500 tỷ VNĐ (tiết kiệm 15.600 tỷ nhờ tận dụng CT01)\n• Đội ngũ: Tổ 2 - Kiyoshi (Trưởng nhóm Vân Anh và các thành viên)',
+            image: null
+        },
+        {
+            id: 'file-logistics',
+            name: '📄 Tổ 3',
+            text: `BỐI CẢNH VÀ Ý TƯỞNG TỐI ƯU HÓA LOGISTICS: Ngành logistics giữ vai trò quan trọng trong sản xuất, lưu thông và phân phối hàng hóa, giúp quản lý kho bãi, phương tiện khoa học, giảm chi phí lưu kho và tiết kiệm nguồn lực. 
+
+GIỚI THIỆU MÔ HÌNH LIÊN KẾT NHÂN CƠ – CAM RANH: Gồm 3 địa điểm chính: Nhà máy Alumin Nhân Cơ (xuất phát), Trạm Logistics trung chuyển (trung gian điều phối) và Cảng Cam Ranh (đầu mối cảng biển). Ứng dụng đạo hàm trong Toán học để xác định vị trí trạm trung chuyển tối ưu. 
+
+BÀI TOÁN ĐẠO HÀM CHI PHÍ: AB = 114 km; BC = 145 km. Đơn giá tuyến mới 250 tỷ đồng/km, tuyến cao tốc CT01 là 150 tỷ đồng/km. Hàm chi phí T(x) = 250 * √(114² + x²) + 150 * (145 - x). Đạo hàm T'(x) = [250x / √(114² + x²)] - 150 = 0 => x = 85,5 km, quãng đường DC = 59,5 km, tổng quãng đường 202 km, thời gian vận chuyển khoảng 5 giờ. 
+
+THUẬN LỢI: 
+1. Tối ưu hóa quy trình vận tải: Điểm trung chuyển liên phương thức, kho bãi điều tiết thông minh bảo quản alumin khô ráo tránh ùn ứ. 
+2. Dịch vụ kỹ thuật & hậu cần: Trạm bảo dưỡng, tiếp nhiên liệu tại chỗ và khu vực nghỉ ngơi an toàn cho đội ngũ tài xế đường dài. 
+3. Gia tăng giá trị kinh tế vùng: Tận dụng công suất gom hàng nông sản Tây Nguyên (cà phê, hồ tiêu, sầu riêng) xuất khẩu và vận chuyển ngược lại vật tư, phân bón. 
+
+HẠN CHẾ & DI DỜI TRẠM D: 
+- Thách thức khi triển khai trạm trung chuyển logistics bao gồm áp lực giải phóng mặt bằng quy mô lớn tại điểm giao cắt, chi phí đầu tư ban đầu cao và rủi ro biến động giá nguyên vật liệu xây dựng kho bãi. 
+- Khi thực hiện di dời vị trí Trạm D so với điểm tối ưu ban đầu (x = 85,5 km, tương ứng DC = 59,5 km với tổng vốn 44.550 tỷ đồng, tiết kiệm 1.562 tỷ đồng), chi phí đầu tư sẽ gia tăng đáng kể do thay đổi cự ly đấu nối hạ tầng giao thông và chi phí san lấp mặt bằng tại vị trí mới. Cụ thể: dời 2,5 km tổng vốn tăng 2,5 tỷ; dời 5 km tổng vốn tăng 15 tỷ; dời 10 km tổng vốn tăng 55 tỷ đồng.
+
+GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và hầm chui sinh thái, vận chuyển kín bằng xe bồn/băng tải & tường chống ồn, hệ thống thu gom nước chảy tràn qua bể lắng lọc.`,
+            summary: '📌 **Tóm tắt Tổ 3:**\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics – Cảng Cam Ranh\n• Bài toán tối ưu đạo hàm: Điểm đặt trạm x = 85,5 km, quãng đường DC = 59,5 km\n• Giải pháp hạ tầng xanh: Cầu cạn sinh thái, vận chuyển kín, thu gom nước tràn',
             image: null
         }
     ];
@@ -205,7 +219,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
 
     function loadPlans() {
         try {
-            const stored = localStorage.getItem("nhom4_separated_files_v27");
+            const stored = localStorage.getItem("nhom4_separated_files_v28");
             if (stored) userUploadedPlans = JSON.parse(stored);
         } catch(e) { userUploadedPlans = []; }
 
@@ -267,7 +281,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
         }
 
         try {
-            localStorage.setItem("nhom4_separated_files_v27", JSON.stringify(userUploadedPlans.map(p => ({...p, image: null}))));
+            localStorage.setItem("nhom4_separated_files_v28", JSON.stringify(userUploadedPlans.map(p => ({...p, image: null}))));
         } catch(err) {}
 
         loadPlans();
@@ -385,7 +399,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
             `;
             appendHtmlTableMessage(tableHtml);
         } else if (plan.id === 'file-ct01') {
-            appendMessage('bot', `⚠️ **THÁCH THỨC & HẠN CHẾ (${plan.name}):**\n\nTệp tài liệu mô hình giao thông CT01 của Tổ 2 - Kiyoshi tập trung vào các ưu điểm vượt trội và giải pháp tận dụng cao tốc hiện hữu, **không ghi nhận thách thức hay hạn chế cụ thể** nào đối với phương án này.`);
+            appendMessage('bot', `⚠️ **THÁCH THỨC & HẠN CHẾ (${plan.name}):**\n\nTệp tài liệu của Tổ 2 tập trung vào các ưu điểm vượt trội và giải pháp tận dụng cao tốc hiện hữu, **không ghi nhận thách thức hay hạn chế cụ thể** nào đối với phương án này.`);
         } else {
             appendMessage('bot', `⚠️ Không tìm thấy thông tin mục này trong tệp.`);
         }
@@ -396,7 +410,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
         if (!plan) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
         
         if (plan.id === 'file-tay-dong') {
-            appendMessage('bot', `📊 **SỐ LIỆU, QUY MÔ & 3 BẢNG THÔNG SỐ - TUYẾN ĐƯỜNG TÂY ĐÔNG:**\n\n• Chiều dài toàn tuyến: 182,1 km (169,3 km đường đất | 12,0 km hầm | 0,8 km cầu)\n• Tổng mức đầu tư sơ bộ: 42.011,48 tỷ đồng (~42,01 nghìn tỷ)\n• Hiệu quả tiết kiệm: 114,95 tỷ đồng/năm (vòng đời khai thác 30 năm)`);
+            appendMessage('bot', `📊 **SỐ LIỆU, QUY MÔ & 3 BẢNG THÔNG SỐ - TỔ 1:**\n\n• Chiều dài toàn tuyến: 182,1 km (169,3 km đường đất | 12,0 km hầm | 0,8 km cầu)\n• Tổng mức đầu tư sơ bộ: 42.011,48 tỷ đồng (~42,01 nghìn tỷ)\n• Hiệu quả tiết kiệm: 114,95 tỷ đồng/năm (vòng đời khai thác 30 năm)`);
 
             const tableHtml1 = `
                 <strong style="color: #38bdf8;">1. Bảng cơ cấu thành phần Tổng mức đầu tư:</strong>
@@ -440,8 +454,24 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
                 </table>
             `;
             appendHtmlTableMessage(tableHtml1 + tableHtml2 + tableHtml3);
+        } else if (plan.id === 'file-ct01') {
+            appendMessage('bot', `📊 **SỐ LIỆU & SO SÁNH CÁC PHƯƠNG ÁN (${plan.name}):**\n\n• Tuyến đường: Nhân Cơ (114 km) -> Nút giao CT01 -> Cảng Cam Ranh (142 km cao tốc CT01).\n• Đơn giá xây dựng quy đổi: 250 tỷ VNĐ / km.`);
+
+            const tableHtml = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Phương án</th>
+                        <th>Tổng vốn đầu tư (VNĐ)</th>
+                        <th>Đánh giá chi phí</th>
+                    </tr>
+                    <tr><td><strong>Phương án A (Đề xuất)</strong></td><td><strong>28.500 tỷ</strong></td><td>Rẻ nhất (Nhờ tận dụng CT01)</td></tr>
+                    <tr><td>Phương án B</td><td>45.000 tỷ</td><td>Mức chi phí trung bình</td></tr>
+                    <tr><td>Phương án C</td><td>60.000 - 80.000 tỷ</td><td>Chi phí cao nhất</td></tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableHtml);
         } else if (plan.id === 'file-logistics') {
-            appendMessage('bot', `📊 **SỐ LIỆU, BÀI TOÁN ĐẠO HÀM & TỐI ƯU - LOGISTICS:**\n\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics – Cảng Cam Ranh\n• **Công thức hàm chi phí tổng quát:** T(x) = 250 * √(114² + x²) + 150 * (145 - x)\n• **Đạo hàm tối ưu chi phí:** T'(x) = [250x / √(114² + x²)] - 150 = 0\n• **Kết quả nghiệm tối ưu:** Điểm đặt trạm x = 85,5 km, quãng đường DC = 59,5 km, tổng quãng đường vận chuyển 202 km, thời gian khoảng 5 giờ\n• **Vốn đầu tư phương án tối ưu:** 44.550 tỷ đồng (tiết kiệm 1.562 tỷ đồng so với phương án xuyên núi)`);
+            appendMessage('bot', `📊 **SỐ LIỆU, BÀI TOÁN ĐẠO HÀM & TỐI ƯU - ${plan.name}:**\n\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics – Cảng Cam Ranh\n• **Công thức hàm chi phí tổng quát:** T(x) = 250 * √(114² + x²) + 150 * (145 - x)\n• **Đạo hàm tối ưu chi phí:** T'(x) = [250x / √(114² + x²)] - 150 = 0\n• **Kết quả nghiệm tối ưu:** Điểm đặt trạm x = 85,5 km, quãng đường DC = 59,5 km, tổng quãng đường vận chuyển 202 km, thời gian khoảng 5 giờ\n• **Vốn đầu tư phương án tối ưu:** 44.550 tỷ đồng (tiết kiệm 1.562 tỷ đồng so với phương án xuyên núi)`);
 
             const tableHtml = `
                 <table class="chat-table">
@@ -458,22 +488,6 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
                 </table>
             `;
             appendHtmlTableMessage(tableHtml);
-        } else if (plan.id === 'file-ct01') {
-            appendMessage('bot', `📊 **SỐ LIỆU & SO SÁNH CÁC PHƯƠNG ÁN (MÔ HÌNH CT01):**\n\n• Tuyến đường: Nhân Cơ (114 km) -> Nút giao CT01 -> Cảng Cam Ranh (142 km cao tốc CT01).\n• Đơn giá xây dựng quy đổi: 250 tỷ VNĐ / km.`);
-
-            const tableHtml = `
-                <table class="chat-table">
-                    <tr>
-                        <th>Phương án</th>
-                        <th>Tổng vốn đầu tư (VNĐ)</th>
-                        <th>Đánh giá chi phí</th>
-                    </tr>
-                    <tr><td><strong>Phương án A (Đề xuất)</strong></td><td><strong>28.500 tỷ</strong></td><td>Rẻ nhất (Nhờ tận dụng CT01)</td></tr>
-                    <tr><td>Phương án B</td><td>45.000 tỷ</td><td>Mức chi phí trung bình</td></tr>
-                    <tr><td>Phương án C</td><td>60.000 - 80.000 tỷ</td><td>Chi phí cao nhất</td></tr>
-                </table>
-            `;
-            appendHtmlTableMessage(tableHtml);
         } else {
             appendMessage('bot', `📊 **SỐ LIỆU TỪ TỆP TẢI LÊN (${plan.name}):**\n\n• Tệp đã được phân tích dữ liệu tự động.`);
         }
@@ -485,7 +499,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
             appendMessage('bot', `🖼️ **MÔ HÌNH DỰ ÁN:**`, plan.image);
             return;
         }
-        appendMessage('bot', `🖼️ **Sơ đồ cấu trúc bài toán logistics và định vị tuyến CT01:**`, "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80");
+        appendMessage('bot', `🖼️ **Sơ đồ cấu trúc bài toán logistics và định vị dự án:**`, "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80");
     }
 
     function sendQueryModel() {
@@ -493,7 +507,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
     }
 
     function clearUserData() {
-        localStorage.removeItem("nhom4_separated_files_v27");
+        localStorage.removeItem("nhom4_separated_files_v28");
         userUploadedPlans = [];
         loadPlans();
         appendMessage('bot', '🗑️ Đã xóa sạch dữ liệu tệp tải lên cá nhân.');

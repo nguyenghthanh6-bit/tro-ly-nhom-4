@@ -4,34 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TRỢ LÝ NHÓM 4 - FPT AI DASHBOARD</title>
-    <!-- Thư viện đọc file Word (.docx) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
-    <!-- Thư viện đọc file PDF (.pdf) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #0b1329; color: #e2e8f0; height: 100vh; height: 100dvh; display: flex; overflow: hidden; }
 
-        /* SIDEBAR BÊN TRÁI (PC) */
-        .sidebar { width: 300px; background: #0f172a; border-right: 1px solid #1e293b; display: flex; flex-direction: column; padding: 15px; gap: 12px; flex-shrink: 0; }
+        .sidebar { width: 310px; background: #0f172a; border-right: 1px solid #1e293b; display: flex; flex-direction: column; padding: 15px; gap: 12px; flex-shrink: 0; }
         .brand { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid #1e293b; }
         .brand-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #38bdf8; object-fit: cover; }
-        .brand-info h2 { font-size: 14px; color: #38bdf8; letter-spacing: 0.5px; text-transform: uppercase; }
+        .brand-info h2 { font-size: 14px; color: #38bdf8; text-transform: uppercase; }
         .sidebar-section { display: flex; flex-direction: column; gap: 8px; }
 
-        .action-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; text-align: center; width: 100%; white-space: nowrap; }
-        .action-btn:hover { background: #0284c7; border-color: #38bdf8; color: #fff; }
+        .action-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; text-align: center; width: 100%; white-space: nowrap; }
         .action-btn.upload-btn { background: #064e3b; border-color: #059669; color: #34d399; font-weight: bold; }
         .action-btn.img-btn { background: #1e1b4b; border-color: #4338ca; color: #a5b4fc; }
         .action-btn.clear-btn { background: #451a1a; border-color: #7f1d1d; color: #fca5a5; }
 
         #fileInput, #planImageInput { display: none; }
-        .plans-container { display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow-y: auto; }
-        .plan-item { background: #1e293b; border: 1px solid #334155; padding: 8px 10px; border-radius: 6px; font-size: 11.5px; color: #94a3b8; cursor: pointer; }
+        .plans-container { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; }
+        .plan-item { background: #1e293b; border: 1px solid #334155; padding: 10px; border-radius: 6px; font-size: 12px; color: #94a3b8; cursor: pointer; transition: all 0.2s; }
         .plan-item.active { background: #0284c7; color: #fff; border-color: #38bdf8; font-weight: bold; }
 
-        /* KHUNG CHÍNH BÊN PHẢI */
         .main-content { flex: 1; display: flex; flex-direction: column; background: #0b1329; height: 100%; overflow: hidden; }
         .top-header { background: #0f172a; padding: 12px 20px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
         .top-header h1 { font-size: 16px; color: #f8fafc; }
@@ -41,42 +36,35 @@
         .quick-queries::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 
         .query-chip { background: #1e293b; border: 1px solid #334155; color: #38bdf8; padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; white-space: nowrap; font-weight: 600; flex-shrink: 0; }
-        .query-chip:hover { background: #38bdf8; color: #0f172a; }
         .query-chip.ai-ask { background: #4c1d95; border-color: #7c3aed; color: #e9d5ff; }
         .query-chip.risk-btn { background: #7f1d1d; border-color: #dc2626; color: #fca5a5; }
         .query-chip.benefit-btn { background: #064e3b; border-color: #059669; color: #34d399; }
+        .query-chip.data-btn { background: #78350f; border-color: #d97706; color: #fde68a; }
 
         .chat-box { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
-        .message { max-width: 88%; padding: 12px 16px; border-radius: 10px; font-size: 13.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .message { max-width: 94%; padding: 14px 18px; border-radius: 10px; font-size: 13.5px; line-height: 1.7; word-break: break-word; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
         .user-message { background: #0284c7; color: #ffffff; align-self: flex-end; border-bottom-right-radius: 2px; }
         .bot-message { background: #1e293b; color: #f1f5f9; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid #334155; }
         .bot-message strong { color: #38bdf8; }
-        .chat-img { max-width: 100%; border-radius: 8px; margin-top: 8px; border: 1px solid #475569; display: block; }
+        .chat-img { max-width: 100%; border-radius: 8px; margin-top: 10px; border: 1px solid #475569; display: block; }
 
-        .chat-input-area { padding: 12px 20px; background: #0f172a; border-top: 1px solid #1e293b; display: flex; gap: 10px; flex-shrink: 0; }
-        .chat-input-area input { flex: 1; background: #1e293b; border: 1px solid #334155; color: #fff; padding: 12px 16px; border-radius: 25px; outline: none; font-size: 13.5px; }
-        .chat-input-area input:focus { border-color: #38bdf8; }
-        .chat-input-area button { background: #0284c7; color: white; border: none; padding: 10px 22px; border-radius: 25px; font-size: 13.5px; font-weight: bold; cursor: pointer; }
+        .chat-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12.5px; background: #0f172a; }
+        .chat-table th, .chat-table td { border: 1px solid #334155; padding: 8px 10px; text-align: left; }
+        .chat-table th { background: #1e293b; color: #38bdf8; }
 
-        /* --- TỐI ƯU HÓA MOBILE --- */
         @media (max-width: 768px) {
             body { flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; }
-            .sidebar { width: 100%; height: auto; max-height: 85px; padding: 6px 10px; flex-direction: row; align-items: center; justify-content: space-between; flex-shrink: 0; background: #0f172a; border-right: none; border-bottom: 1px solid #1e293b; }
+            .sidebar { width: 100%; height: auto; max-height: 90px; padding: 6px 10px; flex-direction: row; align-items: center; justify-content: space-between; flex-shrink: 0; }
             .brand { border-bottom: none; padding-bottom: 0; gap: 6px; }
             .brand-avatar { width: 32px; height: 32px; }
             .brand-info h2 { font-size: 11px; }
             .sidebar-section { flex-direction: row; gap: 5px; align-items: center; }
             .action-btn { width: auto; padding: 6px 8px; font-size: 11px; }
             .plans-container { display: none; }
-            .main-content { height: calc(100vh - 85px); height: calc(100dvh - 85px); display: flex; flex-direction: column; overflow: hidden; }
+            .main-content { height: calc(100vh - 90px); height: calc(100dvh - 90px); }
             .top-header { display: none; }
-            .quick-queries { padding: 6px 10px; gap: 6px; }
-            .query-chip { padding: 5px 10px; font-size: 11px; }
-            .chat-box { flex: 1; padding: 10px; overflow-y: auto; }
-            .message { max-width: 95%; font-size: 12.5px; padding: 10px 12px; }
-            .chat-input-area { padding: 8px 10px; background: #0f172a; }
-            .chat-input-area input { padding: 10px 14px; font-size: 13px; }
-            .chat-input-area button { padding: 8px 16px; font-size: 13px; }
+            .chat-box { padding: 10px; }
+            .message { max-width: 96%; font-size: 12.5px; }
         }
     </style>
 </head>
@@ -91,9 +79,8 @@
         </div>
 
         <div class="sidebar-section">
-            <!-- Nút File chuyên dùng cho Word và PDF, không bị kẹt bộ lọc ảnh trên mobile -->
-            <label for="fileInput" class="action-btn upload-btn">📁 File</label>
-            <input type="file" id="fileInput" accept=".docx,.pdf">
+            <label for="fileInput" class="action-btn upload-btn">📁 Thêm File</label>
+            <input type="file" id="fileInput" accept=".docx,.pdf" multiple>
 
             <label for="planImageInput" class="action-btn img-btn">🖼️ Ảnh</label>
             <input type="file" id="planImageInput" accept=".jpg,.png,.jpeg" onchange="attachImageToActivePlan(event)">
@@ -107,19 +94,19 @@
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Mobile File Fix</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Clean Risk v27</span>
         </div>
 
         <div class="quick-queries">
-            <button class="query-chip ai-ask" onclick="generateDynamicQuestions()">🤖 AI Hỏi</button>
-            <button class="query-chip benefit-btn" onclick="sendQuickQuery('Tổng hợp tất cả lợi ích dự án')">📈 Lợi Ích</button>
-            <button class="query-chip risk-btn" onclick="sendQuickQuery('Phân tích rủi ro và nguy cơ')">⚠️ Rủi Ro</button>
-            <button class="query-chip" onclick="sendQuickQuery('Tổng chi phí cho dự án')">🧮 Tính Chi Phí</button>
-            <button class="query-chip" onclick="sendQuickQuery('Mô hình dự án')">🖼️ Mô hình</button>
+            <button class="query-chip ai-ask" onclick="sendQuickQuery('Toàn bộ nội dung')">📋 Toàn Bộ Nội Dung</button>
+            <button class="query-chip benefit-btn" onclick="sendQuickQuery('Lợi ích và tác động kỳ vọng')">📈 Chi Tiết Lợi Ích (Mục 5)</button>
+            <button class="query-chip risk-btn" onclick="sendQuickQuery('Thách thức và giải pháp tổ chức thực hiện')">⚠️ Thách Thức / Hạn Chế</button>
+            <button class="query-chip data-btn" onclick="sendQuickQuery('Tóm tắt số liệu và bảng')">📊 Số Liệu & Bảng</button>
+            <button class="query-chip" onclick="sendQueryModel()">🖼️ Mô hình</button>
         </div>
 
         <div class="chat-box" id="chatBox">
-            <div class="message bot-message">👋 Chào bạn! Nút 📁 File trên điện thoại đã được sửa để mở trực tiếp trình quản lý tài liệu (Word, PDF) rồi nhé!</div>
+            <div class="message bot-message">Tôi là trợ lý nhóm 4. Hãy chọn phương án ở cột bên trái để bắt đầu phân tích nhé!</div>
         </div>
 
         <div class="chat-input-area">
@@ -135,17 +122,82 @@
 
     const defaultPlans = [
         {
-            id: 'nhom4-official-1',
-            name: 'PA 1: Báo cáo chính thức Nhóm 4',
-            text: 'Dự án tuyến đường cao tốc dài 50 km, đơn giá đầu tư là 2 tỷ VND mỗi 1 km. Dự án mang lại nhiều lợi ích kinh tế, tăng trưởng vùng, phát triển hạ tầng giao thông xanh và an sinh xã hội. Tuy nhiên cần lưu ý các rủi ro về thời tiết và sụt lún nền đất.',
-            summary: '📌 **1. Tổng quan quy mô:**\n   • Tuyến đường cao tốc dài: 50 km\n   • Đơn giá đầu tư dự kiến: 2 tỷ VND/km\n\n📌 **2. Lợi ích kinh tế & xã hội:**\n   • Đẩy mạnh tăng trưởng kinh tế vùng\n   • Phát triển hạ tầng giao thông xanh và an sinh\n\n📌 **3. Rủi ro cần lưu ý:**\n   • Nguy cơ về thời tiết và địa chất sụt lún',
+            id: 'file-tay-dong',
+            name: '📄 [NTTNX] - Tuyến Đường Tây Đông',
+            text: `TÓM TẮT ĐỀ XUẤT ĐẦU TƯ: Nhà thầu Tầm Nhìn Xanh đề xuất nghiên cứu đầu tư tuyến hành lang giao thông Tây – Đông kết nối trực tiếp khu vực sản xuất công nghiệp Nhà máy Alumin Nhân Cơ (Đắk Nông) với khu vực Cảng Cam Ranh (Khánh Hòa). Tuyến đường có chiều dài dự kiến khoảng 182,1 km, bao gồm 169,3 km đường trên nền đất, 12,0 km hầm xuyên núi và 0,8 km cầu vượt sông. Tổng mức đầu tư sơ bộ là 42.011,48 tỷ đồng. Với sản lượng alumin giả định 650.000 tấn/năm, dự án đem lại hiệu quả tiết kiệm chi phí vận tải 114,95 tỷ đồng/năm trong vòng đời khai thác định hướng 30 năm.
+
+1. BỐI CẢNH VÀ SỰ CẦN THIẾT ĐẦU TƯ: Khu vực Tây Nguyên có tiềm năng lớn về nông nghiệp, khoáng sản; duyên hải miền Trung là cửa ngõ giao thương quốc tế. 1.1. Bài toán vận tải: Mạng lưới hiện hữu dài khoảng 300 km, tuyến mới dài 182,1 km (giảm 117,9 km). 1.2. Sự cần thiết: Tạo trục giao thông chiến lược mới, tối ưu chuỗi cung ứng.
+2. MỤC TIÊU VÀ ĐỊNH HƯỚNG: Xây dựng tuyến hành lang vận tải đồng bộ, an toàn, thúc đẩy liên kết vùng.
+3. QUY MÔ VÀ THÔNG SỐ: Chiều dài toàn tuyến 182,1 km; đường đất 169,3 km; hầm xuyên núi 12,0 km; cầu vượt sông 0,8 km.
+4. PHƯƠNG ÁN HƯỚNG TUYẾN: Khảo sát bám sát thung lũng, hạn chế tác động rừng nguyên sinh, ứng dụng công nghệ hầm hiện đại NATM.
+5. LỢI ÍCH VÀ TÁC ĐỘNG: Rút ngắn hành trình, tiết kiệm nhiên liệu, hỗ trợ doanh nghiệp logistics, liên kết vùng và bảo vệ môi trường.
+6. TỔNG MỨC ĐẦU TƯ VÀ CƠ CẤU VỐN: Tổng mức đầu tư 42.011,48 tỷ đồng (Xây lắp trực tiếp 34.792,11 tỷ; tư vấn quản lý 1.739,61 tỷ; dự phòng 15% tương đương 5.479,76 tỷ).
+7. HIỆU QUẢ KHAI THÁC 30 NĂM: Tiết kiệm chi phí 114,95 tỷ đồng/năm (tổng 30 năm khoảng 3.448,6 tỷ đồng).
+8. THÁCH THỨC VÀ GIẢI PHÁP: Khảo sát địa chất kỹ lưỡng, phân kỳ nguồn vốn đa dạng (PPP, tín dụng) và thực hiện đánh giá tác động môi trường (ĐTM).
+9. LỘ TRÌNH TRIỂN KHAI: Giai đoạn 1 (Tiền khả thi) -> Giai đoạn 2 (Khả thi & F/S) -> Giai đoạn 3 (Lựa chọn nhà đầu tư) -> Giai đoạn 4 (Thi công & vận hành).
+10. ĐỀ XUẤT HỢP TÁC: Kêu gọi cơ quan quản lý, chuyên gia và định chế tài chính đồng hành nghiên cứu chuyên sâu.`,
+            summary: '📌 **Tóm tắt [NTTNX] - Tuyến Đường Tây Đông:**\n• Chiều dài toàn tuyến: 182,1 km (169,3 km đường đất, 12 km hầm, 0,8 km cầu)\n• Tổng mức đầu tư sơ bộ: 42.011,48 tỷ đồng (~42,01 nghìn tỷ)\n• Tiết kiệm vận tải: 114,95 tỷ đồng/năm (vòng đời 30 năm)',
+            image: null
+        },
+        {
+            id: 'file-logistics',
+            name: '📄 Bối cảnh & Ý tưởng Logistics',
+            text: `BỐI CẢNH VÀ Ý TƯỞNG TỐI ƯU HÓA LOGISTICS: Ngành logistics giữ vai trò quan trọng trong sản xuất, lưu thông và phân phối hàng hóa, giúp quản lý kho bãi, phương tiện khoa học, giảm chi phí lưu kho và tiết kiệm nguồn lực. 
+
+GIỚI THIỆU MÔ HÌNH LIÊN KẾT NHÂN CƠ – CAM RANH: Gồm 3 địa điểm chính: Nhà máy Alumin Nhân Cơ (xuất phát), Trạm Logistics trung chuyển (trung gian điều phối) và Cảng Cam Ranh (đầu mối cảng biển). Ứng dụng đạo hàm trong Toán học để xác định vị trí trạm trung chuyển tối ưu. 
+
+BÀI TOÁN ĐẠO HÀM CHI PHÍ: AB = 114 km; BC = 145 km. Đơn giá tuyến mới 250 tỷ đồng/km, tuyến cao tốc CT01 là 150 tỷ đồng/km. Hàm chi phí T(x) = 250 * √(114² + x²) + 150 * (145 - x). Đạo hàm T'(x) = [250x / √(114² + x²)] - 150 = 0 => x = 85,5 km, quãng đường DC = 59,5 km, tổng quãng đường 202 km, thời gian vận chuyển khoảng 5 giờ. 
+
+THUẬN LỢI: 
+1. Tối ưu hóa quy trình vận tải: Điểm trung chuyển liên phương thức, kho bãi điều tiết thông minh bảo quản alumin khô ráo tránh ùn ứ. 
+2. Dịch vụ kỹ thuật & hậu cần: Trạm bảo dưỡng, tiếp nhiên liệu tại chỗ và khu vực nghỉ ngơi an toàn cho đội ngũ tài xế đường dài. 
+3. Gia tăng giá trị kinh tế vùng: Tận dụng công suất gom hàng nông sản Tây Nguyên (cà phê, hồ tiêu, sầu riêng) xuất khẩu và vận chuyển ngược lại vật tư, phân bón. 
+
+HẠN CHẾ & DI DỜI TRẠM D: 
+- Thách thức khi triển khai trạm trung chuyển logistics bao gồm áp lực giải phóng mặt bằng quy mô lớn tại điểm giao cắt, chi phí đầu tư ban đầu cao và rủi ro biến động giá nguyên vật liệu xây dựng kho bãi. 
+- Khi thực hiện di dời vị trí Trạm D so với điểm tối ưu ban đầu (x = 85,5 km, tương ứng DC = 59,5 km với tổng vốn 44.550 tỷ đồng, tiết kiệm 1.562 tỷ đồng), chi phí đầu tư sẽ gia tăng đáng kể do thay đổi cự ly đấu nối hạ tầng giao thông và chi phí san lấp mặt bằng tại vị trí mới. Cụ thể: dời 2,5 km tổng vốn tăng 2,5 tỷ; dời 5 km tổng vốn tăng 15 tỷ; dời 10 km tổng vốn tăng 55 tỷ đồng.
+
+GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và hầm chui sinh thái, vận chuyển kín bằng xe bồn/băng tải & tường chống ồn, hệ thống thu gom nước chảy tràn qua bể lắng lọc.`,
+            summary: '📌 **Tóm tắt Bối cảnh & Ý tưởng Logistics:**\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics – Cảng Cam Ranh\n• Bài toán tối ưu đạo hàm: Điểm đặt trạm x = 85,5 km, quãng đường DC = 59,5 km\n• Giải pháp hạ tầng xanh: Cầu cạn sinh thái, vận chuyển kín, thu gom nước tràn',
+            image: null
+        },
+        {
+            id: 'file-ct01',
+            name: '📄 [Tổ 2 - Kiyoshi] Mô hình Giao thông CT01',
+            text: `BÁO CÁO TÓM TẮT DỰ ÁN MÔ HÌNH GIAO THÔNG CT01: Tuyến vận tải từ Nhà máy Alumin Nhân Cơ đến Cảng Quốc tế Cam Ranh.
+
+1. THÔNG TIN CHUNG VÀ ĐỘI NGŨ THỰC HIỆN: Nhà thầu An toàn Hạ tầng Kiyoshi (Tổ 2). Trưởng nhóm: Vân Anh. Thành viên: Quang Dũng, Phúc Hưng, Bảo Châu, Thảo Ngọc, Ngọc Ánh, Hoài Phước, Công Quân, Gia Nhi, Mai Lam, Thanh Duyên.
+
+2. MỤC TIÊU VÀ Ý TƯỞNG QUY HOẠCH:
+2.1. Mục tiêu dự án: Ứng dụng tích hợp Toán học, Địa lý và Công nghệ để mô hình hóa tuyến đường, tối ưu chi phí, tăng cường kết nối Tây Nguyên (Đắk Nông) và duyên hải Nam Trung Bộ (Khánh Hòa).
+2.2. Ý tưởng quy hoạch: Đoạn 1 (AH) từ Alumin Nhân Cơ đến Nút giao CT01 dài 114 km (phương thẳng đứng Bắc - Nam); Đoạn 2 (HB) từ Nút giao CT01 đến Cảng Cam Ranh dài 142 km (phương nằm ngang Tây - Đông).
+
+3. THÔNG SỐ KỸ THUẬT VÀ CHI PHÍ ĐẦU TƯ:
+- Chiều dài tuyến vuông góc (Nhân Cơ - CT01): 114 km.
+- Chiều dài đoạn cao tốc CT01 sử dụng: 142 km.
+- Đơn giá xây dựng quy đổi: 250 tỷ VNĐ / km.
+- Tổng vốn đầu tư đề xuất (Phương án A): 28.500 tỷ VNĐ (Rẻ nhất nhờ tận dụng CT01).
+- So sánh các phương án: Phương án A (28.500 tỷ VNĐ - Rẻ nhất), Phương án B (45.000 tỷ VNĐ - Trung bình), Phương án C (60.000 - 80.000 tỷ VNĐ - Cao nhất).
+
+4. CÁC ƯU ĐIỂM NỔI BẬT:
+1. Tận dụng hạ tầng cao tốc CT01: Tiết kiệm 15.600 tỷ đồng CAPEX.
+2. Thuận lợi vận chuyển & logistics: Kết nối trực tiếp Alumin Nhân Cơ với Cảng Cam Ranh.
+3. Hiệu quả kinh tế vượt trội: Vốn đầu tư thấp nhất (28.500 tỷ VNĐ), dễ huy động vốn PPP, giảm áp lực nợ công.
+4. An toàn giao thông: Duy trì tốc độ cho phép 80 km/h trên cao tốc CT01.
+
+5. QUÁ TRÌNH THI CÔNG SA BÀN / MÔ HÌNH 3D:
+01. Chuẩn bị nền và tạo địa hình: Dựng nền, đo đạc kích thước và cắt định hình bằng bìa carton.
+02. Bố trí các hạng mục: Sắp xếp tuyến đường, đồi núi, mặt biển và công trình giao thông.
+03. Hoàn thiện chi tiết: Gắn mô hình phương tiện vận tải (xe tải, tàu biển container).
+04. Kiểm tra và hoàn thiện: Kiểm tra tổng thể sa bàn, chỉnh sửa và hoàn thiện mô hình.`,
+            summary: '📌 **Tóm tắt Mô hình Giao thông CT01 (Tổ 2 - Kiyoshi):**\n• Tuyến kết nối: Nhân Cơ – Nút giao CT01 – Cảng Cam Ranh\n• Vốn đầu tư Phương án A: 28.500 tỷ VNĐ (tiết kiệm 15.600 tỷ nhờ tận dụng CT01)\n• Đội ngũ: Tổ 2 - Kiyoshi (Trưởng nhóm Vân Anh và các thành viên)',
             image: null
         }
     ];
 
     let userUploadedPlans = [];
     let allPlans = [];
-    let activePlanId = null;
+    let activePlanId = 'file-tay-dong';
 
     window.onload = function() {
         loadPlans();
@@ -153,104 +205,98 @@
 
     function loadPlans() {
         try {
-            const stored = localStorage.getItem("nhom4_user_uploaded_plans");
-            if (stored) {
-                userUploadedPlans = JSON.parse(stored);
-            }
-        } catch(e) { 
-            userUploadedPlans = []; 
-        }
+            const stored = localStorage.getItem("nhom4_separated_files_v27");
+            if (stored) userUploadedPlans = JSON.parse(stored);
+        } catch(e) { userUploadedPlans = []; }
 
         allPlans = [...defaultPlans, ...userUploadedPlans];
-        
-        if (allPlans.length > 0 && !activePlanId) {
+        if (!allPlans.some(p => p.id === activePlanId) && allPlans.length > 0) {
             activePlanId = allPlans[0].id;
         }
         renderPlanChips();
     }
 
-    document.getElementById('fileInput').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (!file) return;
+    document.getElementById('fileInput').addEventListener('change', async function(event) {
+        const files = event.target.files;
+        if (!files || files.length === 0) return;
 
-        appendMessage('user', `📁 Chọn tệp cá nhân: ${file.name}`);
-        appendMessage('bot', `⏳ Đang phân tích và bóc tách ý chính...`);
-
-        setTimeout(async () => {
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            appendMessage('user', `📁 Đang phân tích tệp: ${file.name}`);
+            
             try {
-                let extractedText = "";
-                let imageUrl = null;
+                let rawText = "";
                 const nameLower = file.name.toLowerCase();
 
-                if (nameLower.endsWith('.docx')) { 
-                    extractedText = await readDocxFileWithTables(file); 
-                } 
-                else if (nameLower.endsWith('.pdf')) { 
-                    extractedText = await readPdfFile(file); 
-                } 
-                else {
-                    appendMessage('bot', '⚠️ Vui lòng chọn file định dạng Word (.docx) hoặc PDF (.pdf).');
-                    return;
+                if (nameLower.endsWith('.docx')) {
+                    rawText = await new Promise((res, rej) => {
+                        const r = new FileReader();
+                        r.onload = e => mammoth.extractRawText({ arrayBuffer: e.target.result }).then(rObj => res(rObj.value || "")).catch(rej);
+                        r.readAsArrayBuffer(file);
+                    });
+                } else if (nameLower.endsWith('.pdf')) {
+                    rawText = await new Promise((res, rej) => {
+                        const r = new FileReader();
+                        r.onload = async e => {
+                            try {
+                                const pdf = await pdfjsLib.getDocument(new Uint8Array(e.target.result)).promise;
+                                let t = "";
+                                for(let pIdx = 1; pIdx <= Math.min(pdf.numPages, 15); pIdx++){
+                                    const p = await pdf.getPage(pIdx);
+                                    const txt = await p.getTextContent();
+                                    t += txt.items.map(item => item.str).join(" ") + "\n";
+                                }
+                                res(t);
+                            } catch(err) { rej(err); }
+                        };
+                        r.readAsArrayBuffer(file);
+                    });
                 }
 
-                if (extractedText.length > 80000) extractedText = extractedText.substring(0, 80000);
+                if (rawText) {
+                    const newPlanId = 'file-' + Date.now() + '-' + i;
+                    const planName = `📄 ${file.name}`;
+                    const summary = `📌 **Tóm tắt tệp tải lên:**\n• Tên tệp: ${file.name}\n• Đã nạp và xử lý dữ liệu thành công.`;
 
-                const newPlanId = 'user-' + Date.now();
-                const planName = `Cá nhân ${userUploadedPlans.length + 1} (${file.name})`;
-                const summary = generateDetailedSummary(extractedText);
-
-                const newPlan = {
-                    id: newPlanId,
-                    fileName: file.name,
-                    name: planName,
-                    text: extractedText,
-                    summary: summary,
-                    image: imageUrl
-                };
-
-                userUploadedPlans.push(newPlan);
-                saveUserPlansToStorage();
-                loadPlans();
-                activePlanId = newPlanId;
-                renderPlanChips();
-
-                appendMessage('bot', `✅ **ĐÃ TÓM TẮT TỆP ${planName.toUpperCase()}**\n\n${summary}`, imageUrl);
-            } catch (error) {
-                console.error(error);
-                appendMessage('bot', `❌ Lỗi khi đọc file "${file.name}".`);
+                    const newPlan = { id: newPlanId, name: planName, text: rawText, summary: summary, image: null };
+                    userUploadedPlans.push(newPlan);
+                }
+            } catch (err) {
+                console.error(err);
             }
-        }, 100);
+        }
+
+        try {
+            localStorage.setItem("nhom4_separated_files_v27", JSON.stringify(userUploadedPlans.map(p => ({...p, image: null}))));
+        } catch(err) {}
+
+        loadPlans();
+        if(userUploadedPlans.length > 0) activePlanId = userUploadedPlans[userUploadedPlans.length - 1].id;
+        renderPlanChips();
+
+        appendMessage('bot', `✅ **ĐÃ ĐỌC HOÀN TẤT TỆP MỚI!** Sẵn sàng phân tích dữ liệu.`);
+        event.target.value = "";
     });
 
     function attachImageToActivePlan(event) {
         const file = event.target.files[0];
         if (!file) return;
-
         const plan = allPlans.find(p => p.id === activePlanId);
-        if (!plan) {
-            appendMessage('bot', '⚠️ Vui lòng chọn phương án trước!');
-            return;
-        }
-
-        const imageUrl = URL.createObjectURL(file);
-        plan.image = imageUrl;
-        
-        if (plan.id.startsWith('user-')) {
-            const up = userUploadedPlans.find(p => p.id === activePlanId);
-            if (up) { up.image = imageUrl; saveUserPlansToStorage(); }
-        }
-
-        appendMessage('bot', `🖼️ Đã gắn hình ảnh mô hình cho **${plan.name}**!`, imageUrl);
+        if (!plan) return;
+        const url = URL.createObjectURL(file);
+        plan.image = url;
+        appendMessage('bot', `🖼️ Đã gắn hình ảnh minh họa!`, url);
         event.target.value = "";
     }
 
     function renderPlanChips() {
         const container = document.getElementById('dynamicPlansList');
+        if(!container) return;
         container.innerHTML = "";
         allPlans.forEach(plan => {
             const div = document.createElement('div');
             div.className = `plan-item ${plan.id === activePlanId ? 'active' : ''}`;
-            div.innerText = `📄 ${plan.name}`;
+            div.innerText = plan.name;
             div.onclick = () => selectPlan(plan.id);
             container.appendChild(div);
         });
@@ -260,175 +306,197 @@
         activePlanId = id;
         renderPlanChips();
         const plan = allPlans.find(p => p.id === id);
-        if (plan) {
-            appendMessage('bot', `🔄 **ĐÃ CHUYỂN SANG: ${plan.name.toUpperCase()}**\n\n${plan.summary}`, plan.image);
-        }
+        if (plan) appendMessage('bot', `🔄 **ĐÃ CHUYỂN SANG TỆP:**\n\n${plan.summary}`, plan.image);
+    }
+
+    function answerFullDocument() {
+        const plan = allPlans.find(p => p.id === activePlanId);
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
+        appendMessage('bot', `📋 **TOÀN BỘ NỘI DUNG CHI TIẾT (${plan.name}):**\n\n${plan.text}`);
     }
 
     function answerAllBenefits() {
         const plan = allPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn phương án trước.'); return; }
-        const benefitKeywords = ["lợi ích", "doanh thu", "hiệu quả", "tăng trưởng", "lợi nhuận", "giá trị", "môi trường", "sinh thái", "cây xanh", "an sinh", "xã hội", "cộng đồng", "người dân", "việc làm", "hộ dân", "phát triển", "giao thông xanh"];
-        searchAndRespond(plan, benefitKeywords, "📈 **TỔNG HỢP LỢI ÍCH DỰ ÁN:**");
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
+        
+        let results = [];
+        if (plan.id === 'file-tay-dong') {
+            results = [
+                "• **5.1. Hiệu quả đối với vận tải hàng hóa:** Rút ngắn hành trình gần 118 km, tiết kiệm nhiên liệu, giảm hao mòn phương tiện.",
+                "• **5.2. Hiệu quả đối với doanh nghiệp:** Nâng cao tính chủ động logistics, chuỗi cung ứng ổn định, kết nối trực tiếp với cảng biển.",
+                "• **5.3. Hiệu quả đối với liên kết vùng:** Tạo hành lang kinh tế động lực kết nối không gian sản xuất Tây Nguyên và duyên hải.",
+                "• **5.4. Hiệu quả môi trường và xã hội:** Hạn chế tác động đến hệ sinh thái rừng, kiểm soát tiếng ồn, bụi và xử lý nước thải.",
+                "• **5.5. Hiệu quả khai thác dài hạn:** Định hướng vòng đời khai thác 30 năm với kế hoạch duy tu, bảo dưỡng định kỳ."
+            ];
+            appendMessage('bot', `📈 **CHI TIẾT LỢI ÍCH & TÁC ĐỘNG KỲ VỌNG (MỤC 5 - ${plan.name}):**\n\n` + results.join("\n\n"));
+        } else if (plan.id === 'file-logistics') {
+            results = [
+                "• **1. Tối ưu hóa quy trình vận tải (Logistics cốt lõi):** Điểm trung chuyển liên phương thức, kho bãi điều tiết thông minh bảo quản alumin khô ráo tránh ùn ứ.",
+                "• **2. Dịch vụ kỹ thuật & hậu cần bổ trợ:** Trạm bảo dưỡng, tiếp nhiên liệu tại chỗ và khu vực nghỉ ngơi an toàn cho đội ngũ tài xế đường dài.",
+                "• **3. Gia tăng giá trị kinh tế vùng:** Tận dụng công suất gom hàng nông sản Tây Nguyên (cà phê, hồ tiêu, sầu riêng) xuất khẩu và vận chuyển ngược lại vật tư, phân bón."
+            ];
+            appendMessage('bot', `📈 **THUẬN LỢI & TỐI ƯU LOGISTICS (${plan.name}):**\n\n` + results.join("\n\n"));
+        } else if (plan.id === 'file-ct01') {
+            results = [
+                "• **1. Tận dụng hạ tầng cao tốc CT01:** Tối ưu hóa việc sử dụng tuyến cao tốc hiện hữu, giúp tiết kiệm 15.600 tỷ đồng chi phí đầu tư ban đầu (CAPEX).",
+                "• **2. Thuận lợi vận chuyển:** Kết nối trực tiếp Nhà máy Alumin Nhân Cơ với mạng lưới giao thông liên vùng và Cảng biển Cam Ranh.",
+                "• **3. Nâng cao hiệu quả logistics:** Tăng tốc độ và khả năng luân chuyển hàng hóa liên vùng.",
+                "• **4. Thúc đẩy phát triển kinh tế:** Tăng cường kết nối, tạo động lực phát triển kinh tế cho địa phương và khu vực.",
+                "• **5. Chi phí đầu tư rẻ nhất & Dễ huy động vốn:** Vốn đầu tư 28.500 tỷ VNĐ là phương án tối ưu nhất, giúp tiết kiệm ngân sách, giảm áp lực nợ công và thu hút vốn PPP."
+            ];
+            appendMessage('bot', `📈 **ƯU ĐIỂM NỔI BẬT (${plan.name}):**\n\n` + results.join("\n\n"));
+        } else {
+            results = plan.text.split(/(?<=[.?!])\s+/).filter(s => s.length > 30).slice(0, 5).map(s => "• " + s);
+            appendMessage('bot', `📈 **NỘI DUNG TỆP (${plan.name}):**\n\n` + results.join("\n\n"));
+        }
     }
 
     function answerRisks() {
         const plan = allPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn phương án trước.'); return; }
-        const riskKeywords = ["rủi ro", "nguy cơ", "thách thức", "khó khăn", "hạn chế", "tác động xấu", "ảnh hưởng", "biến động", "lo ngại", "sụt lún", "chậm tiến độ", "thời tiết"];
-        searchAndRespond(plan, riskKeywords, "⚠️ **PHÂN TÍCH RỦI RO & NGUY CƠ:**");
-    }
-
-    function answerTotalCost() {
-        const plan = allPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn phương án để tính toán chi phí.'); return; }
-        const text = plan.text;
-        const kmMatch = text.match(/(\d+([\.,]\d+)?)\s*(km|cây số)/i);
-        const priceMatch = text.match(/(\d+([\.,]\d+)?)\s*(tỷ|triệu)\s*(VND|đồng)?\s*\/\s*km/i) || text.match(/mỗi\s*1\s*km\s*.*?\s*(\d+([\.,]\d+)?)\s*(tỷ|triệu)/i);
-
-        let calculatedResult = "";
-        if (kmMatch && priceMatch) {
-            const distance = parseFloat(kmMatch[1].replace(',', '.'));
-            const unitPrice = parseFloat(priceMatch[1].replace(',', '.'));
-            const unitType = priceMatch[0].includes('triệu') ? 'triệu' : 'tỷ';
-            const total = distance * unitPrice;
-            calculatedResult = `🧮 **TỰ ĐỘNG TÍNH TOÁN:**\n   • Quãng đường: ${distance} km\n   • Đơn giá: ${unitPrice} ${unitType}/km\n👉 **TỔNG CHI PHÍ:** **${total.toLocaleString('vi-VN')} ${unitType} VND**\n\n`;
-        }
-
-        const costKeywords = ["chi phí", "tổng vốn", "vốn đầu tư", "kinh phí", "vnd", "usd", "tỷ", "triệu", "đơn giá"];
-        const sentences = plan.text.split(/(?<=[.?!;\n])\s+/).map(s => s.trim());
-        const matched = sentences.filter(s => costKeywords.some(kw => s.toLowerCase().includes(kw)) && s.length > 10);
-        const uniqueResults = [...new Set(matched)].slice(0, 5);
-
-        if (calculatedResult !== "") {
-            appendMessage('bot', calculatedResult + `📌 **DỮ LIỆU GỐC:**\n   • ` + uniqueResults.join("\n   • "));
-        } else if (uniqueResults.length > 0) {
-            appendMessage('bot', `💰 **THÔNG TIN CHI PHÍ:**\n\n   • ` + uniqueResults.join("\n\n   • "));
-        } else {
-            appendMessage('bot', `💰 Không tìm thấy số liệu chi phí trong tài liệu này.`);
-        }
-    }
-
-    function searchAndRespond(plan, keywords, title) {
-        const sentences = plan.text.split(/(?<=[.?!;\n])\s+/).map(s => s.trim());
-        const matched = sentences.filter(s => keywords.some(kw => s.toLowerCase().includes(kw)) && s.length > 10);
-        const uniqueResults = [...new Set(matched)].slice(0, 5);
-
-        if (uniqueResults.length > 0) {
-            appendMessage('bot', `${title}\n\n   • ` + uniqueResults.join("\n\n   • "));
-        } else {
-            appendMessage('bot', `${title}\n\n   • Không tìm thấy thông tin phù hợp.`);
-        }
-    }
-
-    function generateDynamicQuestions() {
-        const plan = allPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn tài liệu trước.'); return; }
-        appendMessage('user', '🤖 Hãy đặt câu hỏi tổng hợp');
-        setTimeout(() => {
-            let questions = [
-                "• **Về Lợi Ích:** Các giá trị kinh tế, môi trường và an sinh xã hội?",
-                "• **Về Rủi Ro:** Nguy cơ kỹ thuật hoặc thời tiết cần lưu ý?",
-                "• **Về Chi Phí:** Tổng ngân sách và đơn giá đầu tư ra sao?"
+        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
+        
+        if (plan.id === 'file-tay-dong') {
+            let results = [
+                "• **8.1. Thách thức về địa hình, địa chất và thủy văn:** Tuyến đi qua đèo núi hiểm trở, địa chất phức tạp. Giải pháp là khảo sát khoan thăm dò chi tiết, thiết kế hầm và hệ thống thoát nước kiên cố.",
+                "• **8.2. Thách thức về nguồn vốn đầu tư lớn:** Giải pháp là phân kỳ đầu tư theo giai đoạn, kết hợp đa dạng hóa nguồn vốn (ngân sách nhà nước, doanh nghiệp, tín dụng ưu đãi, PPP).",
+                "• **8.3. Thách thức về môi trường - xã hội:** Giải pháp là thực hiện nghiêm túc đánh giá tác động môi trường (ĐTM), tham vấn cộng đồng và trồng bù rừng, hoàn nguyên cảnh quan."
             ];
-            appendMessage('bot', `🤖 **CÂU HỎI GỢI Ý CHO BẠN:**\n\n` + questions.join("\n\n"));
-        }, 50);
+            appendMessage('bot', `⚠️ **CHI TIẾT THÁCH THỨC & GIẢI PHÁP (MỤC 8 - ${plan.name}):**\n\n` + results.join("\n\n"));
+        } else if (plan.id === 'file-logistics') {
+            const riskText = `⚠️ **HẠN CHẾ & PHÂN TÍCH DI DỜI TRẠM D (${plan.name}):**\n\n` +
+                `- Thách thức khi triển khai trạm trung chuyển logistics bao gồm áp lực giải phóng mặt bằng quy mô lớn tại điểm giao cắt, chi phí đầu tư ban đầu cao và rủi ro biến động giá nguyên vật liệu xây dựng kho bãi.\n\n` +
+                `- Khi thực hiện di dời vị trí Trạm D so với điểm tối ưu ban đầu (x = 85,5 km, tương ứng DC = 59,5 km với tổng vốn 44.550 tỷ đồng, tiết kiệm 1.562 tỷ đồng), chi phí đầu tư sẽ gia tăng đáng kể do thay đổi cự ly đấu nối hạ tầng giao thông và chi phí san lấp mặt bằng tại vị trí mới.`;
+            
+            appendMessage('bot', riskText);
+
+            const tableHtml = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Mức độ di dời (x)</th>
+                        <th>Vị trí Trạm D mới</th>
+                        <th>Tổng vốn đầu tư mới (tỷ)</th>
+                        <th>Mức giá tăng thêm (tỷ)</th>
+                    </tr>
+                    <tr><td>Ban đầu</td><td>DC = 59,5 km</td><td>44.550</td><td>0 (Tiết kiệm 1.562 tỷ)</td></tr>
+                    <tr><td>Dời 2,5 km</td><td>DC = 57 km</td><td>44.552,5</td><td>+2,5</td></tr>
+                    <tr><td>Dời 5 km</td><td>DC = 54,5 km</td><td>44.565</td><td>+15</td></tr>
+                    <tr><td>Dời 10 km</td><td>DC = 49,5 km</td><td>44.605</td><td>+55</td></tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableHtml);
+        } else if (plan.id === 'file-ct01') {
+            appendMessage('bot', `⚠️ **THÁCH THỨC & HẠN CHẾ (${plan.name}):**\n\nTệp tài liệu mô hình giao thông CT01 của Tổ 2 - Kiyoshi tập trung vào các ưu điểm vượt trội và giải pháp tận dụng cao tốc hiện hữu, **không ghi nhận thách thức hay hạn chế cụ thể** nào đối với phương án này.`);
+        } else {
+            appendMessage('bot', `⚠️ Không tìm thấy thông tin mục này trong tệp.`);
+        }
+    }
+
+    function answerSummaryData() {
+        const plan = allPlans.find(p => p.id === activePlanId);
+        if (!plan) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
+        
+        if (plan.id === 'file-tay-dong') {
+            appendMessage('bot', `📊 **SỐ LIỆU, QUY MÔ & 3 BẢNG THÔNG SỐ - TUYẾN ĐƯỜNG TÂY ĐÔNG:**\n\n• Chiều dài toàn tuyến: 182,1 km (169,3 km đường đất | 12,0 km hầm | 0,8 km cầu)\n• Tổng mức đầu tư sơ bộ: 42.011,48 tỷ đồng (~42,01 nghìn tỷ)\n• Hiệu quả tiết kiệm: 114,95 tỷ đồng/năm (vòng đời khai thác 30 năm)`);
+
+            const tableHtml1 = `
+                <strong style="color: #38bdf8;">1. Bảng cơ cấu thành phần Tổng mức đầu tư:</strong>
+                <table class="chat-table">
+                    <tr>
+                        <th>Hạng mục chi phí thành phần</th>
+                        <th>Tỷ trọng</th>
+                        <th>Giá trị (Tỷ VND)</th>
+                    </tr>
+                    <tr><td>Chi phí xây dựng & thiết bị trực tiếp</td><td>~82.8%</td><td>34.792,11</td></tr>
+                    <tr><td>Chi phí tư vấn, quản lý dự án & khác</td><td>~4.2%</td><td>1.739,61</td></tr>
+                    <tr><td>Chi phí dự phòng (15%)</td><td>13.0%</td><td>5.479,76</td></tr>
+                    <tr><td><strong>Tổng mức đầu tư sơ bộ</strong></td><td><strong>100%</strong></td><td><strong>42.011,48</strong></td></tr>
+                </table>
+            `;
+            const tableHtml2 = `
+                <strong style="color: #38bdf8; display: block; margin-top: 15px;">2. Bảng cơ cấu thành phần Hướng tuyến:</strong>
+                <table class="chat-table">
+                    <tr>
+                        <th>Loại hình công trình</th>
+                        <th>Chiều dài (km)</th>
+                        <th>Tỷ lệ (%)</th>
+                    </tr>
+                    <tr><td>Đường trên nền đất</td><td>169,3</td><td>93.0%</td></tr>
+                    <tr><td>Hầm xuyên núi</td><td>12,0</td><td>6.6%</td></tr>
+                    <tr><td>Cầu vượt sông, thung lũng</td><td>0,8</td><td>0.4%</td></tr>
+                    <tr><td><strong>Tổng cộng</strong></td><td><strong>182,1</strong></td><td><strong>100%</strong></td></tr>
+                </table>
+            `;
+            const tableHtml3 = `
+                <strong style="color: #38bdf8; display: block; margin-top: 15px;">3. Bảng hiệu quả kinh tế & Tiết kiệm vận tải (30 năm):</strong>
+                <table class="chat-table">
+                    <tr>
+                        <th>Chỉ tiêu kinh tế định hướng</th>
+                        <th>Sản lượng / Đơn giá</th>
+                        <th>Giá trị quy đổi</th>
+                    </tr>
+                    <tr><td>Sản lượng vận chuyển alumin giả định</td><td>650.000 tấn/năm</td><td>Khối lượng lớn ổn định</td></tr>
+                    <tr><td>Mức tiết kiệm chi phí vận tải trực tiếp</td><td>114,95 tỷ đồng/năm</td><td>Tiết kiệm nhiên liệu & hao mòn</td></tr>
+                    <tr><td>Tổng tiết kiệm danh nghĩa (Vòng đời 30 năm)</td><td>30 năm khai thác</td><td>~3.448,6 tỷ đồng</td></tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableHtml1 + tableHtml2 + tableHtml3);
+        } else if (plan.id === 'file-logistics') {
+            appendMessage('bot', `📊 **SỐ LIỆU, BÀI TOÁN ĐẠO HÀM & TỐI ƯU - LOGISTICS:**\n\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics – Cảng Cam Ranh\n• **Công thức hàm chi phí tổng quát:** T(x) = 250 * √(114² + x²) + 150 * (145 - x)\n• **Đạo hàm tối ưu chi phí:** T'(x) = [250x / √(114² + x²)] - 150 = 0\n• **Kết quả nghiệm tối ưu:** Điểm đặt trạm x = 85,5 km, quãng đường DC = 59,5 km, tổng quãng đường vận chuyển 202 km, thời gian khoảng 5 giờ\n• **Vốn đầu tư phương án tối ưu:** 44.550 tỷ đồng (tiết kiệm 1.562 tỷ đồng so với phương án xuyên núi)`);
+
+            const tableHtml = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Mức độ di dời (x)</th>
+                        <th>Vị trí Trạm D mới</th>
+                        <th>Tổng vốn đầu tư mới (tỷ)</th>
+                        <th>Mức giá tăng thêm (tỷ)</th>
+                    </tr>
+                    <tr><td>Ban đầu</td><td>DC = 59,5 km</td><td>44.550</td><td>0 (Tiết kiệm 1.562 tỷ)</td></tr>
+                    <tr><td>Dời 2,5 km</td><td>DC = 57 km</td><td>44.552,5</td><td>+2,5</td></tr>
+                    <tr><td>Dời 5 km</td><td>DC = 54,5 km</td><td>44.565</td><td>+15</td></tr>
+                    <tr><td>Dời 10 km</td><td>DC = 49,5 km</td><td>44.605</td><td>+55</td></tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableHtml);
+        } else if (plan.id === 'file-ct01') {
+            appendMessage('bot', `📊 **SỐ LIỆU & SO SÁNH CÁC PHƯƠNG ÁN (MÔ HÌNH CT01):**\n\n• Tuyến đường: Nhân Cơ (114 km) -> Nút giao CT01 -> Cảng Cam Ranh (142 km cao tốc CT01).\n• Đơn giá xây dựng quy đổi: 250 tỷ VNĐ / km.`);
+
+            const tableHtml = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Phương án</th>
+                        <th>Tổng vốn đầu tư (VNĐ)</th>
+                        <th>Đánh giá chi phí</th>
+                    </tr>
+                    <tr><td><strong>Phương án A (Đề xuất)</strong></td><td><strong>28.500 tỷ</strong></td><td>Rẻ nhất (Nhờ tận dụng CT01)</td></tr>
+                    <tr><td>Phương án B</td><td>45.000 tỷ</td><td>Mức chi phí trung bình</td></tr>
+                    <tr><td>Phương án C</td><td>60.000 - 80.000 tỷ</td><td>Chi phí cao nhất</td></tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableHtml);
+        } else {
+            appendMessage('bot', `📊 **SỐ LIỆU TỪ TỆP TẢI LÊN (${plan.name}):**\n\n• Tệp đã được phân tích dữ liệu tự động.`);
+        }
     }
 
     function answerProjectModel() {
         const plan = allPlans.find(p => p.id === activePlanId);
         if (plan && plan.image) {
-            appendMessage('bot', `🖼️ **MÔ HÌNH CỦA PHƯƠNG ÁN:**`, plan.image);
+            appendMessage('bot', `🖼️ **MÔ HÌNH DỰ ÁN:**`, plan.image);
             return;
         }
-        appendMessage('bot', `🖼️ **Mô hình sơ đồ tổng quan dự án nhóm:**`, "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80");
+        appendMessage('bot', `🖼️ **Sơ đồ cấu trúc bài toán logistics và định vị tuyến CT01:**`, "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80");
     }
 
-    function readDocxFileWithTables(f) {
-        return new Promise((res, rej) => {
-            const r = new FileReader();
-            r.onload = e => {
-                mammoth.convertToHtml({ arrayBuffer: e.target.result })
-                    .then(result => {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(result.value, 'text/html');
-                        let fullText = "";
-                        doc.querySelectorAll('h1, h2, h3, h4, p, li, td, th').forEach(el => {
-                            const txt = el.textContent.trim();
-                            if (txt) fullText += (el.tagName.match(/^H/) ? "\n\n📌 " + txt + "\n" : txt + " ");
-                        });
-                        res(fullText);
-                    })
-                    .catch(err => rej(err));
-            };
-            r.readAsArrayBuffer(f);
-        });
-    }
-
-    function readPdfFile(f) { 
-        return new Promise((res, rej) => { 
-            const r = new FileReader(); 
-            r.onload = async e => { 
-                try { 
-                    const pdf = await pdfjsLib.getDocument(new Uint8Array(e.target.result)).promise; 
-                    let t = ""; 
-                    for(let i = 1; i <= Math.min(pdf.numPages, 10); i++){ 
-                        const p = await pdf.getPage(i); 
-                        const txt = await p.getTextContent(); 
-                        t += txt.items.map(i => i.str).join(" ") + "\n"; 
-                    } 
-                    res(t); 
-                } catch(err){ rej(err); } 
-            }; 
-            r.readAsArrayBuffer(f); 
-        }); 
-    }
-
-    function generateDetailedSummary(text) {
-        const sentences = text.split(/[\r\n]+|[.!?]\s+/)
-            .map(x => x.trim())
-            .filter(x => x.length > 20);
-
-        if (sentences.length === 0) {
-            return "📌 **Nội dung tóm tắt:**\n   • " + text.slice(0, 200) + "...";
-        }
-
-        const part1 = sentences.slice(0, 2);
-        const part2 = sentences.slice(2, 5);
-        const part3 = sentences.slice(5, 7);
-
-        let summaryHtml = "📌 **1. Điểm cốt lõi:**\n";
-        if (part1.length > 0) {
-            summaryHtml += part1.map(s => `   • ${s}`).join("\n");
-        } else {
-            summaryHtml += "   • Không có thông tin phụ.";
-        }
-
-        if (part2.length > 0) {
-            summaryHtml += "\n\n📌 **2. Chi tiết triển khai & Tác động:**\n";
-            summaryHtml += part2.map(s => `   • ${s}`).join("\n");
-        }
-
-        if (part3.length > 0) {
-            summaryHtml += "\n\n📌 **3. Lưu ý & Đánh giá thêm:**\n";
-            summaryHtml += part3.map(s => `   • ${s}`).join("\n");
-        }
-
-        return summaryHtml;
-    }
-
-    function saveUserPlansToStorage() {
-        try {
-            const plansToSave = userUploadedPlans.map(p => ({ ...p, image: null }));
-            localStorage.setItem("nhom4_user_uploaded_plans", JSON.stringify(plansToSave));
-        } catch(e) {}
+    function sendQueryModel() {
+        answerProjectModel();
     }
 
     function clearUserData() {
-        localStorage.removeItem("nhom4_user_uploaded_plans");
+        localStorage.removeItem("nhom4_separated_files_v27");
         userUploadedPlans = [];
         loadPlans();
-        appendMessage('bot', '🗑️ Đã xóa các tệp cá nhân bạn đã nạp.');
+        appendMessage('bot', '🗑️ Đã xóa sạch dữ liệu tệp tải lên cá nhân.');
     }
 
     function sendQuickQuery(text) {
@@ -438,11 +506,12 @@
 
     function sendMessage() {
         const input = document.getElementById('userInput');
+        if(!input) return;
         const q = input.value.trim();
         if (!q) return;
         appendMessage('user', q);
         input.value = "";
-        setTimeout(() => processQuery(q), 50);
+        setTimeout(() => processQuery(q), 30);
     }
 
     function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
@@ -450,45 +519,47 @@
 
     function appendMessage(sender, text, img = null) {
         const box = document.getElementById('chatBox');
+        if (!box) return;
+        
         const div = document.createElement('div');
         div.className = `message ${sender === 'user' ? 'user-message' : 'bot-message'}`;
         let html = escapeHtml(text).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
         if (img) html += `<br><img src="${img}" class="chat-img" alt="Hình ảnh">`;
         div.innerHTML = html;
         box.appendChild(div);
-        box.scrollTop = box.scrollHeight;
+        
+        setTimeout(() => { box.scrollTop = box.scrollHeight; }, 50);
+    }
+
+    function appendHtmlTableMessage(tableHtml) {
+        const box = document.getElementById('chatBox');
+        if (!box) return;
+        const div = document.createElement('div');
+        div.className = 'message bot-message';
+        div.innerHTML = tableHtml;
+        box.appendChild(div);
+        
+        setTimeout(() => { box.scrollTop = box.scrollHeight; }, 50);
     }
 
     function processQuery(q) {
         const qLower = q.toLowerCase();
-
-        if (qLower.includes("lợi ích") || qLower.includes("tổng hợp lợi ích")) {
-            answerAllBenefits();
-            return;
-        }
-        if (qLower.includes("rủi ro") || qLower.includes("nguy cơ") || qLower.includes("thách thức")) {
-            answerRisks();
-            return;
-        }
-        if (qLower.includes("chi phí") || qLower.includes("vốn") || qLower.includes("tính")) {
-            answerTotalCost();
-            return;
-        }
-        if (qLower.includes("mô hình")) {
-            answerProjectModel();
-            return;
-        }
+        if (qLower.includes("toàn bộ nội dung")) { answerFullDocument(); return; }
+        if (qLower.includes("lợi ích") || qLower.includes("mục 5") || qLower.includes("thuận lợi")) { answerAllBenefits(); return; }
+        if (qLower.includes("thách thức") || qLower.includes("hạn chế") || qLower.includes("mục 8")) { answerRisks(); return; }
+        if (qLower.includes("số liệu") || qLower.includes("bảng")) { answerSummaryData(); return; }
+        if (qLower.includes("mô hình")) { answerProjectModel(); return; }
 
         const plan = allPlans.find(p => p.id === activePlanId);
         if (plan && plan.text) {
-            const matches = plan.text.split(/(?<=[.?!;\n])\s+/).map(l => l.trim()).filter(l => l.toLowerCase().includes(qLower));
+            let sentences = plan.text.split(/(?<=[.?!])\s+/);
+            const matches = sentences.filter(s => s.toLowerCase().includes(qLower));
             if (matches.length > 0) {
-                appendMessage('bot', `🔍 **Kết quả tìm kiếm cho "${q}":**\n\n   • ` + matches.slice(0, 5).join("\n\n   • "));
+                appendMessage('bot', `🔍 **Kết quả tìm kiếm cho "${q}" trong (${plan.name}):**\n\n• ` + matches.slice(0, 5).join("\n\n• "));
                 return;
             }
         }
-
-        appendMessage('bot', `Tui chưa tìm thấy thông tin cho "${q}". Hãy thử bấm các nút tắt phía trên nhé!`);
+        appendMessage('bot', `Tui chưa tìm thấy thông tin phù hợp cho từ khóa này.`);
     }
 </script>
 

@@ -48,7 +48,7 @@
         .bot-message strong { color: #38bdf8; }
         .chat-img { max-width: 100%; border-radius: 8px; margin-top: 10px; border: 1px solid #475569; display: block; }
 
-        .chat-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12.5px; background: #0f172a; }
+        .chat-table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px; font-size: 12.5px; background: #0f172a; }
         .chat-table th, .chat-table td { border: 1px solid #334155; padding: 8px 10px; text-align: left; }
         .chat-table th { background: #1e293b; color: #38bdf8; }
 
@@ -107,14 +107,15 @@
     <div class="main-content">
         <div class="top-header">
             <h1>BẢNG ĐIỀU KHIỂN PHÂN TÍCH DỰ ÁN</h1>
-            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Synchronized v35</span>
+            <span style="font-size: 11px; color: #34d399; background: #064e3b; padding: 3px 10px; border-radius: 10px; font-weight: bold;">● Team 1 Full Tables v60</span>
         </div>
 
         <div class="quick-queries">
             <button class="query-chip ai-ask" onclick="sendQuickQuery('Toàn bộ nội dung')">📋 Toàn Bộ Nội Dung</button>
-            <button class="query-chip benefit-btn" onclick="sendQuickQuery('Lợi ích và tác động kỳ vọng')">📈 Chi Tiết Lợi Ích (Mục 5)</button>
-            <button class="query-chip risk-btn" onclick="sendQuickQuery('Thách thức và giải pháp tổ chức thực hiện')">⚠️ Thách Thức & Giải Pháp (Mục 8)</button>
-            <button class="query-chip data-btn" onclick="sendQuickQuery('Tóm tắt số liệu và bảng')">📊 Số Liệu & Bảng</button>
+            <button class="query-chip benefit-btn" onclick="sendQuickQuery('lợi ích')">📈 Lợi Ích</button>
+            <button class="query-chip risk-btn" onclick="sendQuickQuery('thách thức và tài chính')">⚠️ Thách Thức & Tài Chính</button>
+            <button class="query-chip data-btn" onclick="sendQuickQuery('bảng mô phỏng geogebra')">📊 Bảng Mô Phỏng GeoGebra</button>
+            <button class="query-chip data-btn" onclick="sendQuickQuery('Tóm tắt số liệu và bảng')">📊 Tóm Tắt Số Liệu & Bảng</button>
             <button class="query-chip" onclick="sendQueryModel()">🖼️ Mô hình</button>
         </div>
 
@@ -137,80 +138,183 @@
         {
             id: 'file-tay-dong',
             name: '📄 Tổ 1',
-            text: `TÓM TẮT ĐỀ XUẤT ĐẦU TƯ: Nhà thầu Tầm Nhìn Xanh đề xuất nghiên cứu đầu tư tuyến hành lang giao thông Tây – Đông kết nối trực tiếp khu vực sản xuất công nghiệp Nhà máy Alumin Nhân Cơ (Đắk Nông) với khu vực Cảng Cam Ranh (Khánh Hòa). Tuyến đường có chiều dài dự kiến khoảng 182,1 km, bao gồm 169,3 km đường trên nền đất, 12,0 km hầm xuyên núi và 0,8 km cầu vượt sông. Tổng mức đầu tư sơ bộ là 42.011,48 tỷ đồng. Với sản lượng alumin giả định 650.000 tấn/năm, dự án đem lại hiệu quả tiết kiệm chi phí vận tải 114,95 tỷ đồng/năm trong vòng đời khai thác định hướng 30 năm.
+            text: `NHÀ THẦU TẦM NHÌN XANH - DỰ ÁN TUYẾN HÀNH LANG GIAO THÔNG TÂY – ĐÔNG (NHÂN CƠ – CAM RANH)
+Bản Tóm Lược Thuyết Trình & Báo Cáo Đề Xuất
 
-1. BỐI CẢNH VÀ SỰ CẦN THIẾT ĐẦU TƯ: Khu vực Tây Nguyên có tiềm năng lớn về nông nghiệp và khoáng sản; duyên hải miền Trung là cửa ngõ giao thương quốc tế. 
--1.1. Bài toán vận tải: Mạng lưới giao thông hiện hữu dài khoảng 300 km, tuyến mới dài 182,1 km giúp rút ngắn được 117,9 km. 
--1.2. Sự cần thiết: Tạo ra trục giao thông chiến lược mới, tối ưu hóa chuỗi cung ứng logistics liên vùng.
-2. MỤC TIÊU VÀ ĐỊNH HƯỚNG: Xây dựng tuyến hành lang vận tải đồng bộ, an toàn, giúp thúc đẩy mạnh mẽ liên kết kinh tế vùng Tây Nguyên với duyên hải Nam Trung Bộ.
-3. QUY MÔ VÀ THÔNG SỐ KỸ THUẬT: Chiều dài toàn tuyến 182,1 km; bao gồm 169,3 km đường trên nền đất, 12,0 km hầm xuyên núi và 0,8 km cầu vượt sông/thung lũng.
-4. PHƯƠNG ÁN HƯỚNG TUYẾN: Khảo sát bám sát các thung lũng tự nhiên, hạn chế tối đa tác động đến các khu vực rừng nguyên sinh, ứng dụng công nghệ khoan hầm hiện đại NATM.
-5. LỢI ÍCH VÀ TÁC ĐỘNG KỲ VỌNG: Rút ngắn đáng kể hành trình, tiết kiệm nhiên liệu, hỗ trợ đắc lực cho các doanh nghiệp logistics, thúc đẩy liên kết vùng và bảo vệ môi trường sinh thái.
-6. TỔNG MỨC ĐẦU TƯ VÀ CƠ CẤU VỐN: Tổng mức đầu tư sơ bộ là 42.011,48 tỷ đồng. Chi phí xây lắp & thiết bị trực tiếp: 34.792,11 tỷ đồng (~82,8%); chi phí tư vấn, quản lý dự án & khác: 1.739,61 tỷ đồng (~4,2%); chi phí dự phòng (15%): 5.479,76 tỷ đồng (~13,0%).
-7. HIỆU QUẢ KHAI THÁC 30 NĂM: Với sản lượng alumin giả định 650.000 tấn/năm, dự án đem lại hiệu quả tiết kiệm chi phí vận tải trực tiếp 114,95 tỷ đồng/năm (tổng vòng đời 30 năm đạt khoảng 3.448,6 tỷ đồng).
+TÓM TẮT ĐỀ XUẤT: Nhà thầu Tầm Nhìn Xanh đề xuất nghiên cứu tuyến hành lang giao thông Tây – Đông kết nối khu vực Nhà máy Alumin Nhân Cơ với khu vực Cảng Cam Ranh. Tuyến đường có chiều dài dự kiến khoảng 182,1 km, được định hướng kết hợp đường trên nền đất, hầm xuyên núi và cầu vượt sông.
+
+BẢNG 1: CHỈ TIÊU VÀ QUY MÔ ĐỀ XUẤT
+- Chiều dài toàn tuyến: 182,1 km
+- Đường trên nền đất: 169,3 km
+- Hầm xuyên núi: 12,0 km
+- Cầu vượt sông: 0,8 km
+- Tổng mức đầu tư sơ bộ: 45.525 tỷ đồng (hoặc 42.011,48 tỷ đồng)
+- Sản lượng alumin giả định: 650.000 tấn/năm
+- Tiết kiệm vận tải theo kịch bản: 114,95 tỷ đồng/năm
+- Thời gian khai thác định hướng: 30 năm
+
+1. BỐI CẢNH VÀ SỰ CẦN THIẾT ĐẦU TƯ:
+- Tây Nguyên có thế mạnh về tài nguyên, nông nghiệp, công nghiệp chế biến; duyên hải miền Trung có cảng biển và logistics.
+- Bài toán vận tải: Mạng lưới hiện hữu dài khoảng 300 km, tuyến mới dài 182,1 km giúp rút ngắn 117,9 km mỗi lượt vận chuyển.
+- Sự cần thiết: Tăng cường kết nối sản xuất công nghiệp Tây Nguyên với cảng biển, tối ưu hóa chuỗi cung ứng logistics liên vùng.
+
+2. MỤC TIÊU VÀ ĐỊNH HƯỚNG PHÁT TRIỂN:
+- Mục tiêu tổng quát: Hình thành hành lang giao thông Tây – Đông liên tục giữa Nhân Cơ và Cam Ranh, tăng cường liên kết kinh tế vùng và phát triển logistics bền vững.
+- Các mục tiêu cụ thể: Kết nối hạ tầng, cải thiện cự ly/thời gian vận tải, giảm chi phí logistics, lựa chọn giải pháp kỹ thuật an toàn, bảo vệ môi trường và quản lý theo vòng đời 30 năm.
+
+3. Ý TƯỞNG, HƯỚNG TUYẾN VÀ QUY MÔ SƠ BỘ:
+BẢNG 2: CẤU PHẦN QUY MÔ TUYẾN ĐƯỜNG
+- Đường trên nền đất: 169,3 km | Tỷ lệ: 93,0% | Chức năng: Kết nối các khu vực và các đoạn tuyến
+- Hầm xuyên núi: 12,0 km | Tỷ lệ: 6,6% | Chức năng: Vượt địa hình núi, hạn chế đường vòng
+- Cầu vượt sông: 0,8 km | Tỷ lệ: 0,4% | Chức năng: Kết nối qua sông, suối và thung lũng
+- Tổng cộng: 182,1 km | Tỷ lệ: 100% | Chức năng: Toàn tuyến đề xuất
+
+4. GIẢI PHÁP KỸ THUẬT CHỦ ĐẠO:
+- Tuyến đường: Mặt cắt và kết cấu áo đường phù hợp tải trọng xe tải, hệ thống thoát nước dọc/ngang, gia cố mái taluy, biển báo và an toàn giao thông.
+- Hầm: Công nghệ thi công phù hợp địa chất, hệ thống thông gió, chiếu sáng, PCCC, thoát hiểm và quan trắc định kỳ.
+- Cầu: Kết cấu đáp ứng tải trọng, tính toán dòng chảy, lũ lụt và xói lở.
+- Quản lý & An toàn: Ứng dụng hệ thống ITS giám sát lưu lượng, tải trọng và ứng phó sự cố.
+
+5. LỢI ÍCH VÀ TÁC ĐỘNG KỲ VỌNG:
+- Hiệu quả vận tải: Giảm 117,9 km cự ly, tiết kiệm nhiên liệu, hao mòn và thời gian hành trình.
+- Doanh nghiệp: Nâng cao tính chủ động logistics, phục vụ đa dạng hàng hóa và vật tư công nghiệp.
+- Liên kết vùng: Thúc đẩy giao thương Tây Nguyên – duyên hải, thu hút đầu tư.
+- Môi trường & Xã hội: Kiểm soát bụi, tiếng ồn, nước thải, hoàn nguyên cảnh quan rừng sau thi công.
+- Khai thác dài hạn: Quản lý tài sản và bảo trì định hướng vòng đời 30 năm.
+
+6. TỔNG MỨC ĐẦU TƯ VÀ CƠ CẤU VỐN:
+- Tổng mức đầu tư sơ bộ: 45.525 tỷ đồng (hoặc 42.011,48 tỷ đồng).
+- Định hướng huy động vốn: Phân kỳ đầu tư, kết hợp đa dạng nguồn lực (ngân sách nhà nước, vốn doanh nghiệp, tín dụng ưu đãi, PPP).
+
+7. HIỆU QUẢ VẬN TẢI VÀ ĐÁNH GIÁ KHAI THÁC 30 NĂM:
+- Kịch bản tiết kiệm: Cự ly giảm 117,9 km, sản lượng 650.000 tấn/năm, đơn giá 1.500 đồng/tấn-km => Tiết kiệm 114,95 tỷ đồng/năm.
+- Tổng giá trị tiết kiệm danh nghĩa 30 năm đạt khoảng 3.448,6 tỷ đồng.
+
 8. THÁCH THỨC VÀ GIẢI PHÁP TỔ CHỨC THỰC HIỆN:
--8.1. Địa hình, địa chất và thủy văn: Thách thức tuyến đi qua đèo núi hiểm trở, địa chất phức tạp, nguy cơ sạt lở mùa mưa. Giải pháp là tổ chức khảo sát khoan thăm dò chi tiết, thi công hầm công nghệ NATM và kiên cố hóa hệ thống thoát nước.
--8.2. Nguồn vốn đầu tư lớn: Thách thức áp lực tài chính huy động dòng tiền 42.011,48 tỷ đồng. Giải pháp là phân kỳ đầu tư theo giai đoạn hợp lý, đa dạng hóa nguồn vốn (ngân sách nhà nước, doanh nghiệp, tín dụng ưu đãi, PPP).
--8.3. Môi trường - xã hội: Thách thức tác động đến hệ sinh thái rừng nguyên sinh, bụi và tiếng ồn sinh hoạt. Giải pháp là thực hiện nghiêm ngặt ĐTM, tham vấn cộng đồng và cam kết kế hoạch trồng bù rừng hoàn nguyên cảnh quan.
--8.4. Tiến độ và trượt giá nguyên vật liệu: Thách thức rủi ro biến động giá vật liệu xây dựng (xi măng, sắt thép, nhiên liệu) và chậm giải phóng mặt bằng. Giải pháp là áp dụng hợp đồng EPC thông minh, lập quỹ dự phòng tài chính và kiểm soát giải ngân theo mốc.
--8.5. Quản lý vận hành và khai thác thông minh: Thách thức giám sát an toàn và kiểm soát tải trọng phương tiện trên tuyến đường dài. Giải pháp là tích hợp hệ thống giao thông thông minh (ITS), tự động hóa cân tải trọng và bảo trì dự báo sự cố.
-9. LỘ TRÌNH TRIỂN KHAI: Được chia thành 4 giai đoạn rõ rệt: Giai đoạn 1 (Nghiên cứu tiền khả thi) -> Giai đoạn 2 (Khải thi & lập F/S) -> Giai đoạn 3 (Lựa chọn nhà đầu tư) -> Giai đoạn 4 (Thi công xây dựng & đưa vào vận hành).
-10. ĐỀ XUẤT HỢP TÁC VÀ PHÁT TRIỂN CHUYÊN SÂU: Kêu gọi các cơ quan quản lý nhà nước (Bộ Giao thông Vận tải, UBND các tỉnh Đắk Nông và Khánh Hòa), các chuyên gia đầu ngành hạ tầng cùng các định chế tài chính trong và ngoài nước đồng hành nghiên cứu chuyên sâu, hỗ trợ pháp lý và tài chính để sớm hiện thực hóa dự án.`,
-            summary: '📌 **Tóm tắt Tổ 1 (Chi tiết 10 Mục):**\n• Tuyến đường: Nhân Cơ (Đắk Nông) – Cảng Cam Ranh (Khánh Hòa)\n• Quy mô: 182,1 km (169,3 km đường đất | 12 km hầm | 0,8 km cầu)\n• Tổng vốn đầu tư: 42.011,48 tỷ đồng (~42,01 nghìn tỷ)\n• Tiết kiệm vận tải: 114,95 tỷ đồng/năm (vòng đời 30 năm ~3.448,6 tỷ)',
+- Địa hình & Địa chất: Khảo sát chi tiết, lựa chọn công nghệ hầm cầu tối ưu.
+- Nguồn vốn: Phân kỳ đầu tư, kiểm soát khối lượng và dự toán chặt chẽ.
+- Môi trường & Xã hội: ĐTM nghiêm ngặt, tham vấn cộng đồng, trồng bù rừng.
+- An toàn & Khai thác: Thiết lập hệ thống quản lý an toàn và bảo trì định kỳ.
+
+9. LỘ TRÌNH NGHIÊN CỨU & TRIỂN KHAI:
+- Giai đoạn 1: Chuẩn bị và nghiên cứu tiền khả thi.
+- Giai đoạn 2: Nghiên cứu khả thi và hoàn thiện thiết kế cơ sở.
+- Giai đoạn 3: Lựa chọn mô hình đầu tư và đối tác.
+- Giai đoạn 4: Thi công, vận hành và bảo trì.
+
+10. ĐỀ XUẤT HỢP TÁC VÀ KÊU GỌI ĐẦU TƯ:
+- Hợp tác nghiên cứu hướng tuyến, phương án kỹ thuật, tài chính và khai thác dài hạn cùng các cơ quan quản lý, doanh nghiệp và nhà đầu tư.`,
+            summary: '📌 **Tóm tắt Tổ 1 (Nhà thầu Tầm Nhìn Xanh):**\n• Tuyến đường: Nhân Cơ (Đắk Nông) – Cảng Cam Ranh (Khánh Hòa) dài 182,1 km\n• Tổng vốn đầu tư: 45.525 tỷ đồng\n• Tiết kiệm chi phí vận tải: 114,95 tỷ đồng/năm (vòng đời 30 năm ~3.448,6 tỷ)',
             image: null
         },
         {
             id: 'file-ct01',
             name: '📄 Tổ 2',
-            text: `BÁO CÁO TÓM TẮT DỰ ÁN MÔ HÌNH GIAO THÔNG CT01: Tuyến vận tải từ Nhà máy Alumin Nhân Cơ đến Cảng Quốc tế Cam Ranh.
+            text: `CHUYÊN ĐỀ TOÁN ỨNG DỤNG 12 | NHÀ THẦU KIYOSHI – TỔ 2 (12A15)
+DỰ ÁN TUYẾN CAO TỐC CHUYÊN DỤNG VẬN CHUYỂN BÔ-XÍT NHÀ MÁY ALUMIN NHÂN CƠ – CẢNG CAM RANH
+Bản Tóm Lược Thuyết Trình & Phản Biện (Cập nhật chuẩn GGB: Đoạn biển 142 km, Tổng tuyến 256 km, Vốn 49,8 nghìn tỷ)
 
-1. THÔNG TIN CHUNG VÀ ĐỘI NGŨ THỰC HIỆN: Nhà thầu An toàn Hạ tầng Kiyoshi (Tổ 2). Trưởng nhóm: Vân Anh. Thành viên: Quang Dũng, Phúc Hưng, Bảo Châu, Thảo Ngọc, Ngọc Ánh, Hoài Phước, Công Quân, Gia Nhi, Mai Lam, Thanh Duyên.
+Đội ngũ thực hiện: Thuỳ Trang (Trưởng nhóm), Quang Đạt, Thu Thảo, Thanh Bình, Ngọc Nhi, Tiến Đạt, Bảo Lộc, Trọng Hào, Tú Uyên, Thanh Trúc, Ngọc Hân.
 
-2. MỤC TIÊU VÀ Ý TƯỞNG QUY HOẠCH:
-2.1. Mục tiêu dự án: Ứng dụng tích hợp Toán học, Địa lý và Công nghệ để mô hình hóa tuyến đường, tối ưu chi phí, tăng cường kết nối Tây Nguyên (Đắk Nông) và duyên hải Nam Trung Bộ (Khánh Hòa).
-2.2. Ý tưởng quy hoạch: Đoạn 1 (AH) từ Alumin Nhân Cơ đến Nút giao CT01 dài 114 km (phương thẳng đứng Bắc - Nam); Đoạn 2 (HB) từ Nút giao CT01 đến Cảng Cam Ranh dài 142 km (phương nằm ngang Tây - Đông).
+1. QUY HOẠCH TUYẾN & MÔ HÌNH TOÁN HỌC TRÊN GEOGEBRA: Để tránh tình trạng xe chở quặng bô-xít tải trọng nặng (40–60 tấn) đi chung làm hư hỏng cao tốc dân sinh CT01, dự án quy hoạch tuyến vận tải chuyên biệt hình chữ L (tổng 256 km) trên hệ trục tọa độ Oxy:
+- Các điểm mốc & Phân đoạn: Nhà máy Nhân Cơ NHANCO(0; 114) nối vuông góc xuống điểm chiếu CAOTOC(0; 0) tạo đoạn đường núi DUONGNUI = 114 km (đơn giá dự tính 0,25 nghìn tỷ/km); từ đó chạy song song sát hành lang CT01 tới Cảng CAMRANH(142; 0) tạo đoạn DUONGBIEN = 142 km (đơn giá dự tính 0,15 nghìn tỷ/km, giảm 40% nhờ bám sát hạ tầng CT01).
+- Hàm chi phí làm đường dự tính trên GeoGebra: Với trạm trung chuyển di động TRAM(x_M; 0) (0 ≤ x_M ≤ 142), tổng vốn làm đường dự tính lý tưởng là: C(x) = 0,25·√(114² + x²) + 0,15·(142 – x) (nghìn tỷ VNĐ).
 
-3. THÔNG SỐ KỸ THUẬT VÀ CHI PHÍ ĐẦU TƯ:
-- Chiều dài tuyến vuông góc (Nhân Cơ - CT01): 114 km.
-- Chiều dài đoạn cao tốc CT01 sử dụng: 142 km.
-- Đơn giá xây dựng quy đổi: 250 tỷ VNĐ / km.
-- Tổng vốn đầu tư đề xuất (Phương án A): 28.500 tỷ VNĐ (Rẻ nhất nhờ tận dụng CT01).
-- So sánh các phương án: Phương án A (28.500 tỷ VNĐ - Rẻ nhất), Phương án B (45.000 tỷ VNĐ - Trung bình), Phương án C (60.000 - 80.000 tỷ VNĐ - Cao nhất).
+BẢNG 1: KỊCH BẢN MÔ PHỎNG GEOGEBRA
+- Tuyến chữ L vuông góc (CHỌN): x_M = 0 km | K = -0,15 | Vốn: 49,80 nghìn tỷ (49.800 tỷ) | Quyết định: CHỌN vì tránh 100% khu bảo tồn, bám sát hành lang CT01.
+- Cực tiểu toán học thuần túy (LOẠI): x_M = 85,5 km | K = 0 | Vốn: 44,10 nghìn tỷ (44.100 tỷ) | LOẠI vì tuyến chéo 142,5 km đâm xuyên lõi rừng bảo tồn.
+- Đường thẳng chéo tới Cam Ranh (LOẠI): x_M = 142 km | K = +0,047 | Vốn: 45,52 nghìn tỷ (45.520 tỷ) | LOẠI vì 1 đoạn thẳng 182,1 km băng qua dãy núi cao.
 
-4. CÁC ƯU ĐIỂM NỔI BẬT:
-1. Tận dụng hạ tầng cao tốc CT01: Tiết kiệm 15.600 tỷ đồng CAPEX.
-2. Thuận lợi vận chuyển & logistics: Kết nối trực tiếp Alumin Nhân Cơ với Cảng Cam Ranh.
-3. Hiệu quả kinh tế vượt trội: Vốn đầu tư thấp nhất (28.500 tỷ VNĐ), dễ huy động vốn PPP, giảm áp lực nợ công.
-4. An toàn giao thông: Duy trì tốc độ cho phép 80 km/h trên cao tốc CT01.
+2. LỢI ÍCH CỐT LÕI: TẠI SAO CHỌN VUÔNG GÓC (x_M = 0) THAY VÌ CỰC TIỂU HAY ĐƯỜNG THẲNG?
+Tuy chi phí dự tính lý tưởng tại x_M = 0 cao hơn cực tiểu (x_M = 85,5) 5,70 nghìn tỷ và cao hơn đường thẳng (x_M = 142) 4,28 nghìn tỷ, nhưng khi áp vào thực địa, phương án vuông góc mang lại 4 lợi ích quyết định:
 
-5. QUÁ TRÌNH THI CÔNG SA BÀN / MÔ HÌNH 3D:
-01. Chuẩn bị nền và tạo địa hình: Dựng nền, đo đạc kích thước và cắt định hình bằng bìa carton.
-02. Bố trí các hạng mục: Sắp xếp tuyến đường, đồi núi, mặt biển và công trình giao thông.
-03. Hoàn thiện chi tiết: Gắn mô hình phương tiện vận tải (xe tải, tàu biển container).
-04. Kiểm tra và hoàn thiện: Kiểm tra tổng thể sa bàn, chỉnh sửa và hoàn thiện mô hình.`,
-            summary: '📌 **Tóm tắt Tổ 2:**\n• Tuyến kết nối: Nhân Cơ – Nút giao CT01 – Cảng Cam Ranh\n• Vốn đầu tư Phương án A: 28.500 tỷ VNĐ (tiết kiệm 15.600 tỷ nhờ tận dụng CT01)\n• Đội ngũ: Tổ 2 - Kiyoshi (Trưởng nhóm Vân Anh và các thành viên)',
-            image: null
+BẢNG 2: SO SÁNH TIÊU CHÍ THỰC ĐỊA & PHÁP LÝ
+- Bảo tồn sinh thái & Pháp lý: Phương án vuông góc ĐẠT CHUẨN 100% (tránh hoàn toàn vùng lõi rừng đặc dụng Bidoup – Núi Bà, Phước Bình). Tuyến cực tiểu/đường thẳng BẤT KHẢ THI PHÁP LÝ do cắt xuyên lõi rừng, vi phạm Luật Lâm nghiệp, ĐTM bị bác bỏ.
+- Phát sinh địa chất (Hầm & Cầu): Phương án vuông góc KIỂM SOÁT TỐT (chỉ 114 km vùng chuyển tiếp, 17,1 km hầm; 142 km đồng bằng). Tuyến cực tiểu ĐỘI VỐN LÊN 68.000–82.000 TỶ do đào 45–55 km hầm xuyên núi đá cứng.
+- Tận dụng hạ tầng & Trạm M: Phương án vuông góc ĐA NĂNG (tận dụng hành lang GPMB, đường công vụ dọc CT01; Trạm M kết nối hàng hóa Bắc - Nam). Tuyến khác CÔ LẬP & TỐN KÉM (phải mở đường công vụ băng rừng sâu; Trạm M lơ lửng giữa đèo vắng).
+- An toàn vận hành xe tải nặng: Phương án vuông góc AN TOÀN CAO (xe 40-60 tấn chỉ đổ đèo đoạn ngắn 114 km, chạy ổn định 142 km đường bằng). Tuyến chéo RỦI RO TAI NẠN CAO (đổ đèo dốc gắt liên tục 142-182 km, tăng 35% nhiên liệu, nguy cơ mất phanh).
+
+3. TIẾN ĐỘ THI CÔNG 48 THÁNG (4 GIAI ĐOẠN):
+- Năm 1: Hoàn tất 100% GPMB & khảo sát địa chất.
+- Năm 2 – Giữa năm 3: Thông tuyến nền đường, khoan 16,9 km hầm và 1,0 km cầu.
+- Cuối năm 3 – Đầu năm 4: Đổ mặt đường bê tông chịu tải 60 tấn & xây Trạm Logistics M.
+- 6 tháng cuối: Nghiệm thu tải trọng động & vận hành thương mại.
+
+4. THUẬN LỢI – THÁCH THỨC & GIẢI PHÁP TỐI ƯU XANH HÓA:
+- Thuận lợi & Thế mạnh cốt lõi: Giảm 40% đơn giá đoạn song song CT01 (150 tỷ/km); nguồn thu ổn định 2–3 triệu tấn bô-xít/alumin/năm; tuổi thọ mặt đường 30 năm, giảm 45% chi phí đại tu.
+- Thách thức & Giải pháp khắc phục:
+  + Vốn CAPEX lớn: Triển khai PPP – BOT (70% vốn liên danh TKV & đối tác, 30% ngân sách GPMB), kết hợp khai thác kho bãi tại Trạm Logistics M rút ngắn hoàn vốn còn 16 năm.
+  + Rủi ro địa chất hầm & GPMB 4 tỉnh: Dùng máy đào hầm khiên kín TBM, dầm cầu đúc sẵn và ký hợp đồng khóa giá xi măng – thép dài hạn.
+  + Phát triển xanh (Net Zero): Phối trộn phụ phẩm bùn đỏ Nhân Cơ xử lý làm vật liệu đắp nền đường; lắp điện mặt trời dọc 142 km dải phân cách cấp điện trạm sạc xe điện tại Trạm M.
+
+4.1. Nhóm giải pháp tối ưu về tài chính – kinh tế – địa chất:
+- Cơ cấu vốn PPP – Hợp đồng BOT kết hợp khai thác Trạm Logistics M.
+- Ứng dụng công nghệ khoan hầm TBM & Cầu cạn đúc sẵn.
+- Khóa giá vật liệu đầu vào & Cơ chế trượt giá linh hoạt.
+- Tối ưu hóa chi phí bảo dưỡng bằng trạm cân động (WIM) & BIM.
+
+4.2. Điểm nhấn xanh hóa hạ tầng & Lộ trình Net Zero:
+- Tận dụng phụ phẩm bùn đỏ làm vật liệu đắp nền đường.
+- Hành lang năng lượng mặt trời & Điện hóa đội xe vận tải.
+
+4.3. Khai thác kinh tế liên vùng, hỗ trợ nông sản & giảm ùn tắc giao thông cho CT01:
+- Thúc đẩy khai thác kinh tế liên vùng Tây Nguyên – Duyên hải Nam Trung Bộ.
+- Hỗ trợ bà con nông dân & tối ưu vận chuyển nông sản xuất khẩu (dưới 4 giờ ra Cảng Cam Ranh).
+- Giảm ùn tắc & đảm bảo an toàn giao thông cho tuyến dân sinh CT01.
+
+5. THỜI GIAN VẬN CHUYỂN:
+- Thời gian vận chuyển trên đường AH (144 km) với vận tốc từ 70 km/h đến 90 km/h là 1 tiếng 26 phút.
+- Thời gian vận chuyển trên tuyến đường song song cao tốc CT01 (142 km) với vận tốc từ 70 km/h đến 90 km/h là 1 tiếng 46 phút.
+- Tổng thời gian cho toàn bộ quãng đường 256 km là 3 tiếng 12 phút.`,
+            summary: '📌 **Tóm tắt Tổ 2 (Kiyoshi - Chuyên đề Toán ứng dụng):**\n• Đội ngũ: Thuỳ Trang (Trưởng nhóm) và 10 thành viên\n• Mô hình GeoGebra: Tuyến chữ L vuông góc (x_M = 0 km), vốn làm đường 49.800 tỷ\n• Thời gian vận chuyển tổng cộng: 256 km trong 3 tiếng 12 phút',
+            image: 'mohinhTo2.png'
         },
         {
             id: 'file-logistics',
             name: '📄 Tổ 3',
-            text: `BỐI CẢNH VÀ Ý TƯỞNG TỐI ƯU HÓA LOGISTICS: Ngành logistics giữ vai trò quan trọng trong sản xuất, lưu thông và phân phối hàng hóa, giúp quản lý kho bãi, phương tiện khoa học, giảm chi phí lưu kho và tiết kiệm nguồn lực. 
+            text: `TỔNG HỢP NỘI DUNG - TỔ 3
+BỐI CẢNH VÀ Ý TƯỞNG TỐI ƯU HÓA LOGISTICS: Ngành logistics giữ vai trò quan trọng trong hoạt động sản xuất, lưu thông và phân phối hàng hóa, giúp doanh nghiệp quản lý kho bãi, phương tiện và tuyến đường vận chuyển một cách khoa học, từ đó giảm chi phí lưu kho, hạn chế thời gian chờ đợi và tiết kiệm nguồn lực đầu tư. Việc nghiên cứu xây dựng các giải pháp tối ưu hóa hệ thống logistics góp phần giảm thiểu chi phí, nâng cao hiệu suất vận chuyển và sử dụng hiệu quả nguồn lực kinh tế.
 
-GIỚI THIỆU MÔ HÌNH LIÊN KẾT NHÂN CƠ – CAM RANH: Gồm 3 địa điểm chính: Nhà máy Alumin Nhân Cơ (xuất phát), Trạm Logistics trung chuyển (trung gian điều phối) và Cảng Cam Ranh (đầu mối cảng biển). Ứng dụng đạo hàm trong Toán học để xác định vị trí trạm trung chuyển tối ưu. 
+GIỚI THIỆU MÔ HÌNH LIÊN KẾT NHÂN CƠ – CAM RANH:
+- Xây dựng dựa trên sự liên kết giữa 3 địa điểm chính: Nhà máy Alumin Nhân Cơ (điểm xuất phát hàng hóa), Trạm Logistics trung chuyển (trung gian tập kết và điều phối vận chuyển) và Cảng Cam Ranh (đầu mối kết nối vận tải đường biển).
+- Điểm nổi bật: Ứng dụng kiến thức đạo hàm trong Toán học để xác định vị trí bố trí trạm trung chuyển và tối ưu hóa hệ thống giao thông kết nối.
 
-BÀI TOÁN ĐẠO HÀM CHI PHÍ: AB = 114 km; BC = 145 km. Đơn giá tuyến mới 250 tỷ đồng/km, tuyến cao tốc CT01 là 150 tỷ đồng/km. Hàm chi phí T(x) = 250 * √(114² + x²) + 150 * (145 - x). Đạo hàm T'(x) = [250x / √(114² + x²)] - 150 = 0 => x = 85,5 km, quãng đường DC = 59,5 km, tổng quãng đường 202 km, thời gian vận chuyển khoảng 5 giờ. 
+GIAI ĐOẠN 1: LOGISTICS SỐ - BÀI TOÁN ĐẠO HÀM & THIẾT LẬP CHI PHÍ
+I. Đạo hàm:
+- Dữ liệu giả định: AB = 114 km; BC = 142 km. Đơn giá tuyến cao tốc CT01 (D đến C) là 150 tỷ đồng/km; tuyến đường mới xuyên núi (A đến D) là 250 tỷ đồng/km. Gọi D là điểm đặt trạm logistics với điều kiện 0 ≤ x ≤ 142 (km).
+- Thiết lập hàm chi phí: T(x) = 250·√(114² + x²) + 150·(142 - x)
+- Đạo hàm: T'(x) = 250·x / √(114² + x²) - 150. Cho T'(x) = 0 => x = 85,5 (km).
+- Suy ra: AD = 142,5 km; DC = 59,5 km. Tổng quãng đường vận chuyển là 202 km.
+II. Chi phí đầu tư:
+- T(85,5) = 250·√(114² + 85,5²) + 150·(142 - 85,5) = 44.100 tỷ đồng.
+- Tổng chi phí đầu tư tính được tiết kiệm hơn so với mức đầu tư gốc (45.525 tỷ đồng) là 1.425 tỷ đồng.
 
-THUẬN LỢI: 
-1. Tối ưu hóa quy trình vận tải: Điểm trung chuyển liên phương thức, kho bãi điều tiết thông minh bảo quản alumin khô ráo tránh ùn ứ. 
-2. Dịch vụ kỹ thuật & hậu cần: Trạm bảo dưỡng, tiếp nhiên liệu tại chỗ và khu vực nghỉ ngơi an toàn cho đội ngũ tài xế đường dài. 
-3. Gia tăng giá trị kinh tế vùng: Tận dụng công suất gom hàng nông sản Tây Nguyên (cà phê, hồ tiêu, sầu riêng) xuất khẩu và vận chuyển ngược lại vật tư, phân bón. 
+GIAI ĐOẠN 2: HẠ TẦNG ĐA PHƯƠNG TIỆN
+1. Hạn chế:
+- Khu vực dân cư: Quá trình xây dựng mở rộng tuyến phát sinh bụi, nước thải, ảnh hưởng đất ở và đất sản xuất; mật độ xe tải lớn làm tăng khí thải, tiếng ồn, nguy cơ ùn tắc và tai nạn.
+- Khu bảo tồn thiên nhiên: Chia cắt môi trường sống (phá vỡ tính liên tục của sinh cảnh, cản trở động vật di chuyển kiếm ăn); ô nhiễm không khí, đất, nguồn nước, tiếng ồn và ánh sáng ban đêm xáo trộn tập tính động vật hoang dã.
 
-HẠN CHẾ & DI DỜI TRẠM D: 
-- Thách thức khi triển khai trạm trung chuyển logistics bao gồm áp lực giải phóng mặt bằng quy mô lớn tại điểm giao cắt, chi phí đầu tư ban đầu cao và rủi ro biến động giá nguyên vật liệu xây dựng kho bãi. 
-- Khi thực hiện di dời vị trí Trạm D so với điểm tối ưu ban đầu (x = 85,5 km, tương ứng DC = 59,5 km với tổng vốn 44.550 tỷ đồng, tiết kiệm 1.562 tỷ đồng), chi phí đầu tư sẽ gia tăng đáng kể do thay đổi cự ly đấu nối hạ tầng giao thông và chi phí san lấp mặt bằng tại vị trí mới. Cụ thể: dời 2,5 km tổng vốn tăng 2,5 tỷ; dời 5 km tổng vốn tăng 15 tỷ; dời 10 km tổng vốn tăng 55 tỷ đồng.
+2. Lợi ích & Giải pháp - Trạm Logistics:
+- Chức năng cốt lõi: Điểm trung chuyển liên phương thức (chuyển đổi từ xe tải chuyên dụng vượt đèo sang xe container tải trọng lớn); kho bãi lưu trữ và điều tiết thông minh giúp bảo quản alumin khô ráo, tránh ùn ứ tại cảng biển.
+- Chức năng hỗ trợ: Trạm bảo dưỡng và tiếp nhiên liệu tại chỗ ngay sau khi đổ đèo; khu vực nghỉ ngơi đảm bảo sức khỏe và sự tỉnh táo cho tài xế.
+- Chức năng mở rộng: Phục vụ đa ngành hàng (gom nông sản chủ lực Tây Nguyên như cà phê, hồ tiêu, sầu riêng xuất khẩu và chở ngược vật tư, phân bón, xăng dầu tránh xe chạy rỗng chiều về); thúc đẩy kinh tế thương mại và tạo việc làm địa phương.
 
-GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và hầm chui sinh thái, vận chuyển kín bằng xe bồn/băng tải & tường chống ồn, hệ thống thu gom nước chảy tràn qua bể lắng lọc.`,
-            summary: '📌 **Tóm tắt Tổ 3:**\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics – Cảng Cam Ranh\n• Bài toán tối ưu đạo hàm: Điểm đặt trạm x = 85,5 km, quãng đường DC = 59,5 km\n• Giải pháp hạ tầng xanh: Cầu cạn sinh thái, vận chuyển kín, thu gom nước tràn',
+3. Môi trường và Tuyến đường:
+- Khu bảo tồn thiên nhiên (3 giải pháp hạ tầng xanh):
+  + Xây dựng hầm chui sinh thái: Giữ nguyên hiện trạng thảm thực vật và lối đi tự nhiên cho động vật hoang dã thay vì xẻ núi đắp nền đường.
+  + Vận chuyển kín & Tường chống ồn: Sử dụng xe bồn chuyên dụng khép kín (hoặc băng tải/đường ống kín) không phát tán bụi mịn alumin, kết hợp vách ngăn cách âm.
+  + Hệ thống thu gom nước chảy tràn: Thiết kế rãnh thoát nước dẫn về bể lắng lọc trước khi xả ra ngoài, ngăn dầu nhớt/hóa chất ngấm vào suối.
+- Quản trị môi trường tổng thể:
+  + Chuyển đổi sang phương tiện vận tải xanh: Tại Trạm đa năng D, khuyến khích dùng xe đầu kéo chạy điện, nhiên liệu sạch (LNG/Hydro) hoặc kết nối đường sắt.
+  + Hệ thống quan trắc môi trường tự động: Lắp cảm biến đo chất lượng không khí, độ ồn, nước thải dọc tuyến và tại Trạm D truyền trực tiếp về cơ quan quản lý.
+  + Trồng rừng thay thế và phục hồi thảm thực vật: Trồng bù gấp 1 đến 3 lần diện tích chuyển đổi bằng cây bản địa Tây Nguyên, phủ xanh mái taluy chống sạt lở.
+- Tuyến đường:
+  + Vận tốc an toàn: Tuyến đường hầm xuyên núi áp dụng khoảng 50 km/h; đoạn đường cao tốc tận dụng khoảng 65 km/h.
+  + Thời gian vận chuyển tối ưu: Với tổng quãng đường 202 km (142,5 km hầm xuyên núi và 59,5 km cao tốc tận dụng), thời gian vận chuyển tối ưu là xấp xỉ 4 giờ.
+
+GIAI ĐOẠN 3: LOGISTICS XANH
+- Giới thiệu mô hình sa bàn, video dựng mô hình và các bước làm, tổng kết và đánh giá.`,
+            summary: '📌 **Tóm tắt Tổ 3 (Logistics Số & Logistics Xanh):**\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics D – Cảng Cam Ranh\n• Tối ưu đạo hàm: Điểm đặt trạm x = 85,5 km (AD = 142,5 km, DC = 59,5 km), tổng tuyến 202 km, chạy ~4 giờ\n• Chi phí đầu tư: 44.100 tỷ đồng (tiết kiệm 1.425 tỷ đồng so với mức gốc 45.525 tỷ)',
             image: null
         }
     ];
@@ -225,7 +329,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
 
     function loadPlans() {
         try {
-            const stored = localStorage.getItem("nhom4_separated_files_v35");
+            const stored = localStorage.getItem("nhom4_separated_files_v60");
             if (stored) userUploadedPlans = JSON.parse(stored);
         } catch(e) { userUploadedPlans = []; }
 
@@ -287,7 +391,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
         }
 
         try {
-            localStorage.setItem("nhom4_separated_files_v35", JSON.stringify(userUploadedPlans.map(p => ({...p, image: null}))));
+            localStorage.setItem("nhom4_separated_files_v60", JSON.stringify(userUploadedPlans.map(p => ({...p, image: null}))));
         } catch(err) {}
 
         loadPlans();
@@ -335,179 +439,427 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
         appendMessage('bot', `📋 **TOÀN BỘ NỘI DUNG CHI TIẾT (${plan.name}):**\n\n${plan.text}`);
     }
 
-    function answerAllBenefits() {
+    // CHỨC NĂNG: LỢI ÍCH
+    function answerCoreBenefitsTable() {
         const plan = allPlans.find(p => p.id === activePlanId);
-        if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
-        
-        let results = [];
-        if (plan.id === 'file-tay-dong') {
-            results = [
-                "• **5.1. Hiệu quả đối với vận tải hàng hóa:** Rút ngắn hành trình gần 118 km, tiết kiệm nhiên liệu, giảm hao mòn phương tiện.",
-                "• **5.2. Hiệu quả đối với doanh nghiệp:** Nâng cao tính chủ động logistics, chuỗi cung ứng ổn định, kết nối trực tiếp với cảng biển.",
-                "• **5.3. Hiệu quả đối với liên kết vùng:** Tạo hành lang kinh tế động lực kết nối không gian sản xuất Tây Nguyên và duyên hải.",
-                "• **5.4. Hiệu quả môi trường và xã hội:** Hạn chế tác động đến hệ sinh thái rừng, kiểm soát tiếng ồn, bụi và xử lý nước thải.",
-                "• **5.5. Hiệu quả khai thác dài hạn:** Định hướng vòng đời khai thác 30 năm với kế hoạch duy tu, bảo dưỡng định kỳ."
-            ];
-            appendMessage('bot', `📈 **CHI TIẾT LỢI ÍCH & TÁC ĐỘNG KỲ VỌNG (MỤC 5 - ${plan.name}):**\n\n` + results.join("\n\n"));
+        if (!plan) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
+
+        if (plan.id === 'file-ct01') {
+            appendMessage('bot', `📈 **BẢNG LỢI ÍCH CỐT LÕI (THỰC ĐỊA & PHÁP LÝ) - ${plan.name}**:`);
+            const benefitTableHtml = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Tiêu chí thực địa</th>
+                        <th>Tuyến chữ L vuông góc (x_M = 0 km) – CHỌN</th>
+                        <th>Cực tiểu & Đường thẳng – LOẠI</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Bảo tồn sinh thái & Pháp lý</strong></td>
+                        <td><strong>ĐẠT CHUẨN 100%:</strong> Tránh hoàn toàn vùng lõi rừng đặc dụng và khu bảo tồn (Bidoup – Núi Bà, Phước Bình).</td>
+                        <td><strong>BẤT KHẢ THI PHÁP LÝ:</strong> Cắt xuyên lõi rừng phòng hộ đầu nguồn, vi phạm Luật Lâm nghiệp, ĐTM bị bác bỏ.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Phát sinh địa chất (Hầm & Cầu)</strong></td>
+                        <td><strong>KIỂM SOÁT TỐT:</strong> Chỉ có 114 km vùng chuyển tiếp (17,1 km hầm); 142 km đồng bằng bằng phẳng.</td>
+                        <td><strong>ĐỘI VỐN 68.000–82.000 TỶ:</strong> Đào 45–55 km hầm xuyên núi đá cứng, phát sinh thêm 12.000–30.000 tỷ.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Tận dụng hạ tầng & Trạm M</strong></td>
+                        <td><strong>ĐA NĂNG:</strong> Tận dụng hành lang GPMB, đường công vụ dọc CT01; Trạm M kết nối hàng hóa Bắc - Nam.</td>
+                        <td><strong>CÔ LẬP & TỐN KÉM:</strong> Phải mở đường công vụ băng rừng sâu; Trạm M nằm lơ lửng giữa đèo vắng dân.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. An toàn vận hành xe tải nặng</strong></td>
+                        <td><strong>AN TOÀN CAO:</strong> Xe 40–60 tấn chỉ đổ đèo đoạn ngắn 114 km, chạy ổn định 142 km đường bằng.</td>
+                        <td><strong>RỦI RO TAI NẠN CAO:</strong> Đổ đèo dốc gắt liên tục 142–182 km, tăng 35% nhiên liệu và nguy cơ mất phanh.</td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(benefitTableHtml);
+        } else if (plan.id === 'file-tay-dong') {
+            appendMessage('bot', `📈 **BẢNG LỢI ÍCH & HIỆU QUẢ KINH TẾ - ${plan.name}**:`);
+            const table1 = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Tiêu chí đánh giá tác động</th>
+                        <th>Quy mô & Giá trị mang lại</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Rút ngắn hành trình logistics</strong></td>
+                        <td>Giảm 117,9 km so với mạng lưới hiện hữu (từ ~300 km xuống 182,1 km).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Hiệu quả tiết kiệm chi phí</strong></td>
+                        <td>Tiết kiệm chi phí vận tải trực tiếp <strong>114,95 tỷ đồng/năm</strong> (~3.448,6 tỷ đồng trong vòng đời 30 năm).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Liên kết chiến lược vùng</strong></td>
+                        <td>Tạo trục huyết mạch kết nối trực tiếp mỏ bô-xít/alumin Đắk Nông ra thẳng Cảng biển nước sâu Cam Ranh.</td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(table1);
         } else if (plan.id === 'file-logistics') {
-            results = [
-                "• **1. Tối ưu hóa quy trình vận tải (Logistics cốt lõi):** Điểm trung chuyển liên phương thức, kho bãi điều tiết thông minh bảo quản alumin khô ráo tránh ùn ứ.",
-                "• **2. Dịch vụ kỹ thuật & hậu cần bổ trợ:** Trạm bảo dưỡng, tiếp nhiên liệu tại chỗ và khu vực nghỉ ngơi an toàn cho đội ngũ tài xế đường dài.",
-                "• **3. Gia tăng giá trị kinh tế vùng:** Tận dụng công suất gom hàng nông sản Tây Nguyên (cà phê, hồ tiêu, sầu riêng) xuất khẩu và vận chuyển ngược lại vật tư, phân bón."
-            ];
-            appendMessage('bot', `📈 **THUẬN LỢI & TỐI ƯU LOGISTICS (${plan.name}):**\n\n` + results.join("\n\n"));
-        } else if (plan.id === 'file-ct01') {
-            results = [
-                "• **1. Tận dụng hạ tầng cao tốc CT01:** Tối ưu hóa việc sử dụng tuyến cao tốc hiện hữu, giúp tiết kiệm 15.600 tỷ đồng chi phí đầu tư ban đầu (CAPEX).",
-                "• **2. Thuận lợi vận chuyển:** Kết nối trực tiếp Nhà máy Alumin Nhân Cơ với mạng lưới giao thông liên vùng và Cảng biển Cam Ranh.",
-                "• **3. Nâng cao hiệu quả logistics:** Tăng tốc độ và khả năng luân chuyển hàng hóa liên vùng.",
-                "• **4. Thúc đẩy phát triển kinh tế:** Tăng cường kết nối, tạo động lực phát triển kinh tế cho địa phương và khu vực.",
-                "• **5. Chi phí đầu tư rẻ nhất & Dễ huy động vốn:** Vốn đầu tư 28.500 tỷ VNĐ là phương án tối ưu nhất, giúp tiết kiệm ngân sách, giảm áp lực nợ công và thu hút vốn PPP."
-            ];
-            appendMessage('bot', `📈 **ƯU ĐIỂM NỔI BẬT (${plan.name}):**\n\n` + results.join("\n\n"));
+            appendMessage('bot', `📈 **BẢNG LỢI ÍCH TRẠM LOGISTICS & HẠ TẦNG XANH - ${plan.name}**:`);
+            const table3 = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Nhóm chức năng & Giải pháp</th>
+                        <th>Giá trị mang lại & Tối ưu vận hành</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Chức năng cốt lõi Trạm Logistics</strong></td>
+                        <td>Điểm trung chuyển liên phương thức (xe tải đèo sang container lớn); kho bãi thông minh bảo quản alumin khô ráo, tránh ùn ứ tại cảng.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Chức năng hỗ trợ & mở rộng</strong></td>
+                        <td>Trạm bảo dưỡng, tiếp nhiên liệu, khu nghỉ ngơi tài xế; gom nông sản Tây Nguyên (cà phê, tiêu, sầu riêng) và chở ngược vật tư, phân bón.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Bảo vệ Khu bảo tồn (3 giải pháp xanh)</strong></td>
+                        <td>Xây hầm chui sinh thái cho động vật; vận chuyển kín bằng xe bồn/ống kín kèm tường chống ồn; hệ thống rãnh thu gom nước tràn qua bể lắng lọc.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Quản trị môi trường toàn tuyến</strong></td>
+                        <td>Chuyển đổi xe đầu kéo điện/LNG/Hydro; cảm biến quan trắc không khí, nước thải tự động; trồng bù rừng gấp 1–3 lần bằng cây bản địa.</td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(table3);
         } else {
-            results = plan.text.split(/(?<=[.?!])\s+/).filter(s => s.length > 30).slice(0, 5).map(s => "• " + s);
-            appendMessage('bot', `📈 **NỘI DUNG TỆP (${plan.name}):**\n\n` + results.join("\n\n"));
+            appendMessage('bot', `📈 **LỢI ÍCH DỰ ÁN (${plan.name}):**\n\n• Rút ngắn hành trình, tối ưu chuỗi cung ứng.`);
         }
     }
 
+    // CHỨC NĂNG: THÁCH THỨC & TÀI CHÍNH
     function answerRisks() {
         const plan = allPlans.find(p => p.id === activePlanId);
         if (!plan || !plan.text) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
         
-        if (plan.id === 'file-tay-dong') {
-            let results = [
-                "• **8.1. Địa hình, địa chất và thủy văn:**\n  - ⚠️ **Thách thức:** Tuyến đi qua đèo núi hiểm trở, địa chất phức tạp, nguy cơ sạt lở mùa mưa.\n  - 💡 **Giải pháp:** Tổ chức khảo sát khoan thăm dò chi tiết, thi công hầm công nghệ NATM và kiên cố hóa hệ thống thoát nước.",
-                "• **8.2. Nguồn vốn đầu tư lớn:**\n  - ⚠️ **Thách thức:** Áp lực tài chính huy động dòng tiền 42.011,48 tỷ đồng.\n  - 💡 **Giải pháp:** Phân kỳ đầu tư theo giai đoạn hợp lý, đa dạng hóa nguồn vốn (ngân sách nhà nước, doanh nghiệp, tín dụng ưu đãi, PPP).",
-                "• **8.3. Môi trường - xã hội:**\n  - ⚠️ **Thách thức:** Nguy cơ tác động đến hệ sinh thái rừng nguyên sinh, bụi và tiếng ồn sinh hoạt.\n  - 💡 **Giải pháp:** Thực hiện nghiêm ngặt ĐTM, tham vấn cộng đồng và cam kết kế hoạch trồng bù rừng hoàn nguyên cảnh quan.",
-                "• **8.4. Tiến độ và trượt giá nguyên vật liệu:**\n  - ⚠️ **Thách thức:** Rủi ro biến động giá vật liệu xây dựng (xi măng, sắt thép, nhiên liệu) và chậm giải phóng mặt bằng.\n  - 💡 **Giải pháp:** Áp dụng hợp đồng EPC thông minh, lập quỹ dự phòng tài chính và kiểm soát giải ngân theo mốc.",
-                "• **8.5. Quản lý vận hành và khai thác thông minh:**\n  - ⚠️ **Thách thức:** Giám sát an toàn và kiểm soát tải trọng phương tiện trên tuyến đường dài.\n  - 💡 **Giải pháp:** Tích hợp hệ thống giao thông thông minh (ITS), tự động hóa cân tải trọng và bảo trì dự báo sự cố."
-            ];
-            appendMessage('bot', `⚠️ **CHI TIẾT THÁCH THỨC & GIẢI PHÁP (MỤC 8 - ${plan.name}):**\n\n` + results.join("\n\n"));
-        } else if (plan.id === 'file-logistics') {
-            const riskText = `⚠️ **HẠN CHẾ & PHÂN TÍCH DI DỜI TRẠM D (${plan.name}):**\n\n` +
-                `- Thách thức khi triển khai trạm trung chuyển logistics bao gồm áp lực giải phóng mặt bằng quy mô lớn tại điểm giao cắt, chi phí đầu tư ban đầu cao và rủi ro biến động giá nguyên vật liệu xây dựng kho bãi.\n\n` +
-                `- Khi thực hiện di dời vị trí Trạm D so với điểm tối ưu ban đầu (x = 85,5 km, tương ứng DC = 59,5 km với tổng vốn 44.550 tỷ đồng, tiết kiệm 1.562 tỷ đồng), chi phí đầu tư sẽ gia tăng đáng kể do thay đổi cự ly đấu nối hạ tầng giao thông và chi phí san lấp mặt bằng tại vị trí mới.`;
-            
-            appendMessage('bot', riskText);
-
-            const tableHtml = `
+        if (plan.id === 'file-ct01') {
+            appendMessage('bot', `⚠️ **BẢNG THÁCH THỨC & TÀI CHÍNH - ${plan.name}**:`);
+            const riskTableHtml = `
                 <table class="chat-table">
                     <tr>
-                        <th>Mức độ di dời (x)</th>
-                        <th>Vị trí Trạm D mới</th>
-                        <th>Tổng vốn đầu tư mới (tỷ)</th>
-                        <th>Mức giá tăng thêm (tỷ)</th>
+                        <th>THUẬN LỢI & THẾ MẠNH</th>
+                        <th>THÁCH THỨC & GIẢI PHÁP TỐI ƯU</th>
                     </tr>
-                    <tr><td>Ban đầu</td><td>DC = 59,5 km</td><td>44.550</td><td>0 (Tiết kiệm 1.562 tỷ)</td></tr>
-                    <tr><td>Dời 2,5 km</td><td>DC = 57 km</td><td>44.552,5</td><td>+2,5</td></tr>
-                    <tr><td>Dời 5 km</td><td>DC = 54,5 km</td><td>44.565</td><td>+15</td></tr>
-                    <tr><td>Dời 10 km</td><td>DC = 49,5 km</td><td>44.605</td><td>+55</td></tr>
+                    <tr>
+                        <td>• Giảm 40% đơn giá đoạn song song CT01 (150 tỷ/km) nhờ tận dụng hạ tầng sẵn có.</td>
+                        <td>• <strong>Vốn CAPEX lớn:</strong> Triển khai PPP – BOT (70% vốn liên danh TKV & đối tác, 30% ngân sách GPMB), kết hợp khai thác dịch vụ kho bãi tại Trạm Logistics M rút ngắn hoàn vốn còn 16 năm.</td>
+                    </tr>
+                    <tr>
+                        <td>• Nguồn thu ổn định 2–3 triệu tấn bô-xít/năm; giảm 30% chi phí logistics xuất khẩu (chạy dưới 4 giờ ra Cảng Cam Ranh).</td>
+                        <td>• <strong>Rủi ro địa chất hầm & GPMB 4 tỉnh:</strong> Dùng máy đào hầm khiên kín TBM, dầm cầu đúc sẵn và ký hợp đồng khóa giá xi măng – thép dài hạn.</td>
+                    </tr>
+                    <tr>
+                        <td>• Tuổi thọ mặt đường đạt 30 năm, giảm 45% chi phí đại tu và không gây gián đoạn giao thông dân sinh CT01.</td>
+                        <td>• <strong>Phát triển xanh (Net Zero):</strong> Phối trộn phụ phẩm bùn đỏ Nhân Cơ xử lý làm vật liệu đắp nền đường; lắp điện mặt trời dọc 142 km dải phân cách cấp điện trạm sạc xe điện tại Trạm M.</td>
+                    </tr>
                 </table>
             `;
-            appendHtmlTableMessage(tableHtml);
-        } else if (plan.id === 'file-ct01') {
-            appendMessage('bot', `⚠️ **THÁCH THỨC & HẠN CHẾ (${plan.name}):**\n\nTệp tài liệu của Tổ 2 tập trung vào các ưu điểm vượt trội và giải pháp tận dụng cao tốc hiện hữu, **không ghi nhận thách thức hay hạn chế cụ thể** nào đối với phương án này.`);
+            appendHtmlTableMessage(riskTableHtml);
+        } else if (plan.id === 'file-tay-dong') {
+            appendMessage('bot', `⚠️ **BẢNG THÁCH THỨC & GIẢI PHÁP TRIỂN KHAI - ${plan.name}**:`);
+            const tableRisk1 = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Nhóm rủi ro dự án</th>
+                        <th>Mức độ ảnh hưởng & Giải pháp khắc phục</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Địa hình & Địa chất phức tạp</strong></td>
+                        <td>Đèo núi hiểm trở, sạt lở mùa mưa, yêu cầu cao về hầm và cầu. <em>Giải pháp:</em> Khảo sát chi tiết, chọn phương án hầm cầu tối ưu.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Áp lực nguồn vốn đầu tư</strong></td>
+                        <td>Quy mô vốn lớn, rủi ro trượt giá vật liệu. <em>Giải pháp:</em> Phân kỳ đầu tư, đa dạng hóa cơ cấu vốn và kiểm soát dự toán.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Tác động môi trường sinh thái</strong></td>
+                        <td>Ảnh hưởng đất, nước, rừng và cộng đồng. <em>Giải pháp:</em> ĐTM nghiêm ngặt, kiểm soát bụi/tiếng ồn và trồng bù rừng hoàn nguyên.</td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableRisk1);
+        } else if (plan.id === 'file-logistics') {
+            appendMessage('bot', `⚠️ **BẢNG HẠN CHẾ MÔI TRƯỜNG & DÂN CƯ - ${plan.name}**:`);
+            const tableRisk3 = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Khu vực chịu tác động</th>
+                        <th>Các hạn chế & Rủi ro chính</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Khu vực dân cư</strong></td>
+                        <td>• San lấp, đào đắp thi công phát sinh bụi, nước thải, ảnh hưởng đất ở và đất sản xuất.<br>• Mật độ xe tải vận tải lớn làm gia tăng khí thải, tiếng ồn, nguy cơ ùn tắc và tai nạn giao thông.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Khu bảo tồn thiên nhiên</strong></td>
+                        <td>• <strong>Chia cắt môi trường sống:</strong> Phá vỡ tính liên tục của sinh cảnh, cản trở di chuyển và kiếm ăn của động vật hoang dã.<br>• <strong>Ô nhiễm & Tiếng ồn ánh sáng:</strong> Khí thải, bụi, nước thải ảnh hưởng đất/nước; xe chạy đêm gây rung chấn, xáo trộn tập tính tự nhiên.</td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableRisk3);
         } else {
-            appendMessage('bot', `⚠️ Không tìm thấy thông tin mục này trong tệp.`);
+            appendMessage('bot', `⚠️ **THÁCH THỨC & GIẢI PHÁP (${plan.name}):**\n\n- Thách thức địa hình và vốn đầu tư.`);
         }
     }
 
+    // CHỨC NĂNG: BẢNG MÔ PHỎNG GEOGEBRA
+    function answerGeogebraSimulationTable() {
+        const plan = allPlans.find(p => p.id === activePlanId);
+        if (!plan) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
+        
+        if (plan.id === 'file-ct01') {
+            appendMessage('bot', `📊 **BẢNG MÔ PHỎNG GEOGEBRA - ${plan.name}**:`);
+            const tableHtml = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Kịch bản mô phỏng GeoGebra</th>
+                        <th>Tọa độ x_M & Hệ số góc K</th>
+                        <th>Vốn làm đường dự tính C(x_M)</th>
+                        <th>Quyết định quy hoạch</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Tuyến chữ L vuông góc (CHỌN)</strong></td>
+                        <td>x_M = 0 km &nbsp;|&nbsp; K = -0,15</td>
+                        <td><strong>49,80 nghìn tỷ (49.800 tỷ)</strong></td>
+                        <td><strong>CHỌN:</strong> Tránh 100% khu bảo tồn, bám sát hành lang CT01.</td>
+                    </tr>
+                    <tr>
+                        <td>2. Cực tiểu toán học thuần túy</td>
+                        <td>x_M = 85,5 km &nbsp;|&nbsp; K = 0</td>
+                        <td>44,10 nghìn tỷ (44.100 tỷ)</td>
+                        <td><strong>LOẠI:</strong> Tuyến chéo 142,5 km đâm xuyên lõi rừng bảo tồn.</td>
+                    </tr>
+                    <tr>
+                        <td>3. Đường thẳng chéo tới Cam Ranh</td>
+                        <td>x_M = 142 km &nbsp;|&nbsp; K = +0,047</td>
+                        <td>45,52 nghìn tỷ (45.520 tỷ)</td>
+                        <td><strong>LOẠI:</strong> 1 đoạn thẳng 182,1 km băng qua dãy núi cao.</td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableHtml);
+        } else if (plan.id === 'file-tay-dong') {
+            appendMessage('bot', `📊 **BẢNG 1 & BẢNG 2: QUY MÔ & CẤU PHẦN TUYẾN ĐƯỜNG - ${plan.name}**:`);
+            const tableGgb1 = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Cấu phần tuyến đường</th>
+                        <th>Chiều dài</th>
+                        <th>Tỷ lệ</th>
+                        <th>Chức năng chính</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Đường trên nền đất</strong></td>
+                        <td>169,3 km</td>
+                        <td>93,0%</td>
+                        <td>Kết nối các khu vực và các đoạn tuyến</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Hầm xuyên núi</strong></td>
+                        <td>12,0 km</td>
+                        <td>6,6%</td>
+                        <td>Vượt địa hình núi, hạn chế đường vòng</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Cầu vượt sông</strong></td>
+                        <td>0,8 km</td>
+                        <td>0,4%</td>
+                        <td>Kết nối qua sông, suối và thung lũng</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TỔNG CỘNG</strong></td>
+                        <td><strong>182,1 km</strong></td>
+                        <td><strong>100%</strong></td>
+                        <td>Toàn tuyến đề xuất</td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableGgb1);
+        } else if (plan.id === 'file-logistics') {
+            appendMessage('bot', `📊 **BẢNG BÀI TOÁN ĐẠO HÀM TỐI ƯU VỊ TRÍ TRẠM D - ${plan.name}**:`);
+            const tableGgb3 = `
+                <table class="chat-table">
+                    <tr>
+                        <th>Thông số bài toán đạo hàm</th>
+                        <th>Giá trị & Công thức tính toán</th>
+                    </tr>
+                    <tr>
+                        <td>Dữ liệu giả định tuyến đường</td>
+                        <td>AB = 114 km (đường xuyên núi: 250 tỷ/km); BC = 142 km (cao tốc CT01: 150 tỷ/km)</td>
+                    </tr>
+                    <tr>
+                        <td>Hàm chi phí đầu tư T(x)</td>
+                        <td>T(x) = 250·√(114² + x²) + 150·(142 - x) &nbsp;(0 ≤ x ≤ 142)</td>
+                    </tr>
+                    <tr>
+                        <td>Nghiệm cực tiểu T'(x) = 0</td>
+                        <td><strong>x = 85,5 km</strong> &nbsp;=>&nbsp; AD = 142,5 km; DC = 59,5 km (Tổng tuyến = <strong>202 km</strong>)</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng chi phí tối ưu T(85,5)</td>
+                        <td><strong>44.100 tỷ đồng</strong> (Tiết kiệm <strong>1.425 tỷ đồng</strong> so với mức gốc 45.525 tỷ đồng)</td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableGgb3);
+        } else {
+            appendMessage('bot', `📊 **MÔ HÌNH GEOGEBRA:** Tệp "${plan.name}" không áp dụng mô hình toán học GeoGebra.`);
+        }
+    }
+
+    // CHỨC NĂNG: TÓM TẮT SỐ LIỆU & BẢNG
     function answerSummaryData() {
         const plan = allPlans.find(p => p.id === activePlanId);
         if (!plan) { appendMessage('bot', '⚠️ Vui lòng chọn tệp trước.'); return; }
         
-        if (plan.id === 'file-tay-dong') {
-            appendMessage('bot', `📊 **SỐ LIỆU, QUY MÔ & 3 BẢNG THÔNG SỐ - TỔ 1:**\n\n• Chiều dài toàn tuyến: 182,1 km (169,3 km đường đất | 12,0 km hầm | 0,8 km cầu)\n• Tổng mức đầu tư sơ bộ: 42.011,48 tỷ đồng (~42,01 nghìn tỷ)\n• Hiệu quả tiết kiệm: 114,95 tỷ đồng/năm (vòng đời khai thác 30 năm)`);
-
-            const tableHtml1 = `
-                <strong style="color: #38bdf8;">1. Bảng cơ cấu thành phần Tổng mức đầu tư:</strong>
-                <table class="chat-table">
-                    <tr>
-                        <th>Hạng mục chi phí thành phần</th>
-                        <th>Tỷ trọng</th>
-                        <th>Giá trị (Tỷ VND)</th>
-                    </tr>
-                    <tr><td>Chi phí xây dựng & thiết bị trực tiếp</td><td>~82.8%</td><td>34.792,11</td></tr>
-                    <tr><td>Chi phí tư vấn, quản lý dự án & khác</td><td>~4.2%</td><td>1.739,61</td></tr>
-                    <tr><td>Chi phí dự phòng (15%)</td><td>13.0%</td><td>5.479,76</td></tr>
-                    <tr><td><strong>Tổng mức đầu tư sơ bộ</strong></td><td><strong>100%</strong></td><td><strong>42.011,48</strong></td></tr>
-                </table>
-            `;
-            const tableHtml2 = `
-                <strong style="color: #38bdf8; display: block; margin-top: 15px;">2. Bảng cơ cấu thành phần Hướng tuyến:</strong>
-                <table class="chat-table">
-                    <tr>
-                        <th>Loại hình công trình</th>
-                        <th>Chiều dài (km)</th>
-                        <th>Tỷ lệ (%)</th>
-                    </tr>
-                    <tr><td>Đường trên nền đất</td><td>169,3</td><td>93.0%</td></tr>
-                    <tr><td>Hầm xuyên núi</td><td>12,0</td><td>6.6%</td></tr>
-                    <tr><td>Cầu vượt sông, thung lũng</td><td>0,8</td><td>0.4%</td></tr>
-                    <tr><td><strong>Tổng cộng</strong></td><td><strong>182,1</strong></td><td><strong>100%</strong></td></tr>
-                </table>
-            `;
-            const tableHtml3 = `
-                <strong style="color: #38bdf8; display: block; margin-top: 15px;">3. Bảng hiệu quả kinh tế & Tiết kiệm vận tải (30 năm):</strong>
-                <table class="chat-table">
-                    <tr>
-                        <th>Chỉ tiêu kinh tế định hướng</th>
-                        <th>Sản lượng / Đơn giá</th>
-                        <th>Giá trị quy đổi</th>
-                    </tr>
-                    <tr><td>Sản lượng vận chuyển alumin giả định</td><td>650.000 tấn/năm</td><td>Khối lượng lớn ổn định</td></tr>
-                    <tr><td>Mức tiết kiệm chi phí vận tải trực tiếp</td><td>114,95 tỷ đồng/năm</td><td>Tiết kiệm nhiên liệu & hao mòn</td></tr>
-                    <tr><td>Tổng tiết kiệm danh nghĩa (Vòng đời 30 năm)</td><td>30 năm khai thác</td><td>~3.448,6 tỷ đồng</td></tr>
-                </table>
-            `;
-            appendHtmlTableMessage(tableHtml1 + tableHtml2 + tableHtml3);
-        } else if (plan.id === 'file-ct01') {
-            appendMessage('bot', `📊 **SỐ LIỆU & SO SÁNH CÁC PHƯƠNG ÁN (${plan.name}):**\n\n• Tuyến đường: Nhân Cơ (114 km) -> Nút giao CT01 -> Cảng Cam Ranh (142 km cao tốc CT01).\n• Đơn giá xây dựng quy đổi: 250 tỷ VNĐ / km.`);
-
+        if (plan.id === 'file-ct01') {
+            appendMessage('bot', `📊 **TÓM TẮT SỐ LIỆU & TỔNG QUAN - ${plan.name}**:`);
             const tableHtml = `
                 <table class="chat-table">
                     <tr>
-                        <th>Phương án</th>
-                        <th>Tổng vốn đầu tư (VNĐ)</th>
-                        <th>Đánh giá chi phí</th>
+                        <th>Chỉ tiêu tổng quan dự án</th>
+                        <th>Thông số kỹ thuật & Kinh tế</th>
                     </tr>
-                    <tr><td><strong>Phương án A (Đề xuất)</strong></td><td><strong>28.500 tỷ</strong></td><td>Rẻ nhất (Nhờ tận dụng CT01)</td></tr>
-                    <tr><td>Phương án B</td><td>45.000 tỷ</td><td>Mức chi phí trung bình</td></tr>
-                    <tr><td>Phương án C</td><td>60.000 - 80.000 tỷ</td><td>Chi phí cao nhất</td></tr>
+                    <tr>
+                        <td><strong>Tổng chiều dài tuyến</strong></td>
+                        <td>256 km (114 km đường núi + 142 km đoạn biển song song CT01)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tổng vốn làm đường dự tính (GeoGebra)</strong></td>
+                        <td>49,80 nghìn tỷ (49.800 tỷ VNĐ)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thời gian vận chuyển toàn tuyến</strong></td>
+                        <td>3 tiếng 12 phút (AH 144km: 1h26p, CT01 song song 142km: 1h46p)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tiến độ thi công</strong></td>
+                        <td>48 tháng (4 giai đoạn rõ rệt từ GPMB, khoan hầm đến vận hành thương mại)</td>
+                    </tr>
                 </table>
             `;
             appendHtmlTableMessage(tableHtml);
+        } else if (plan.id === 'file-tay-dong') {
+            appendMessage('bot', `📊 **BẢNG 1 & BẢNG 2: TÓM TẮT SỐ LIỆU ĐỀ XUẤT - ${plan.name}**:`);
+            const tableData1 = `
+                <table class="chat-table">
+                    <tr>
+                        <th colspan="2">BẢNG 1: CHỈ TIÊU VÀ QUY MÔ ĐỀ XUẤT</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Chiều dài toàn tuyến</strong></td>
+                        <td>182,1 km</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Đường trên nền đất</strong></td>
+                        <td>169,3 km</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hầm xuyên núi</strong></td>
+                        <td>12,0 km</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cầu vượt sông</strong></td>
+                        <td>0,8 km</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tổng mức đầu tư sơ bộ</strong></td>
+                        <td>45.525 tỷ đồng (hoặc 42.011,48 tỷ đồng)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sản lượng alumin giả định</strong></td>
+                        <td>650.000 tấn/năm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tiết kiệm vận tải theo kịch bản</strong></td>
+                        <td>114,95 tỷ đồng/năm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thời gian khai thác định hướng</strong></td>
+                        <td>30 năm</td>
+                    </tr>
+                </table>
+                <br>
+                <table class="chat-table">
+                    <tr>
+                        <th colspan="4">BẢNG 2: CẤU PHẦN QUY MÔ TUYẾN ĐƯỜNG</th>
+                    </tr>
+                    <tr>
+                        <th>Cấu phần</th>
+                        <th>Chiều dài</th>
+                        <th>Tỷ lệ</th>
+                        <th>Chức năng</th>
+                    </tr>
+                    <tr>
+                        <td>Đường trên nền đất</td>
+                        <td>169,3 km</td>
+                        <td>93,0%</td>
+                        <td>Kết nối các khu vực và các đoạn tuyến</td>
+                    </tr>
+                    <tr>
+                        <td>Hầm xuyên núi</td>
+                        <td>12,0 km</td>
+                        <td>6,6%</td>
+                        <td>Vượt địa hình núi, hạn chế đường vòng</td>
+                    </tr>
+                    <tr>
+                        <td>Cầu vượt sông</td>
+                        <td>0,8 km</td>
+                        <td>0,4%</td>
+                        <td>Kết nối qua sông, suối và thung lũng</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tổng cộng</strong></td>
+                        <td><strong>182,1 km</strong></td>
+                        <td><strong>100%</strong></td>
+                        <td><strong>Toàn tuyến đề xuất</strong></td>
+                    </tr>
+                </table>
+            `;
+            appendHtmlTableMessage(tableData1);
         } else if (plan.id === 'file-logistics') {
-            appendMessage('bot', `📊 **SỐ LIỆU, BÀI TOÁN ĐẠO HÀM & TỐI ƯU - ${plan.name}:**\n\n• Mô hình liên kết: Nhà máy Alumin Nhân Cơ – Trạm Logistics – Cảng Cam Ranh\n• **Công thức hàm chi phí tổng quát:** T(x) = 250 * √(114² + x²) + 150 * (145 - x)\n• **Đạo hàm tối ưu chi phí:** T'(x) = [250x / √(114² + x²)] - 150 = 0\n• **Kết quả nghiệm tối ưu:** Điểm đặt trạm x = 85,5 km, quãng đường DC = 59,5 km, tổng quãng đường vận chuyển 202 km, thời gian khoảng 5 giờ\n• **Vốn đầu tư phương án tối ưu:** 44.550 tỷ đồng (tiết kiệm 1.562 tỷ đồng so với phương án xuyên núi)`);
-
-            const tableHtml = `
+            appendMessage('bot', `📊 **BẢNG THÔNG SỐ KỸ THUẬT & VẬN HÀNH TUYẾN - ${plan.name}**:`);
+            const tableData3 = `
                 <table class="chat-table">
                     <tr>
-                        <th>Mức độ di dời (x)</th>
-                        <th>Vị trí Trạm D mới</th>
-                        <th>Tổng vốn đầu tư mới (tỷ)</th>
-                        <th>Mức giá tăng thêm (tỷ)</th>
+                        <th>Chỉ tiêu kỹ thuật & Kinh tế</th>
+                        <th>Thông số chi tiết</th>
                     </tr>
-                    <tr><td>Ban đầu</td><td>DC = 59,5 km</td><td>44.550</td><td>0 (Tiết kiệm 1.562 tỷ)</td></tr>
-                    <tr><td>Dời 2,5 km</td><td>DC = 57 km</td><td>44.552,5</td><td>+2,5</td></tr>
-                    <tr><td>Dời 5 km</td><td>DC = 54,5 km</td><td>44.565</td><td>+15</td></tr>
-                    <tr><td>Dời 10 km</td><td>DC = 49,5 km</td><td>44.605</td><td>+55</td></tr>
+                    <tr>
+                        <td><strong>Tổng quãng đường vận chuyển</strong></td>
+                        <td><strong>202 km</strong> (gồm 142,5 km hầm xuyên núi AD và 59,5 km cao tốc CT01 tận dụng DC)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vận tốc chạy xe an toàn</strong></td>
+                        <td>Đường hầm xuyên núi: ~<strong>50 km/h</strong> | Đoạn cao tốc tận dụng: ~<strong>65 km/h</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thời gian vận chuyển tối ưu</strong></td>
+                        <td>Xấp xỉ <strong>4 giờ</strong> toàn tuyến</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tổng chi phí đầu tư & Tiết kiệm</strong></td>
+                        <td><strong>44.100 tỷ đồng</strong> (Tiết kiệm <strong>1.425 tỷ đồng</strong> so với mức đầu tư gốc 45.525 tỷ đồng)</td>
+                    </tr>
                 </table>
             `;
-            appendHtmlTableMessage(tableHtml);
+            appendHtmlTableMessage(tableData3);
         } else {
-            appendMessage('bot', `📊 **SỐ LIỆU TỪ TỆP TẢI LÊN (${plan.name}):**\n\n• Tệp đã được phân tích dữ liệu tự động.`);
+            appendMessage('bot', `📊 **SỐ LIỆU TỪ TỆP (${plan.name}):**\n\n• Đã nạp và sẵn sàng xử lý dữ liệu.`);
         }
     }
 
     function answerProjectModel() {
         const plan = allPlans.find(p => p.id === activePlanId);
         if (plan && plan.image) {
-            appendMessage('bot', `🖼️ **MÔ HÌNH DỰ ÁN:**`, plan.image);
+            appendMessage('bot', `🖼️ **MÔ HÌNH DỰ ÁN (${plan.name}):**`, plan.image);
             return;
         }
-        appendMessage('bot', `🖼️ **Sơ đồ cấu trúc bài toán logistics và định vị dự án:**`, "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80");
+        appendMessage('bot', `🖼️ **Sơ đồ mô hình Toán học & Sa bàn 3D:**`, "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80");
     }
 
     function sendQueryModel() {
@@ -515,7 +867,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
     }
 
     function clearUserData() {
-        localStorage.removeItem("nhom4_separated_files_v35");
+        localStorage.removeItem("nhom4_separated_files_v60");
         userUploadedPlans = [];
         loadPlans();
         appendMessage('bot', '🗑️ Đã xóa sạch dữ liệu tệp tải lên cá nhân.');
@@ -546,7 +898,7 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
         const div = document.createElement('div');
         div.className = `message ${sender === 'user' ? 'user-message' : 'bot-message'}`;
         let html = escapeHtml(text).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-        if (img) html += `<br><img src="${img}" class="chat-img" alt="Hình ảnh">`;
+        if (img) html += `<br><img src="${img}" class="chat-img" alt="Hình ảnh mô hình">`;
         div.innerHTML = html;
         box.appendChild(div);
         
@@ -567,9 +919,10 @@ GIẢI PHÁP HẠ TẦNG XANH: Xây dựng cầu cạn (đường trên cao) và
     function processQuery(q) {
         const qLower = q.toLowerCase();
         if (qLower.includes("toàn bộ nội dung")) { answerFullDocument(); return; }
-        if (qLower.includes("lợi ích") || qLower.includes("mục 5") || qLower.includes("thuận lợi")) { answerAllBenefits(); return; }
-        if (qLower.includes("thách thức") || qLower.includes("hạn chế") || qLower.includes("mục 8")) { answerRisks(); return; }
-        if (qLower.includes("số liệu") || qLower.includes("bảng")) { answerSummaryData(); return; }
+        if (qLower.includes("lợi ích")) { answerCoreBenefitsTable(); return; }
+        if (qLower.includes("thách thức") || qLower.includes("tài chính") || qLower.includes("hạn chế")) { answerRisks(); return; }
+        if (qLower.includes("bảng mô phỏng geogebra") || qLower.includes("geogebra")) { answerGeogebraSimulationTable(); return; }
+        if (qLower.includes("tóm tắt số liệu") || qLower.includes("dự toán") || qLower.includes("lcc") || qLower.includes("số liệu và bảng")) { answerSummaryData(); return; }
         if (qLower.includes("mô hình")) { answerProjectModel(); return; }
 
         const plan = allPlans.find(p => p.id === activePlanId);
